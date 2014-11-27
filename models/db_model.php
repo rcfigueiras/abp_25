@@ -17,7 +17,6 @@ class db_model {
         //$this->personas=array();
     }
 	
-
     public function get_personas(){
 
         $consulta=$this->db->query("select * from ADMINISTRADOR;");
@@ -35,11 +34,7 @@ class db_model {
 	/*****************LOGUEAR INVITADO**************************/
 	public function loguear_invitado(){
 
-		if (isset($_REQUEST['accion'])) {
-			$accion=$_REQUEST['accion'];
-		} else {
-			$accion='';
-		}
+		/*Recogemos las variables del formulario de IU_login.php*/
 		if (isset($_REQUEST['login'])) {
 			$login=$_REQUEST['login'];
 		} else {
@@ -51,8 +46,16 @@ class db_model {
 		} else {
 			$pass='';
 		}
-		
-	
+
+		if (isset($_REQUEST['accion'])) {
+			$accion=$_REQUEST['accion'];
+		} else {
+			$accion='';
+		}
+		/*Metemos las variables en la sesión*/
+		$_SESSION['login']  = $login;
+		$_SESSION['pass'] = $pass;
+		$_SESSION['accion'] = $accion;
 		if ($accion=="Loguear" )
 		{	
 			if ($login == NULL || $pass == NULL){
@@ -79,7 +82,6 @@ class db_model {
 				//Administrador
 				if ($pass==$res['contrasenha_admin'] ){
 					
-					
 					$sql = "select * from ADMINISTRADOR where ID_administrador = '".$res['ID_administrador']."'";
 					
 					$resultado = mysql_query($sql);
@@ -87,7 +89,8 @@ class db_model {
 					if (mysql_num_rows($resultado) == 1){					
 						
 						
-						header ('Location:/../controllers/administrador_controlador.php?login='.$login.'&pass='.$pass.''); 		
+
+						header ('Location:/../controllers/administrador_controlador.php'); 		
 						return true;
 					}
 					else{
@@ -186,7 +189,6 @@ class db_model {
 			
 			//si no existe el login en la bd lo mandamos a loguearse
 			else{
-					echo "nombre de usuario no encontrado";
 					header ('Location:/index.php'); 
 					return true;
 			} 
@@ -205,25 +207,49 @@ class db_model {
 	
 	/***********************************************************/
 	/***************RELLENAR FORMULARIO PINCHO******************/
-	public function cubrirFormulario($login,$pass,$accion){
-	
+	public function cubrirFormulario(){
+		/**/
+		/*
+		nombrePin
+		tipoPin
+		descPin
+		precioPin
+		fotoPin
+		horarioPin
+		$sql="INSERT INTO USUARIOSSISTEMA (dni, login , contrasena, nombreU, apellido1, apellido2) VALUES ('".$dni."', '".$login."','".$pass1."', '".$nombre."','".$apellido1."' , '".$apellido2."')";
+		mysql_query($sql);
+		*/
+		//Recuperamos el nombre del estblecimiento
+		$login = $_SESSION['login'];  
+		//Recuperar el id_estab e id_administrador
+		$sql="SELECT ID_estab,ID_administrador from ESTABLECIMIENTO where nombre_estab = '".$login."'";
+		$resultado = mysql_query($sql);
+		$row=mysql_fetch_row($resultado);
+		$id_estab=$row[0];
+		$id_administrador=$row[1];
+		//Recuperamos las variables del formulario
+		$nombrePin=$_REQUEST['nombrePin'];
+		$tipoPin=$_REQUEST['tipoPin'];
+		$descPin=$_REQUEST['descPin'];
+		$precioPin=$_REQUEST['precioPin'];
+		$fotoPin=$_REQUEST['fotoPin'];
+		$horarioPin=$_REQUEST['horarioPin'];
 		
-		
-		if (isset($_REQUEST['accion'])) {
-			$accion=$_REQUEST['accion'];
-		} else {
-			$accion='';
+		if($nombrePin == NULL || $tipoPin == NULL ||
+			$descPin == NULL || $precioPin == NULL ||
+			$fotoPin == NULL ){
+			
+			header ("Location: /../views/error/error_campos_incompletos.html"); 
 		}
+		else{
+			$sql="INSERT INTO PINCHO (id_pincho,id_administrador,id_estab,nombre_pincho,tipo,descripcion,precio,foto,horario) VALUES ('1','".$id_administrador."','".$id_estab."','".$nombrePin."', '".$tipoPin."','".$descPin."', '".$precioPin."','".$fotoPin."' , '".$horarioPin."')";
+			mysql_query($sql);
+
+
+		}	
 		
-		if (isset($_REQUEST['login'])) {
-			echo "!!!!!!!!!!!!!!!!login: ".$_REQUEST['login']."</br>";
-			$login=$_REQUEST['login'];
-		} else {
-			echo "!!!!!!!!!!!!!!!login vacio";
-			$login='';
-		}
-		echo "ESTAMOS AQUI";
-		//header ('Location:/../controller/buscar_controlador.php'); 		
+		
+		
 
 		
 	}

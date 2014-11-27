@@ -1,11 +1,5 @@
 <?php
 session_start(); 
-echo 'session_id(): ' . session_id(); 
-echo "<br />\n"; 
-echo 'session_name(): ' . session_name(); 
-echo "<br />\n"; 
-print_r(session_get_cookie_params()); 
-
 /*****RECOJEMOS VARIABLES DEL FORMULARIO*****************/
 
 if (isset($_REQUEST['accion'])) {
@@ -13,18 +7,9 @@ if (isset($_REQUEST['accion'])) {
 } else {
 	$accion='';
 }
-if (isset($_REQUEST['login'])) {
-	$login=$_REQUEST['login'];
-} else {
-	$login='';
-}
 
-if (isset($_REQUEST['pass'])) {
-	$pass=$_REQUEST['pass'];
-} else {
-	$pass='';
-}
-
+echo $_SESSION['login'];  
+echo $_SESSION['pass']; 
 //Llamada al modelo
 require_once("/../models/db_model.php");
 
