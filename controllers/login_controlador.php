@@ -1,40 +1,41 @@
 <?php
+session_start(); 
+echo 'session_id(): ' . session_id(); 
+echo "<br />\n"; 
+echo 'session_name(): ' . session_name(); 
+echo "<br />\n"; 
+print_r(session_get_cookie_params()); 
 
 //Llamada al modelo
+
 require_once("/../models/db_model.php");
+
 /*Recogemos variables de la interfaz*/
 if (isset($_REQUEST['login'])) {
-	echo "nombre de usuario: ".$_REQUEST['login']."</br>";
-	$login=$_REQUEST['login'];
+	$lg=$_REQUEST['login'];
 } else {
-	echo "login vacio";
-	$login='';
-}
+	$login='';}
 
-if (isset($_REQUEST['pass'])) {
-	echo "contrasenha: ".$_REQUEST['pass']."</br>";
+	if (isset($_REQUEST['pass'])) {
 	$pass=$_REQUEST['pass'];
 } else {
-	echo "pass vacio";
-	$pass='';
-}
+	$pass='';}
 
 if (isset($_REQUEST['accion'])) {
-	echo "accion: ".$_REQUEST['accion']."</br>";
 	$accion=$_REQUEST['accion'];
 } else {
-	echo "accion vacio";
-	$accion='';
-}
+	$accion='';}
+
 $db_model=new db_model();
 
-if($accion == "Loguear"){
-	
-	$db_model->loguear_invitado($login,$pass,$accion);
+
+if($accion == "Loguear"){		
+
+	$db_model->loguear_invitado();
 
 }
 //Llamada a la vista
-require_once("/../views/iu_login.html");
+require_once("/../views/iu_login.php");
 
 
 ?>

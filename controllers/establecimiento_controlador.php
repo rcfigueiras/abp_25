@@ -1,4 +1,29 @@
 <?php
+session_start(); 
+echo 'session_id(): ' . session_id(); 
+echo "<br />\n"; 
+echo 'session_name(): ' . session_name(); 
+echo "<br />\n"; 
+print_r(session_get_cookie_params()); 
+
+/*****RECOJEMOS VARIABLES DEL FORMULARIO*****************/
+
+if (isset($_REQUEST['accion'])) {
+	$accion=$_REQUEST['accion'];
+} else {
+	$accion='';
+}
+if (isset($_REQUEST['login'])) {
+	$login=$_REQUEST['login'];
+} else {
+	$login='';
+}
+
+if (isset($_REQUEST['pass'])) {
+	$pass=$_REQUEST['pass'];
+} else {
+	$pass='';
+}
 
 //Llamada al modelo
 require_once("/../models/db_model.php");
@@ -6,43 +31,15 @@ require_once("/../models/db_model.php");
 //Llamada a la vista
 require_once("/../views/IU_inicio_establecimiento.html");
 
-
-/*
-//Recogemos variables de la interfaz
-if (isset($_REQUEST['login'])) {
-	echo "nombre de usuario: ".$_REQUEST['login']."</br>";
-	$login=$_REQUEST['login'];
-} else {
-	echo "login vacio";
-	$login='';
-}
-
-if (isset($_REQUEST['pass'])) {
-	echo "contrasenha: ".$_REQUEST['pass']."</br>";
-	$pass=$_REQUEST['pass'];
-} else {
-	echo "pass vacio";
-	$pass='';
-}
-
-if (isset($_REQUEST['accion'])) {
-	echo "accion: ".$_REQUEST['accion']."</br>";
-	$accion=$_REQUEST['accion'];
-} else {
-	echo "accion vacio";
-	$accion='';
-}
 $db_model=new db_model();
-
-if($accion == "Loguear"){
-	
-	$db_model->loguear_invitado($login,$pass,$accion);
-
+if($accion == "RellenarFormulario"){
+	//require_once("/../views/IU_formularioPincho.html");
+	header ('Location:/../views/IU_formularioPincho.html');
+}else if($accion == "Enviar"){		
+		$db_model->cubrirFormulario();
+} else if ($accion == "Cancelar"){
+		header ('Location:/../views/IU_inicio_establecimiento.html');
 }
-//Llamada a la vista
-require_once("/../views/iu_login.html");
-*/
-
 
 ?>
 

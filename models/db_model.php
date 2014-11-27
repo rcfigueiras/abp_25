@@ -1,11 +1,12 @@
 <?php
+session_start(); 
 require_once("/../db/db.php");
-class db_model{
+
+class db_model {
 
     private $db;
 
     private $personas;
-
 
     public function __construct(){
 
@@ -13,10 +14,7 @@ class db_model{
 		//la función conexión de la clase Conectar
 		//que se encuentra en db.php
         $this->db=Conectar::conexion();
-
         //$this->personas=array();
-		
-
     }
 	
 
@@ -29,25 +27,39 @@ class db_model{
             $this->personas[]=$filas;
 
         }
-
         return $this->personas;
 
     }
 	
-	public function loguear_invitado($login,$pass,$accion){
+	/***********************************************************/
+	/*****************LOGUEAR INVITADO**************************/
+	public function loguear_invitado(){
+
+		if (isset($_REQUEST['accion'])) {
+			$accion=$_REQUEST['accion'];
+		} else {
+			$accion='';
+		}
+		if (isset($_REQUEST['login'])) {
+			$login=$_REQUEST['login'];
+		} else {
+			$login='';
+		}
+
+		if (isset($_REQUEST['pass'])) {
+			$pass=$_REQUEST['pass'];
+		} else {
+			$pass='';
+		}
 		
-		session_start();
-		
-		
+	
 		if ($accion=="Loguear" )
 		{	
 			if ($login == NULL || $pass == NULL){
 			 header ("Location:/../views/error/error_campos_incompletos.html");
 			 return false;
-
 			}
 			//comprobamos si existe en la bd
-			//$sql_admin = "select * from ADMINISTRADOR where nombre_admin = '".$login."'";
 			$sql_admin = "select * from ADMINISTRADOR where nombre_admin = '".$login."'";
 			$sql_estab = "select * from ESTABLECIMIENTO where nombre_estab = '".$login."'";
 			$sql_jurPro = "select * from JURADO_PROFESIONAL where nombre_jurPro = '".$login."'";
@@ -66,15 +78,16 @@ class db_model{
 								
 				//Administrador
 				if ($pass==$res['contrasenha_admin'] ){
-					$_SESSION['tipoUsuario']='admin';
-					$_SESSION['nombre_admin']=$login;
-					$_SESSION['ID_admin']=$res['ID_admin'];
+					
+					
 					$sql = "select * from ADMINISTRADOR where ID_administrador = '".$res['ID_administrador']."'";
 					
 					$resultado = mysql_query($sql);
 					
-					if (mysql_num_rows($resultado) == 1){
-						header ('Location:/../controllers/administrador_controlador.php'); 		
+					if (mysql_num_rows($resultado) == 1){					
+						
+						
+						header ('Location:/../controllers/administrador_controlador.php?login='.$login.'&pass='.$pass.''); 		
 						return true;
 					}
 					else{
@@ -87,19 +100,15 @@ class db_model{
 				}		
 			}
 					
-			//Establecimiento
-
+			/*****************ESTABLECIMIENTO**************************/
 			else if ( mysql_num_rows($resultado_estab) == 1 )
 			{
 				// si existe en la bd comprobamos si coincide la pass
 				$res = mysql_fetch_array($resultado_estab);
-				// y el tipo de usuario que recogemos de la bd
-				// si la pass coincide registramos en la session el login
-				// y lo enviamos a la pagina de Inicio de Usuario
-				
+								
 				if ($pass==$res['contrasenha_estab'] ){
 					
-					
+					$_SESSION['tipoUsuario']='estab';									
 					$_SESSION['nombre_estab']=$login;
 					$_SESSION['ID_estab']=$res['ID_estab'];
 					$sql = "select * from ESTABLECIMIENTO where ID_estab = '".$res['ID_estab']."'";
@@ -119,6 +128,7 @@ class db_model{
 					return false;
 				}		
 			}
+			/**********************************************************/
 			//Jurado Profesional
 			else if ( mysql_num_rows($resultado_jurPro) == 1 )
 			{
@@ -186,8 +196,39 @@ class db_model{
 		{	
 			header ('Location:/../controller/buscar_controlador.php'); 		
 
-		}   
+		}  
+			
 
     }
+	/***********************************************************/
+	/***********************************************************/
+	
+	/***********************************************************/
+	/***************RELLENAR FORMULARIO PINCHO******************/
+	public function cubrirFormulario($login,$pass,$accion){
+	
+		
+		
+		if (isset($_REQUEST['accion'])) {
+			$accion=$_REQUEST['accion'];
+		} else {
+			$accion='';
+		}
+		
+		if (isset($_REQUEST['login'])) {
+			echo "!!!!!!!!!!!!!!!!login: ".$_REQUEST['login']."</br>";
+			$login=$_REQUEST['login'];
+		} else {
+			echo "!!!!!!!!!!!!!!!login vacio";
+			$login='';
+		}
+		echo "ESTAMOS AQUI";
+		//header ('Location:/../controller/buscar_controlador.php'); 		
+
+		
+	}
+	/***********************************************************/
+	/***********************************************************/
+
 }
 ?>

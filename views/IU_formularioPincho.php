@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 
@@ -42,10 +43,38 @@
                   
                 
     <form action="/controllers/establecimiento_controlador.php" method="get"> 
-		<table>			
+		<table>
+			<tr>
+			<td  width="250" align="right">Nombre del pincho:<td/> <td width="250" ><input type=text NAME="nombrePin"><td/>
+			<tr/>
 			
 			<tr>
-			<td ><INPUT  TYPE="submit" name="accion" VALUE="RellenarFormulario" size=50></td>
+			<td width="250" align="right">Tipo:<td/> <td width="250" ><input type=text NAME="tipoPin"><td/>
+			<tr/>
+			
+			<tr>
+			<td width="250" align="right">Descripcion:<td/> <td width="250" ><input type=text NAME="descPin"><td/>
+			<tr/>
+			
+			<tr>
+			<td width="250" align="right">Precio:<td/> <td width="250" ><input type=text NAME="precioPin"><td/>
+			<tr/>
+			
+			<tr>
+			<td width="250" align="right">Foto:<td/> <td width="250" ><input type=text NAME="fotoPin"><td/>
+			<tr/>
+			
+			<tr>
+			<td width="250" align="right">Horario:<td/> <td width="250" ><input type=text NAME="horarioPin"><td/>
+			<tr/>
+			
+			<tr><td><table height=10></table></td></tr> 
+			
+			<tr>
+				<td colspan="6" align="center" cellspacing="200">
+					<INPUT  TYPE="submit" name="accion" VALUE="Enviar" size=50>
+					<INPUT TYPE="submit" name="accion"  VALUE="Cancelar" size=50>
+				<td/>
 			<tr/>	
 				
 		</table>

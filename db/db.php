@@ -1,5 +1,5 @@
 <?php
-
+session_start(); 
 class Conectar{
 	
     public static function conexion(){
@@ -8,15 +8,17 @@ class Conectar{
 
         $conexion->query("SET NAMES 'utf8'");
 
-        return $conexion;*/
+        return $conexion;
+		*/
 		$link = mysql_connect('localhost', 'userpg', 'userpg')
 		or die('No se pudo conectar: ' . mysql_error());
-		echo 'Connected successfully';
+		//echo 'Connected successfully';
 		mysql_select_db('pinchoges') or die('No se pudo seleccionar la base de datos');
 		return true;
 
     }
 
 }
+
 
 ?>

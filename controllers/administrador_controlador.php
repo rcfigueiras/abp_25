@@ -1,16 +1,9 @@
 <?php
+session_start();
 
-//Llamada al modelo
-require_once("/../models/db_model.php");
-
-//Llamada a la vista
-require_once("/../views/IU_inicio_administrador.html");
-
-
-/*
 //Recogemos variables de la interfaz
 if (isset($_REQUEST['login'])) {
-	echo "nombre de usuario: ".$_REQUEST['login']."</br>";
+	echo "nombre de usuario: ".$_REQUEST['login']."";
 	$login=$_REQUEST['login'];
 } else {
 	echo "login vacio";
@@ -32,16 +25,19 @@ if (isset($_REQUEST['accion'])) {
 	echo "accion vacio";
 	$accion='';
 }
-$db_model=new db_model();
 
-if($accion == "Loguear"){
-	
-	$db_model->loguear_invitado($login,$pass,$accion);
 
-}
+//Llamada al modelo
+require_once("/../models/db_model.php");
+
 //Llamada a la vista
-require_once("/../views/iu_login.html");
-*/
+require_once("/../views/IU_inicio_administrador.html");
+
+
+
+
+
+
 
 
 ?>

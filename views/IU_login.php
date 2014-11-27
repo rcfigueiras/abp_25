@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 
@@ -41,11 +42,24 @@
 	<table height=10></table>
                   
                 
-    <form action="/controllers/establecimiento_controlador.php" method="get"> 
-		<table>			
+    <form action="/controllers/login_controlador.php" method="get"> 
+		<table>
+			<tr>
+			<td  width="250" align="right">usuario:<td/> <td width="250" ><input type=text NAME="login"><td/>
+			<tr/>
 			
 			<tr>
-			<td ><INPUT  TYPE="submit" name="accion" VALUE="RellenarFormulario" size=50></td>
+			<td width="250" align="right">contraseña:<td/> <td width="250" ><input type=password NAME="pass"><td/>
+			<tr/>
+			
+			<tr>
+			<td width="250" align="right">Buscar:<td/> <td width="250" ><input type=text NAME="buscar"><td/>
+			<tr/>
+			
+			<tr><td><table height=10></table></td></tr> 
+			
+			<tr>
+			<td colspan="6" align="center" cellspacing="200"><INPUT  TYPE="submit" name="accion" VALUE="Loguear" size=50><INPUT TYPE="submit" name="accion"  VALUE="Buscar" size=50><td/>
 			<tr/>	
 				
 		</table>
