@@ -2,7 +2,13 @@
 
 //Llamada al modelo
 require_once("/../models/db_model.php");
-/*Recogemos variables de la interfaz*/
+
+//Llamada a la vista
+require_once("/../views/IU_inicio_establecimiento.html");
+
+
+/*
+//Recogemos variables de la interfaz
 if (isset($_REQUEST['login'])) {
 	echo "nombre de usuario: ".$_REQUEST['login']."</br>";
 	$login=$_REQUEST['login'];
@@ -35,6 +41,8 @@ if($accion == "Loguear"){
 }
 //Llamada a la vista
 require_once("/../views/iu_login.html");
+*/
 
 
 ?>
+

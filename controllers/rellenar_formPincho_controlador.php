@@ -37,4 +37,47 @@ if($accion == "Loguear"){
 require_once("/../views/iu_login.html");
 
 
+
+/*class loginControlador{
+	
+	private $dbmodelo;
+	private $login;
+	private $result;
+	
+	public function __construct(){
+		
+		parent::__construct();
+			
+		$this->db_model = new db_model();
+		return true;
+	
+	}
+
+	public function login($login,$pass,$accion){
+		if($accion == "Loguear"){
+			echo "logueando";
+			$this->db_model->loguear_invitado($usario,$contrasenha,$accion);
+			
+			
+		}
+		else{
+			$errors = array();
+			$errors["general"] = "Nombre de usuario no válido";
+			
+		}
+		return true;		
+		
+	}	 
+	public static function main(){
+        
+		// starts all the processing of the site
+		echo 33333333;
+    	$result = $this->login->login($login,$pass,$accion);
+		echo $result;
+
+	}
+
+}
+*/
+
 ?>

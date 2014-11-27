@@ -38,16 +38,11 @@ class db_model{
 		
 		session_start();
 		
-		//$this->db=Conectar::conexion();		
-
-		/*echo "nombre de usuario_recibido: ".$login."</br>";
-		echo "contrasenha_recibida: ".$pass."</br>";
-		echo "accion_recibida: ".$accion."</br>";
-		*/
+		
 		if ($accion=="Loguear" )
 		{	
 			if ($login == NULL || $pass == NULL){
-			 header ("Location:/../views/campos_incompletos.html");
+			 header ("Location:/../views/error/error_campos_incompletos.html");
 			 return false;
 
 			}
@@ -71,7 +66,7 @@ class db_model{
 								
 				//Administrador
 				if ($pass==$res['contrasenha_admin'] ){
-					
+					$_SESSION['tipoUsuario']='admin';
 					$_SESSION['nombre_admin']=$login;
 					$_SESSION['ID_admin']=$res['ID_admin'];
 					$sql = "select * from ADMINISTRADOR where ID_administrador = '".$res['ID_administrador']."'";
@@ -79,7 +74,7 @@ class db_model{
 					$resultado = mysql_query($sql);
 					
 					if (mysql_num_rows($resultado) == 1){
-						header ('Location:/../views/administrador.html'); 		
+						header ('Location:/../controllers/administrador_controlador.php'); 		
 						return true;
 					}
 					else{
@@ -87,7 +82,7 @@ class db_model{
 					}
 				}
 				else{
-					header ('Location:/../views/error_contrasenha1.html'); 
+					header ('Location:/../views/error/error_contrasenha1.html'); 
 					return false;
 				}		
 			}
@@ -104,6 +99,7 @@ class db_model{
 				
 				if ($pass==$res['contrasenha_estab'] ){
 					
+					
 					$_SESSION['nombre_estab']=$login;
 					$_SESSION['ID_estab']=$res['ID_estab'];
 					$sql = "select * from ESTABLECIMIENTO where ID_estab = '".$res['ID_estab']."'";
@@ -111,7 +107,7 @@ class db_model{
 					$resultado = mysql_query($sql);
 					
 					if (mysql_num_rows($resultado) == 1){
-						header ('Location:/../views/establecimiento.html'); 		
+						header ('Location:/../controllers/establecimiento_controlador.php'); 		
 						return true;
 					}
 					else{
@@ -119,7 +115,7 @@ class db_model{
 					}
 				}
 				else{
-					header ('Location:/../views/error_contrasenha1.html'); 
+					header ('Location:/../views/error/error_contrasenha1.html'); 
 					return false;
 				}		
 			}
@@ -138,7 +134,7 @@ class db_model{
 					$resultado = mysql_query($sql);
 					
 					if (mysql_num_rows($resultado) == 1){
-						header ('Location:/../views/jurPro.html'); 		
+						header ('Location:/../controllers/jurPro_controlador.php'); 		
 						return true;
 					}
 					else{
@@ -146,7 +142,7 @@ class db_model{
 					}
 				}
 				else{
-					header ('Location:/../views/error_contrasenha1.html'); 
+					header ('Location:/../views/error/error_contrasenha1.html'); 
 					return false;
 				}		
 			}
@@ -165,7 +161,7 @@ class db_model{
 					$resultado = mysql_query($sql);
 					
 					if (mysql_num_rows($resultado) == 1){
-						header ('Location:/../views/jurPop.html'); 		
+						header ('Location:/../views/IU_inicio_jurPop.html'); 		
 						return true;
 					}
 					else{
@@ -173,7 +169,7 @@ class db_model{
 					}
 				}
 				else{
-					header ('Location:/../views/error_contrasenha1.html'); 
+					header ('Location:/../views/error/error_contrasenha1.html'); 
 					return false;
 				}		
 			}
@@ -181,11 +177,16 @@ class db_model{
 			//si no existe el login en la bd lo mandamos a loguearse
 			else{
 					echo "nombre de usuario no encontrado";
-					//header ('Location:/../views/IU_login.html'); 
+					header ('Location:/index.php'); 
 					return true;
 			} 
 
-		}        
+		}      
+		if ($accion=="Buscar" )
+		{	
+			header ('Location:/../controller/buscar_controlador.php'); 		
+
+		}   
 
     }
 }
