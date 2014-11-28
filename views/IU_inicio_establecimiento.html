@@ -48,14 +48,21 @@ session_start();
 		<table>			
 			
 			<tr>
-			<td ><INPUT  TYPE="submit" name="accion" VALUE="RellenarFormulario" size=50></td>
+				<td ><INPUT  TYPE="submit" name="accion" VALUE="RellenarFormulario" ></td>
+				
+				<?PHP if($_SESSION['tiene_pincho']) { ?>
+				
+					<td ><INPUT  TYPE="submit" name="accion" VALUE="ModificarPincho" ></td>
+				
+				<?PHP } ?>
+				
+				<td ><INPUT  TYPE="submit" name="accion" VALUE="Logout" ></td>
 			<tr/>	
 				
 		</table>
 	<form/>
       
       
-	<table height=10></table> 
 		
       
     <!-- C. PIE DE PÁGINA -->      

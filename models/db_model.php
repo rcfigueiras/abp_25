@@ -208,17 +208,7 @@ class db_model {
 	/***********************************************************/
 	/***************RELLENAR FORMULARIO PINCHO******************/
 	public function cubrirFormulario(){
-		/**/
-		/*
-		nombrePin
-		tipoPin
-		descPin
-		precioPin
-		fotoPin
-		horarioPin
-		$sql="INSERT INTO USUARIOSSISTEMA (dni, login , contrasena, nombreU, apellido1, apellido2) VALUES ('".$dni."', '".$login."','".$pass1."', '".$nombre."','".$apellido1."' , '".$apellido2."')";
-		mysql_query($sql);
-		*/
+		/**/		
 		//Recuperamos el nombre del estblecimiento
 		$login = $_SESSION['login'];  
 		//Recuperar el id_estab e id_administrador
@@ -242,15 +232,66 @@ class db_model {
 			header ("Location: /../views/error/error_campos_incompletos.html"); 
 		}
 		else{
-			$sql="INSERT INTO PINCHO (id_pincho,id_administrador,id_estab,nombre_pincho,tipo,descripcion,precio,foto,horario) VALUES ('1','".$id_administrador."','".$id_estab."','".$nombrePin."', '".$tipoPin."','".$descPin."', '".$precioPin."','".$fotoPin."' , '".$horarioPin."')";
+			$sql="INSERT INTO PINCHO (id_pincho,id_administrador,id_estab,nombre_pincho,tipo,descripcion,precio,foto,horario,pincho_validado) VALUES ('1','".$id_administrador."','".$id_estab."','".$nombrePin."', '".$tipoPin."','".$descPin."', '".$precioPin."','".$fotoPin."' , '".$horarioPin."','false')";
+			mysql_query($sql);
+		}			
+	}
+	public function editarPincho(){
+		$login=$_SESSION['login'];
+		echo $login;
+		//recuperamos la información almacenada del pincho del establecimiento
+		$sql="SELECT nombre_pincho,tipo,descripcion,precio,foto,horario FROM ESTABLECIMIENTO E,PINCHO P where nombre_estab = '".$login."'";
+		$resultado = mysql_query($sql);
+		$row=mysql_fetch_row($resultado);
+		//Pasamos resultado de la consulta al controlador 
+		if ($row > 0){
+			$_SESSION['errorSQL'] = 0;
+			$nombre_pincho=$row[0];
+			$tipo=$row[1];
+			$descripcion=$row[2];
+			$precio=$row[3];
+			$foto=$row[4];
+			$horario=$row[5];
+			$_SESSION['nombre_pincho'] = $nombre_pincho;
+			$_SESSION['tipo'] = $tipo;
+			$_SESSION['descripcion'] = $descripcion;
+			$_SESSION['precio'] = $precio;
+			$_SESSION['foto'] = $foto;
+			$_SESSION['horario'] = $horario;
+		}
+		else{
+			$_SESSION['errorSQL'] = 1;
+
+		}
+		
+	}
+	public function editarFormulario(){
+		//Recuperamos el login del establecimiento
+		$login=$_SESSION['login'];
+		//Recuperamos también las variables editables por el
+		//establecimiento
+		$newfoto =  $_REQUEST['newfoto'];
+		$newhorario =  $_REQUEST['newhorario'];
+		$sql="UPDATE PINCHO P, ESTABLECIMIENTO E  SET P.foto ='".$newfoto."' WHERE E.nombre_estab = '".$login."' AND P.ID_estab = E.ID_estab";
+		mysql_query($sql);
+
+		if ($newfoto == '' ){//se actualiza el horario
+
+			$sql="UPDATE PINCHO P,ESTABLECIMIENTO E  SET P.horario ='".$newhorario."' WHERE P.ID_estab=E.ID_estab AND E.nombre_estab='".$login."'";
+			mysql_query($sql);
+			
+		}else if ($newhorario == '' ){//se actualiza la foto
+		
+			$sql="UPDATE PINCHO P, ESTABLECIMIENTO E  SET P.foto ='".$newfoto."' WHERE E.nombre_estab = '".$login."' AND P.ID_estab = E.ID_estab";
 			mysql_query($sql);
 
-
-		}	
 		
-		
-		
-
+		}else{//se actualizan los dos
+				
+				$sql="UPDATE PINCHO P,ESTABLECIMIENTO E  SET P.foto ='".$newfoto."',P.horario ='".$newhorario."' WHERE P.ID_estab=E.ID_estab AND E.nombre_estab='".$login."'";
+				mysql_query($sql);
+			
+		}
 		
 	}
 	/***********************************************************/

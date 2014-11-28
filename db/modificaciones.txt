@@ -1,0 +1,1 @@
+El pincho tiene que llevar un boobleano para indicar su validación por parte del administrador
