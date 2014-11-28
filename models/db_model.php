@@ -155,7 +155,8 @@ class db_model {
 					}
 				}
 				else{
-					header ('Location:/../views/error/error_contrasenha1.html'); 
+					header ('Location:/../views/error/error_contrasenha1
+					'); 
 					return false;
 				}		
 			}
@@ -245,13 +246,16 @@ class db_model {
 		$row=mysql_fetch_row($resultado);
 		//Pasamos resultado de la consulta al controlador 
 		if ($row > 0){
+			
 			$_SESSION['errorSQL'] = 0;
+			
 			$nombre_pincho=$row[0];
 			$tipo=$row[1];
 			$descripcion=$row[2];
 			$precio=$row[3];
 			$foto=$row[4];
 			$horario=$row[5];
+			
 			$_SESSION['nombre_pincho'] = $nombre_pincho;
 			$_SESSION['tipo'] = $tipo;
 			$_SESSION['descripcion'] = $descripcion;
@@ -272,25 +276,30 @@ class db_model {
 		//establecimiento
 		$newfoto =  $_REQUEST['newfoto'];
 		$newhorario =  $_REQUEST['newhorario'];
-		$sql="UPDATE PINCHO P, ESTABLECIMIENTO E  SET P.foto ='".$newfoto."' WHERE E.nombre_estab = '".$login."' AND P.ID_estab = E.ID_estab";
-		mysql_query($sql);
-
+		
 		if ($newfoto == '' ){//se actualiza el horario
 
 			$sql="UPDATE PINCHO P,ESTABLECIMIENTO E  SET P.horario ='".$newhorario."' WHERE P.ID_estab=E.ID_estab AND E.nombre_estab='".$login."'";
-			mysql_query($sql);
+			$resultado=mysql_query($sql);
 			
 		}else if ($newhorario == '' ){//se actualiza la foto
 		
 			$sql="UPDATE PINCHO P, ESTABLECIMIENTO E  SET P.foto ='".$newfoto."' WHERE E.nombre_estab = '".$login."' AND P.ID_estab = E.ID_estab";
-			mysql_query($sql);
+			$resultado=mysql_query($sql);
 
 		
 		}else{//se actualizan los dos
 				
 				$sql="UPDATE PINCHO P,ESTABLECIMIENTO E  SET P.foto ='".$newfoto."',P.horario ='".$newhorario."' WHERE P.ID_estab=E.ID_estab AND E.nombre_estab='".$login."'";
-				mysql_query($sql);
+				$resultado=mysql_query($sql);
 			
+		}
+		
+		if (mysql_affected_rows() > 0)
+		{
+			$_SESSION['errorSQL'] = 0;
+		}
+		else{$_SESSION['errorSQL']=1;
 		}
 		
 	}

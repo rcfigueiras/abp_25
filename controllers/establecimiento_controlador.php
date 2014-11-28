@@ -33,9 +33,13 @@ if(mysql_fetch_row($resultado) > 0){
 require_once("/../models/db_model.php");
 
 //Llamada a la vista
-require_once("/../views/IU_inicio_establecimiento.html");
+if(	$_SESSION['exitoEdicion']){
+	echo "venimos de triunfar";
+}
+require_once("/../views/IU_inicio_establecimiento.php");
 
 $db_model=new db_model();
+
 if($accion == "Logout"){
 	session_destroy();
 	header ('Location:/../index.php');
@@ -51,32 +55,33 @@ else if($accion == "ModificarPincho")
 	
 }else if ($accion == "Editar")
 {
-
 	if (($_REQUEST['newfoto'] == '') 
 		&& ($_REQUEST['newhorario'] == '')){
 		
-		header ('Location:/../views/IU_modificarPincho.php');
-		header ('Location:/../views/error/error_edita_pincho.php');
+		header ('Location:/../views/error/error_edita_pincho_vacio.php');
 	
 	}else{
-	
-		$db_model->editarFormulario();
-	
-	}
 		
+		$db_model->editarFormulario();
+		if ($_SESSION['errorSQL']){
+			header ('Location:/../views/error/error_edita_pincho_no_valido.php');
+		}else{
+			$_SESSION['exitoEdicion']=1;
+			header ('Location:/../controllers/establecimiento_controlador.php');
+		}	
+	}		
 }else if($accion == "RellenarFormulario"){
 
-	header ('Location:/../views/IU_formularioPincho.html');
+	header ('Location:/../views/IU_formularioPincho.php');
 
 }else if($accion == "Enviar"){		
-	
 	
 	$db_model->cubrirFormulario();
 	
 
 } else if ($accion == "Cancelar"){
 
-	header ('Location:/../views/IU_inicio_establecimiento.html');
+	header ('Location:/../views/IU_inicio_establecimiento.php');
 
 }
 

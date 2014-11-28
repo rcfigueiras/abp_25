@@ -76,21 +76,21 @@ session_start();
 			<tr/>
 			
 			<tr>
-			<td  align="right">Horario actual:<td/>
+			<td  align="right">Horario:<td/>
 			<td><input type=text name="horarioPin" value="<?PHP echo $_SESSION['horario']?>" readonly><td/>
 			<tr/>
 			
 			<tr>
 			<td align="right">Nueva Foto:<td/> 
 			<td><input type=text name="newfoto" ><td/>
-			<td align="right">Introduzca un valor...<td/> 
+			<td align="right">Valor no válido<td/> 
 
 			<tr/>
 			
 			<tr>
 			<td  align="right">Nuevo Horario:<td/>
 			<td><input type=text name="newhorario"  ><td/>
-			<td align="right">Introduzca un valor...<td/> 
+			<td align="right">Valor no válido<td/> 
 
 			<tr/>
 
@@ -100,7 +100,7 @@ session_start();
 			<tr><td><table height=10></table></td></tr> 
 			
 			<tr>
-				<td colspan="6" align="center" cellspacing="200">
+				<td >
 					<INPUT  TYPE="submit" name="accion" VALUE="Editar" size=50>
 					<INPUT  TYPE="submit" name="accion"  VALUE="Cancelar" size=50>
 				<td/>

@@ -1,10 +1,5 @@
 <?php
 session_start(); 
-echo 'session_id(): ' . session_id(); 
-echo "<br />\n"; 
-echo 'session_name(): ' . session_name(); 
-echo "<br />\n"; 
-print_r(session_get_cookie_params()); 
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
@@ -49,31 +44,27 @@ print_r(session_get_cookie_params());
 	<table height=10></table>
                   
                 
-    <form action="/controllers/login_controlador.php" method="get"> 
-		<table>
-			<tr>
-			<td  width="250" align="right">usuario:<td/> <td width="250" ><input type=text NAME="login"><td/>
-			<tr/>
+    <form action="/controllers/establecimiento_controlador.php" method="get"> 
+		<table>			
 			
 			<tr>
-			<td width="250" align="right">contraseña:<td/> <td width="250" ><input type=password NAME="pass"><td/>
-			<tr/>
-			
-			<tr>
-			<td width="250" align="right">Buscar:<td/> <td width="250" ><input type=text NAME="buscar"><td/>
-			<tr/>
-			
-			<tr><td><table height=10></table></td></tr> 
-			
-			<tr>
-			<td colspan="6" align="center" cellspacing="200"><INPUT  TYPE="submit" name="accion" VALUE="Loguear" size=50><INPUT TYPE="submit" name="accion"  VALUE="Buscar" size=50><td/>
+				<?PHP if(!($_SESSION['tiene_pincho'])) { ?>
+				
+				<td ><INPUT  TYPE="submit" name="accion" VALUE="RellenarFormulario" ></td>
+				
+				<?PHP } else {?>
+				
+					<td ><INPUT  TYPE="submit" name="accion" VALUE="ModificarPincho" ></td>
+				
+				<?PHP } ?>
+				
+				<td ><INPUT  TYPE="submit" name="accion" VALUE="Logout" ></td>
 			<tr/>	
 				
 		</table>
 	<form/>
       
       
-	<table height=10></table> 
 		
       
     <!-- C. PIE DE PÁGINA -->      

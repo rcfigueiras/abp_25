@@ -71,9 +71,9 @@
 			<tr><td><table height=10></table></td></tr> 
 			
 			<tr>
-				<td colspan="6" align="center" cellspacing="200">
-					<INPUT  TYPE="submit" name="accion" VALUE="Enviar" size=50>
-					<INPUT TYPE="submit" name="accion"  VALUE="Cancelar" size=50>
+				<td >
+					<INPUT  TYPE="submit" name="accion" VALUE="Enviar">
+					<INPUT TYPE="submit" name="accion"  VALUE="Cancelar">
 				<td/>
 			<tr/>	
 				
