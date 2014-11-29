@@ -1,10 +1,6 @@
 <?php
 session_start(); 
 $login=$_SESSION['login'];
-
-require_once("/../models/db_model.php");
-$db_model=new db_model();
-
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
@@ -12,7 +8,15 @@ $db_model=new db_model();
 
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <title>PinchoGes</title>  
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="3600" />
+  <meta name="revisit-after" content="2 days" />
+  <meta name="robots" content="index,follow" />
+  <meta name="distribution" content="global" />
+  <link rel="icon" href="./img/iconopeque.jpg"/>
+  <link rel="icon" type="image/x-icon" href="./img/LOGO_2.ico" />
+  <title>PinchoGes</title>
+  
 </head>
 
 <body>
@@ -40,28 +44,19 @@ $db_model=new db_model();
     <!-- Esta en esta tabla recogemos lo que insertar el usuario y los mandamos a la controladora para que compruebe que el usuario es correcto-->
 	<table height=10></table>
                   
-                
+    <tr>ERROR EN LA VALIDACIÓN<tr/>          
     <form action="/controllers/administrador_controlador.php" method="get"> 
 		<table>			
 			
 			<tr>
-				<tr>
-					<td>
-						<?PHP
-						foreach  ($_SESSION['pinchos'] as $valor){
-							echo "Nombre del pincho: " 
-						?>				
-						<INPUT TYPE="SUBMIT" NAME="eliminaEste" VALUE="<?PHP echo $valor['nombre_pincho']?>"readonly>		
-					<td/>
-				<tr/>
-					<?PHP
-					echo "<br>"; 
-							
-					}		
-						?>				
-				<td >
-					<INPUT  TYPE="submit" NAME="accion" VALUE="Logout" >
-				</td>
+				
+				<td ><INPUT  TYPE="submit" name="accion" VALUE="EliminarPinchos" ></td>
+				
+				
+				<td ><INPUT  TYPE="submit" name="accion" VALUE="ValidarPinchos" ></td>
+				
+				
+				<td ><INPUT  TYPE="submit" name="accion" VALUE="Logout" ></td>
 			<tr/>	
 				
 		</table>

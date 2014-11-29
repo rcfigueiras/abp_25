@@ -1,9 +1,11 @@
 <?php
 session_start(); 
-$login=$_SESSION['login'];
-
-require_once("/../models/db_model.php");
-$db_model=new db_model();
+if (isset($_REQUEST['login'])) {
+	$login=$_REQUEST['login'];
+	$_SESSION['login']=$login;
+}else{
+	$login=$_SESSION['login'];
+}
 
 ?>
 <!DOCTYPE html>
@@ -11,8 +13,9 @@ $db_model=new db_model();
 
 
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <title>PinchoGes</title>  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />  
+  <title>PinchoGes</title>
+  
 </head>
 
 <body>
@@ -30,7 +33,7 @@ $db_model=new db_model();
         <!-- Sitelogo and sitename -->
         <a class="sitelogo" href="#" title="Ir a la página de Inicio"></a>
         <div class="sitename">
-          <h1><a href="/index.php" title="Ir a la página de Inicio">PinchoGés <?PHP echo $login;?><span style="font-weight:normal;font-size:50%;">&nbsp</span></a></h1>
+          <h1><a href="/index.php" title="Ir a la página de Inicio">PinchoGés<?PHP echo " - Bienvenido ".$login;?><span style="font-weight:normal;font-size:50%;">&nbsp</span></a></h1>
           <h2></h2>
         </div>  
       
@@ -41,27 +44,20 @@ $db_model=new db_model();
 	<table height=10></table>
                   
                 
-    <form action="/controllers/administrador_controlador.php" method="get"> 
+    <form action="/controllers/jurPro_controlador.php" method="get"> 
 		<table>			
 			
 			<tr>
-				<tr>
-					<td>
-						<?PHP
-						foreach  ($_SESSION['pinchos'] as $valor){
-							echo "Nombre del pincho: " 
-						?>				
-						<INPUT TYPE="SUBMIT" NAME="eliminaEste" VALUE="<?PHP echo $valor['nombre_pincho']?>"readonly>		
-					<td/>
-				<tr/>
-					<?PHP
-					echo "<br>"; 
-							
-					}		
-						?>				
-				<td >
-					<INPUT  TYPE="submit" NAME="accion" VALUE="Logout" >
-				</td>
+				
+				
+				<td ><INPUT  TYPE="submit" name="accion" VALUE="valorarPinchos" ></td>
+				
+				
+				
+				
+				
+				
+				<td ><INPUT  TYPE="submit" name="accion" VALUE="Logout" ></td>
 			<tr/>	
 				
 		</table>

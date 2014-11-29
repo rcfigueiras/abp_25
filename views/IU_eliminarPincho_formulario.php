@@ -42,28 +42,37 @@ $db_model=new db_model();
                   
                 
     <form action="/controllers/administrador_controlador.php" method="get"> 
-		<table>			
-			
+		<table>						
 			<tr>
-				<tr>
-					<td>
+			<tr>
+			<td>
+			<?PHP
+				foreach  ($_SESSION['pinchos'] as $valor){
+					if($valor['nombre_pincho'] == $_SESSION['nombrePin']){
+						echo "Nombre del pincho: "?><input TYPE=text NAME="nombrePin" VALUE="<?PHP echo $valor['nombre_pincho']?>"readonly>		
+						<?PHP echo "<br>"; ?>
+						<?PHP echo "Tipo: "?><input TYPE=text NAME="tipoPin" VALUE="<?PHP echo $valor['tipo']?>"readonly>		
+						<?PHP echo "<br>"; ?>
+						<?PHP echo "Descripción: "?><input TYPE=text NAME="descPin" VALUE="<?PHP echo $valor['descripcion']?>"readonly>		
+						<?PHP echo "<br>"; ?>
+						<?PHP echo "Precio: "?><input TYPE=text NAME="precioPin" VALUE="<?PHP echo $valor['precio']?>"readonly>		
+						<?PHP echo "<br>"; ?>
+						<?PHP echo "Foto: "?><input TYPE=text NAME="fotoPin" VALUE="<?PHP echo $valor['foto']?>"readonly>		
+						<?PHP echo "<br>"; ?>
+						<?PHP echo "Horario"?><input TYPE=text NAME="horaPin" VALUE="<?PHP echo $valor['horario']?>"readonly>		
+						
+						<td/>
+						<tr/>
 						<?PHP
-						foreach  ($_SESSION['pinchos'] as $valor){
-							echo "Nombre del pincho: " 
-						?>				
-						<INPUT TYPE="SUBMIT" NAME="eliminaEste" VALUE="<?PHP echo $valor['nombre_pincho']?>"readonly>		
-					<td/>
-				<tr/>
-					<?PHP
-					echo "<br>"; 
-							
-					}		
-						?>				
-				<td >
-					<INPUT  TYPE="submit" NAME="accion" VALUE="Logout" >
-				</td>
-			<tr/>	
-				
+							echo "<br>"; 					
+					}							
+				}
+				?>			
+			<td >
+				<INPUT  TYPE="submit" NAME="accion" VALUE="eliminaPincho" >
+				<INPUT  TYPE="submit" NAME="accion" VALUE="Logout" >
+			</td>
+			<tr/>				
 		</table>
 	<form/>
       

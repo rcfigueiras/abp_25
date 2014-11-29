@@ -131,9 +131,9 @@ class db_model {
 					header ('Location:/../views/error/error_contrasenha1.html'); 
 					return false;
 				}		
-			}
-			/**********************************************************/
-			//Jurado Profesional
+			}			
+			/**************************************************************/
+			/**************Jurado Profesional******************************/
 			else if ( mysql_num_rows($resultado_jurPro) == 1 )
 			{
 				// si existe en la bd comprobamos si coincide la pass
@@ -214,6 +214,8 @@ class db_model {
 		$row=mysql_fetch_row($resultado);
 		$id_estab=$row[0];
 		$id_administrador=$row[1];
+		$_SESSION['id_admin']=$id_administrador;
+		$_SESSION['id_estab']=$id_estab;
 		
 		//Recuperamos las variables del formulario
 		$nombrePin=$_REQUEST['nombrePin'];
@@ -229,7 +231,25 @@ class db_model {
 			$_SESSION['campos_incompletos']=1;
 		}
 		else{
-			$sql="INSERT INTO PINCHO (id_pincho,id_administrador,id_estab,nombre_pincho,tipo,descripcion,precio,foto,horario,pincho_validado) VALUES ('','".$id_administrador."','".$id_estab."','".$nombrePin."', '".$tipoPin."','".$descPin."', '".$precioPin."','".$fotoPin."' , '".$horarioPin."','false')";
+			$sql="INSERT INTO PINCHO (ID_pincho
+									,ID_administrador
+									,ID_estab
+									,nombre_pincho
+									,tipo,descripcion
+									,precio
+									,foto
+									,horario
+									,pincho_validado) 
+							VALUES (''
+									,'".$id_administrador."'
+									,'".$id_estab."'
+									,'".$nombrePin."'
+									,'".$tipoPin."'
+									,'".$descPin."'
+									,'".$precioPin."'
+									,'".$fotoPin."'
+									,'".$horarioPin."'
+									,'0')";
 			mysql_query($sql);
 		}
 		//Validamos que la inserción se ha realizado correctamente
@@ -240,6 +260,12 @@ class db_model {
 		else{
 			$_SESSION['errorSQL'] = 1;
 		}
+		$sql="UPDATE ESTABLECIMIENTO E,PINCHO P  
+				SET E.comunicacion ='Pincho pendiente de validación.' 
+				WHERE P.ID_estab=E.ID_estab
+				AND
+				E.nombre_estab='".$login."'";
+		mysql_query($sql);
 	}	
 	/*---------------------------------------------------------*/
 	/*---------------------------------------------------------*/
@@ -314,19 +340,119 @@ class db_model {
 /*---------------------------------------------------------*/
 /*****************VALIDAR PINCHOS***************************/
 	public function validarPinchos(){
+		
 		$login=$_SESSION['login'];
 		$sql="select * from pincho where pincho_validado = false";
-		$resultado=mysql_query($sql);
-		$array_pinchos=array();
-		while($filas=mysql_fetch_assoc($resultado)){
-			$array_pinchos[]=$filas;
+		$pinchos=array();
+		$consulta = mysql_query($sql);
+		
+		if (mysql_affected_rows() > 0)
+		{
+			$_SESSION['errorSQL'] = 0;
+			
 		}
-		//echo array_pinchos['0'];
-		//echo array_pinchos['1'];
-		$nombre_pincho=$row[0];
-		echo $nombre_pincho;
-		echo $login;
+		else{
+			$_SESSION['errorSQL']=1;
+		}
+		
+		
+		//$lista_pinchos= mysql_num_rows($resultado);
+		//echo "Encontrados: ".$registros_encontrados."<br>";
+		
+		while ($filas = mysql_fetch_assoc($consulta)){
+			$pinchos[]=$filas;
+		} 		
+		$_SESSION['pinchos']=$pinchos;
 	}
+	/*---------------------------------------------------------*/
+	/*---------------------------------------------------------*/
+	/*****************ALTA PINCHO*******************************/
+	public function altaPincho(){
+		$nombre_pin=$_REQUEST['nombrePin'];
+		
+		$sql="UPDATE PINCHO SET pincho_validado='1' WHERE nombre_pincho='".$nombre_pin."'";
+		$resultado=mysql_query($sql);
+		
+		if (mysql_affected_rows() > 0)
+		{
+			$_SESSION['errorSQL'] = 0;
+			
+		}
+		else{
+			$_SESSION['errorSQL']=1;
+		}
+		/*Se registra un mensaje para el establecimiento
+		informándole de que su pincho ha sido validado
+		por la organización del concurso**/
+		$sql="UPDATE ESTABLECIMIENTO E,PINCHO P  
+				SET E.comunicacion ='Pincho validado' 
+				WHERE P.ID_estab=E.ID_estab 
+				AND
+				P.nombre_pincho='".$nombre_pin."'";
+		mysql_query($sql);
 
+	}
+/*---------------------------------------------------------*/
+/*---------------------------------------------------------*/
+/*****************ELIMINAR PINCHOS***************************/
+	public function eliminarPinchos(){
+		
+		$login=$_SESSION['login'];
+		$sql="select * from pincho where pincho_validado = true";
+		$pinchos=array();
+		$consulta = mysql_query($sql);
+		
+		if (mysql_affected_rows() > 0)
+		{
+			$_SESSION['errorSQL'] = 0;
+			
+		}
+		else{
+			$_SESSION['errorSQL']=1;
+		}
+		
+		
+		//$lista_pinchos= mysql_num_rows($resultado);
+		//echo "Encontrados: ".$registros_encontrados."<br>";
+		
+		while ($filas = mysql_fetch_assoc($consulta)){
+			$pinchos[]=$filas;
+		} 		
+		$_SESSION['pinchos']=$pinchos;
+	}
+/*---------------------------------------------------------*/
+/*---------------------------------------------------------*/
+/*****************ELIMINA ESTE PINCHOS***************************/
+	public function eliminaPincho(){
+		
+		$nombre_pin=$_REQUEST['nombrePin'];
+		
+		$sql="SELECT E.id_estab
+			FROM establecimiento E,pincho P 
+			WHERE E.id_estab = P.id_estab 
+			AND
+			p.nombre_pincho='".$nombre_pin."'";
+		
+		$resultado = mysql_query($sql);
+		$row=mysql_fetch_row($resultado);
+		$id_estab=$row[0];
+		echo $id_estab;
+		
+		$sql="DELETE FROM PINCHO WHERE nombre_pincho = '".$nombre_pin."'";
+		$resultado=mysql_query($sql);
+		
+		if (mysql_affected_rows() > 0)
+		{
+			$_SESSION['errorSQL'] = 0;
+			
+		}
+		else{
+			$_SESSION['errorSQL']=1;
+		}
+		$sql="UPDATE ESTABLECIMIENTO E
+				SET E.comunicacion ='Pincho ELIMINADO' 
+				WHERE E.ID_estab='".$id_estab."'";
+		mysql_query($sql);
+	}
 }
 ?>

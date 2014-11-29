@@ -1,5 +1,12 @@
 <?php
 session_start(); 
+if (isset($_REQUEST['login'])) {
+	$login=$_REQUEST['login'];
+	$_SESSION['login']=$login;
+}else{
+	$login=$_SESSION['login'];
+}
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
@@ -33,7 +40,7 @@ session_start();
         <!-- Sitelogo and sitename -->
         <a class="sitelogo" href="#" title="Ir a la página de Inicio"></a>
         <div class="sitename">
-          <h1><a href="/index.php" title="Ir a la página de Inicio">PinchoGés<span style="font-weight:normal;font-size:50%;">&nbsp</span></a></h1>
+          <h1><a href="/index.php" title="Ir a la página de Inicio">PinchoGés<?PHP echo " - Bienvenido ".$login;?><span style="font-weight:normal;font-size:50%;">&nbsp</span></a></h1>
           <h2></h2>
         </div>  
       
@@ -48,6 +55,22 @@ session_start();
 		<table>			
 			
 			<tr>
+				<?PHP 
+				$estado='vacio';
+				$sql="select comunicacion 
+					from establecimiento 
+					where nombre_estab='".$login."'
+							and
+							comunicacion IS NOT NULL";
+				$resultado = mysql_query($sql);
+
+				if($row=mysql_fetch_row($resultado)){
+					$estado=$row[0];
+					echo "El estado de su pincho 
+					en el concurso es: <br>".$estado;
+				}
+
+				?>
 				<?PHP if(!($_SESSION['tiene_pincho'])) { ?>
 				
 				<td ><INPUT  TYPE="submit" name="accion" VALUE="RellenarFormulario" ></td>
@@ -57,6 +80,8 @@ session_start();
 					<td ><INPUT  TYPE="submit" name="accion" VALUE="ModificarPincho" ></td>
 				
 				<?PHP } ?>
+				
+				
 				
 				<td ><INPUT  TYPE="submit" name="accion" VALUE="Logout" ></td>
 			<tr/>	

@@ -47,7 +47,7 @@ if($accion == "ModificarPincho")
 	$db_model->editarPincho();
 	
 	if ($_SESSION['errorSQL']){
-		echo "aqui va a error en recuperar el pincho";
+		echo "Aqui va a error en recuperar el pincho";
 	}else{
 		header ('Location:/../views/IU_modificarPincho.php');
 	}
@@ -92,21 +92,20 @@ if($accion == "RellenarFormulario"){
 	}else if ($_SESSION['errorSQL']){
 		header ('Location:/../views/error/error_inserta_formulario.php');
 		}
-		else{
+		else{			
 			header ('Location:/../controllers/establecimiento_controlador.php');
 	}	
 } 
 /*-------------------------------------------------------*/
 /*-------------------------------------------------------*/
 /*CANCELAR FORMULARIO DE PINCHO***************************/
- if ($accion == "Cancelar"){
-	echo "cancelo";
-	//header ('Location:/../views/IU_inicio_establecimiento.php');
+ /*if ($accion == "Cancelar"){
 	
-}
+	header ('Location:/../views/IU_inicio_establecimiento.php');
+	
+}*/
 /*-------------------------------------------------------*/
 //Llamada a la vista
-echo "esto";
 require_once("/../views/IU_inicio_establecimiento.php");
 ?>
 
