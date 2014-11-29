@@ -30,7 +30,8 @@ class db_model {
 
     }
 	
-	/***********************************************************/
+	/*---------------------------------------------------------*/
+	/*---------------------------------------------------------*/
 	/*****************LOGUEAR INVITADO**************************/
 	public function loguear_invitado(){
 
@@ -194,30 +195,26 @@ class db_model {
 					return true;
 			} 
 
-		}      
-		if ($accion=="Buscar" )
-		{	
-			header ('Location:/../controller/buscar_controlador.php'); 		
-
-		}  
-			
+		}      		
 
     }
-	/***********************************************************/
-	/***********************************************************/
+	/*---------------------------------------------------------*/
+	/*---------------------------------------------------------*/
+	/***************ENVIAR FORMULARIO PINCHO******************/
+	public function enviarFormulario(){		
 	
-	/***********************************************************/
-	/***************RELLENAR FORMULARIO PINCHO******************/
-	public function cubrirFormulario(){
-		/**/		
 		//Recuperamos el nombre del estblecimiento
 		$login = $_SESSION['login'];  
+		$_SESSION['campos_incompletos']=0;
+		$_SESSION['errorSQL'] = 1;
+		
 		//Recuperar el id_estab e id_administrador
 		$sql="SELECT ID_estab,ID_administrador from ESTABLECIMIENTO where nombre_estab = '".$login."'";
 		$resultado = mysql_query($sql);
 		$row=mysql_fetch_row($resultado);
 		$id_estab=$row[0];
 		$id_administrador=$row[1];
+		
 		//Recuperamos las variables del formulario
 		$nombrePin=$_REQUEST['nombrePin'];
 		$tipoPin=$_REQUEST['tipoPin'];
@@ -225,18 +222,28 @@ class db_model {
 		$precioPin=$_REQUEST['precioPin'];
 		$fotoPin=$_REQUEST['fotoPin'];
 		$horarioPin=$_REQUEST['horarioPin'];
-		
+
 		if($nombrePin == NULL || $tipoPin == NULL ||
 			$descPin == NULL || $precioPin == NULL ||
 			$fotoPin == NULL ){
-			
-			header ("Location: /../views/error/error_campos_incompletos.html"); 
+			$_SESSION['campos_incompletos']=1;
 		}
 		else{
-			$sql="INSERT INTO PINCHO (id_pincho,id_administrador,id_estab,nombre_pincho,tipo,descripcion,precio,foto,horario,pincho_validado) VALUES ('1','".$id_administrador."','".$id_estab."','".$nombrePin."', '".$tipoPin."','".$descPin."', '".$precioPin."','".$fotoPin."' , '".$horarioPin."','false')";
+			$sql="INSERT INTO PINCHO (id_pincho,id_administrador,id_estab,nombre_pincho,tipo,descripcion,precio,foto,horario,pincho_validado) VALUES ('','".$id_administrador."','".$id_estab."','".$nombrePin."', '".$tipoPin."','".$descPin."', '".$precioPin."','".$fotoPin."' , '".$horarioPin."','false')";
 			mysql_query($sql);
-		}			
-	}
+		}
+		//Validamos que la inserción se ha realizado correctamente
+		if (mysql_affected_rows() > 0)
+		{
+			$_SESSION['errorSQL'] = 0;
+		}
+		else{
+			$_SESSION['errorSQL'] = 1;
+		}
+	}	
+	/*---------------------------------------------------------*/
+	/*---------------------------------------------------------*/
+	/******************Edita Pincho*****************************/
 	public function editarPincho(){
 		$login=$_SESSION['login'];
 		echo $login;
@@ -303,8 +310,23 @@ class db_model {
 		}
 		
 	}
-	/***********************************************************/
-	/***********************************************************/
+/*---------------------------------------------------------*/
+/*---------------------------------------------------------*/
+/*****************VALIDAR PINCHOS***************************/
+	public function validarPinchos(){
+		$login=$_SESSION['login'];
+		$sql="select * from pincho where pincho_validado = false";
+		$resultado=mysql_query($sql);
+		$array_pinchos=array();
+		while($filas=mysql_fetch_assoc($resultado)){
+			$array_pinchos[]=$filas;
+		}
+		//echo array_pinchos['0'];
+		//echo array_pinchos['1'];
+		$nombre_pincho=$row[0];
+		echo $nombre_pincho;
+		echo $login;
+	}
 
 }
 ?>

@@ -1,6 +1,4 @@
-<?php
-session_start(); 
-?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 
@@ -42,36 +40,23 @@ session_start();
        
     <!-- Esta en esta tabla recogemos lo que insertar el usuario y los mandamos a la controladora para que compruebe que el usuario es correcto-->
 	<table height=10></table>
-                  
+	
+	<tr>
+	<td>El formulario NO ha sido insertado correctamente<td/>
+	<tr/>  
                 
     <form action="/controllers/establecimiento_controlador.php" method="get"> 
-		<table>			
+		<table>
 			
 			<tr>
-				<?PHP if(!($_SESSION['tiene_pincho'])) { ?>
-				
-				<td ><INPUT  TYPE="submit" name="accion" VALUE="RellenarFormulario" ></td>
-				
-				<?PHP } else {?>
-				
-					<td ><INPUT  TYPE="submit" name="accion" VALUE="ModificarPincho" ></td>
-				
-				<?PHP } ?>
-				
-				<td ><INPUT  TYPE="submit" name="accion" VALUE="Logout" ></td>
+				<td >
+					<INPUT  TYPE="submit" name="accion" VALUE="Volver">
+				<td/>
 			<tr/>	
 				
 		</table>
-	<form/>
-      
-      
-		
-      
-    <!-- C. PIE DE PÁGINA -->      
-
-    <div class="footer">
-      
-	</div>      
+	<form/>    
+   
 
 </div>
   

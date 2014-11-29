@@ -1,4 +1,7 @@
-
+<?php
+session_start(); 
+$login=$_SESSION['login'];
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 
@@ -31,7 +34,7 @@
         <!-- Sitelogo and sitename -->
         <a class="sitelogo" href="#" title="Ir a la página de Inicio"></a>
         <div class="sitename">
-          <h1><a href="/index.php" title="Ir a la página de Inicio">PinchoGés<span style="font-weight:normal;font-size:50%;">&nbsp</span></a></h1>
+          <h1><a href="/index.php" title="Ir a la página de Inicio">PinchoGés <?PHP echo $login;?><span style="font-weight:normal;font-size:50%;">&nbsp</span></a></h1>
           <h2></h2>
         </div>  
       
@@ -42,46 +45,24 @@
 	<table height=10></table>
                   
                 
-    <form action="/controllers/establecimiento_controlador.php" method="get"> 
-		<table>
-			<tr>
-			<td  width="250" align="right">Nombre del pincho:<td/> <td width="250" ><input type=text NAME="nombrePin"><td/>
-			<tr/>
+    <form action="/controllers/administrador_controlador.php" method="get"> 
+		<table>			
 			
 			<tr>
-			<td width="250" align="right">Tipo:<td/> <td width="250" ><input type=text NAME="tipoPin"><td/>
-			<tr/>
-			
-			<tr>
-			<td width="250" align="right">Descripcion:<td/> <td width="250" ><input type=text NAME="descPin"><td/>
-			<tr/>
-			
-			<tr>
-			<td width="250" align="right">Precio:<td/> <td width="250" ><input type=text NAME="precioPin"><td/>
-			<tr/>
-			
-			<tr>
-			<td width="250" align="right">Foto:<td/> <td width="250" ><input type=text NAME="fotoPin"><td/>
-			<tr/>
-			
-			<tr>
-			<td width="250" align="right">Horario:<td/> <td width="250" ><input type=text NAME="horarioPin"><td/>
-			<tr/>
-			
-			<tr><td><table height=10></table></td></tr> 
-			
-			<tr>
-				<td >
-					<INPUT  TYPE="submit" name="accion" VALUE="EnviarFormulario">
-					<INPUT TYPE="submit" name="accion"  VALUE="Cancelar">
-				<td/>
+				
+				<td ><INPUT  TYPE="submit" name="accion" VALUE="EliminarPinchos" ></td>
+				
+				
+				<td ><INPUT  TYPE="submit" name="accion" VALUE="ValidarPinchos" ></td>
+				
+				
+				<td ><INPUT  TYPE="submit" name="accion" VALUE="Logout" ></td>
 			<tr/>	
 				
 		</table>
 	<form/>
       
       
-	<table height=10></table> 
 		
       
     <!-- C. PIE DE PÁGINA -->      
