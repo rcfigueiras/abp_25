@@ -62,7 +62,7 @@ if($accion=='EliminarPinchos'){
 
 	$db_model->eliminarPinchos();
 	if($_SESSION['errorSQL']){
-		echo "No hay pinchos que eliminar en el sistema";
+		header ('Location:/../views/error/error_noPinchosEliminar.php');
 	}else{
 		
 		header ('Location:/../views/IU_eliminarPinchos.php');

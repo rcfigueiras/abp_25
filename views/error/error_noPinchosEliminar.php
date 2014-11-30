@@ -32,6 +32,7 @@ if (isset($_REQUEST['login'])) {
 </head>
 
 <body>
+	<div class="alert alert-danger">No hay pinchos disponibles para eliminar</div>
  	<h2>hola <?PHP echo $_SESSION['login']?></h2>
 	<div class="form-group">
 		<label for="name">Buscar</label>
