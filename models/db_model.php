@@ -60,7 +60,7 @@ class db_model {
 		if ($accion=="Loguear" )
 		{	
 			if ($login == NULL || $pass == NULL){
-			 header ("Location:/../views/error/error_campos_incompletos.html");
+			 header ("Location:/../views/error/error_campos_incompletos.php");
 			 return false;
 			}
 			//comprobamos si existe en la bd
@@ -99,7 +99,7 @@ class db_model {
 					}
 				}
 				else{
-					header ('Location:/../views/error/error_contrasenha1.html'); 
+					header ('Location:/../views/error/error_contrasenha1.php'); 
 					return false;
 				}		
 			}
@@ -128,7 +128,7 @@ class db_model {
 					}
 				}
 				else{
-					header ('Location:/../views/error/error_contrasenha1.html'); 
+					header ('Location:/../views/error/error_contrasenha1.php'); 
 					return false;
 				}		
 			}			
@@ -156,8 +156,7 @@ class db_model {
 					}
 				}
 				else{
-					header ('Location:/../views/error/error_contrasenha1
-					'); 
+					header ('Location:/../views/error/error_contrasenha1.php'); 
 					return false;
 				}		
 			}
@@ -184,19 +183,16 @@ class db_model {
 					}
 				}
 				else{
-					header ('Location:/../views/error/error_contrasenha1.html'); 
+					header ('Location:/../views/error/error_contrasenha1.php'); 
 					return false;
 				}		
-			}
-			
+			}			
 			//si no existe el login en la bd lo mandamos a loguearse
 			else{
-					header ('Location:/index.php'); 
+					header ('Location:/../views/error/error_usuario.php'); 
 					return true;
-			} 
-
-		}      		
-
+			}
+		}   
     }
 	/*---------------------------------------------------------*/
 	/*---------------------------------------------------------*/
@@ -260,11 +256,10 @@ class db_model {
 		else{
 			$_SESSION['errorSQL'] = 1;
 		}
-		$sql="UPDATE ESTABLECIMIENTO E,PINCHO P  
+		$sql="UPDATE ESTABLECIMIENTO E
 				SET E.comunicacion ='Pincho pendiente de validación.' 
-				WHERE P.ID_estab=E.ID_estab
-				AND
-				E.nombre_estab='".$login."'";
+				WHERE E.nombre_estab='".$login."'";
+		
 		mysql_query($sql);
 	}	
 	/*---------------------------------------------------------*/
@@ -355,10 +350,6 @@ class db_model {
 			$_SESSION['errorSQL']=1;
 		}
 		
-		
-		//$lista_pinchos= mysql_num_rows($resultado);
-		//echo "Encontrados: ".$registros_encontrados."<br>";
-		
 		while ($filas = mysql_fetch_assoc($consulta)){
 			$pinchos[]=$filas;
 		} 		
@@ -422,7 +413,7 @@ class db_model {
 	}
 /*---------------------------------------------------------*/
 /*---------------------------------------------------------*/
-/*****************ELIMINA ESTE PINCHOS***************************/
+/*****************ELIMINA ESTE PINCHOS**********************/
 	public function eliminaPincho(){
 		
 		$nombre_pin=$_REQUEST['nombrePin'];
@@ -453,6 +444,150 @@ class db_model {
 				SET E.comunicacion ='Pincho ELIMINADO' 
 				WHERE E.ID_estab='".$id_estab."'";
 		mysql_query($sql);
+	}
+/*---------------------------------------------------------*/
+/*---------------------------------------------------------*/
+/*****************VALORAR PINCHOS***************************/
+	public function valorarPinchos(){
+		
+		$login=$_SESSION['login'];
+		$sql = "SELECT *
+				FROM ASIGNA_PINCHO A, 
+					JURADO_PROFESIONAL J,
+					PINCHO P					
+				WHERE 
+					A.ID_jurPro=J.ID_juradoProfesional
+					AND
+					P.ID_pincho=A.ID_pincho
+					AND
+					J.nombre_jurPro='".$login."'";
+		$resultado=mysql_query($sql);		
+		
+		if(mysql_affected_rows() > 0){
+			//si tiene pinchos asignados se los mostramos
+			$pinchos=array();
+			while ($filas = mysql_fetch_assoc($resultado)){
+				
+				$pinchos[]=$filas;
+			} 	
+			
+			$_SESSION['pinchos']=$pinchos;			
+		}
+		else{
+			//si no tiene pinchos asignados salimos y devolvemos error
+			$_SESSION['errorSQL_no_tiene']=1;
+		}		
+	}
+/*---------------------------------------------------------*/
+/*---------------------------------------------------------*/
+/*****************VALORA YA  ESTE PINCHOS*******************/
+	public function valoraYaPincho(){
+		
+		$nombre_pin=$_SESSION['nombrePin'];
+		$login=$_SESSION['login'];
+		$nota=$_SESSION['nota'];
+		$comentario=$_SESSION['comentario'];
+		//recuperamos el id del jurado profesional
+		//y del administrador
+		$sql="select id_juradoProfesional,id_administrador
+				from jurado_profesional
+				where nombre_jurPro='".$login."'";
+		$resultado=mysql_query($sql);
+		$row=mysql_fetch_row($resultado);
+		$id_jurPro=$row[0];
+		$id_admin=$row[1];
+		
+		$sql="INSERT INTO VALORACION (ID_pincho,
+										ID_valoracion,
+										ID_juradoPro,
+										ID_administrador,
+										nota,
+										comentario_val)
+							VALUES	('',
+									'',
+									'".$id_jurPro."',
+									'".$id_admin."',
+									'".$nota."',
+									'".$comentario."')";
+		
+		
+		if (mysql_affected_rows() > 0)
+		{
+			$_SESSION['errorSQL'] = 0;
+			
+		}
+		else{
+			$_SESSION['errorSQL']=1;
+		}
+		
+		
+	}
+/*---------------------------------------------------------*/
+/*---------------------------------------------------------*/
+/*****************COMPROBAR VALORACIÓN DE ESTE PINCHO*******/
+	public function comprobarValoracion(){
+		$nombrePin=$_SESSION['nombrePin'];
+		$login=$_SESSION['login'];
+	
+		$sql="	SELECT nota,comentario_val
+				FROM pincho p, jurado_profesional j, valoracion v
+				WHERE
+				p.id_pincho=v.id_pincho
+				AND
+				j.id_juradoProfesional=v.id_juradoPro
+				AND
+				p.nombre_pincho='".$nombrePin."'
+				AND
+				j.nombre_jurPro='".$login."'";
+				
+		$resultado = mysql_query($sql);
+		$row=mysql_fetch_row($resultado);
+		$nota=$row[0];
+		$comentario=$row[1];
+		if(mysql_affected_rows() > 0){
+			$_SESSION['nota']=$nota;
+			$_SESSION['comentario']=$comentario;
+			$_SESSION['yaValorado'] = 1;
+		}else{
+			$_SESSION['yaValorado'] = 0;
+		}
+	}
+/*---------------------------------------------------------*/
+/*---------------------------------------------------------*/
+/*****************MODIFICA LA VALORACIÓN DEL PINCHOS********/
+	public function modificaValoracionPincho(){
+		
+		$nombre_pin=$_SESSION['nombrePin'];
+		$login=$_SESSION['login'];
+		$newNota=$_SESSION['newNota'];
+		$newComentario=$_SESSION['newComentario'];
+		
+		$sql="SELECT id_valoracion
+				FROM pincho p, valoracion v, jurado_profesional j
+				WHERE p.id_pincho=v.id_pincho
+				AND j.id_juradoProfesional=v.id_juradoPro
+				AND p.nombre_pincho = '".$nombre_pin."'
+				AND j.nombre_jurPro = '".$login."'";
+		$resultado=mysql_query($sql);
+		$row=mysql_fetch_row($resultado);
+		$id_val=$row[0];
+		
+		$sql="UPDATE VALORACION V
+				SET V.nota='".$newNota."',
+				V.comentario_val='".$newComentario."'
+				WHERE V.id_valoracion='".$id_val."'";
+		mysql_query($sql);
+		
+		if (mysql_affected_rows() > 0)
+		{
+			$_SESSION['errorSQL'] = 0;
+			
+		}
+		else{
+			$_SESSION['errorSQL']=1;
+		}
+		
+		
 	}
 }
 ?>

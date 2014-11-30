@@ -25,9 +25,8 @@ session_start();
 </head>
 
 <body>
+	<div class="alert alert-danger">Los campos marcados con * son obligatorios</div>
 
-	<div class="alert alert-info">Los campos marcados con * son obligatorios</div>
-   
     <form action="/controllers/establecimiento_controlador.php" method="post"> 
 		<div class="form-group">
 			<label for="name">*Nombre del pincho: </label>
@@ -38,8 +37,7 @@ session_start();
 			<select class="form-control" name="tipoPin">
 			  <option>frio</option>
 			  <option>caliente</option>
-			</select>
-		</div>
+			</select>		</div>
 		<div class="form-group">
 			<label for="name">*Descripción: </label>
 			<input type="text" class="form-control" name="descPin" placeholder="breve descripción" >
@@ -55,12 +53,15 @@ session_start();
 		<div class="form-group">
 			<label for="name">Horario: </label>
 			<input type="text" class="form-control" name="horarioPin" placeholder="horario de degustación" >
-		</div>
+		
+			
+		
 		<div class="btn-group">
 			<button TYPE="submit" name="accion" VALUE="EnviarFormulario" class="btn btn-default">Enviar Formulario</button>
 			<button TYPE="submit" name="accion" VALUE="Cancelar" class="btn btn-default">Cancelar</button>
 		</div>   
-	</form>
+				
+	<form/>
 </body>
-	
+
 </html>

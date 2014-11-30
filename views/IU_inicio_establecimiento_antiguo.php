@@ -1,4 +1,13 @@
+<?php
+session_start(); 
+if (isset($_REQUEST['login'])) {
+	$login=$_REQUEST['login'];
+	$_SESSION['login']=$login;
+}else{
+	$login=$_SESSION['login'];
+}
 
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 
@@ -31,7 +40,7 @@
         <!-- Sitelogo and sitename -->
         <a class="sitelogo" href="#" title="Ir a la página de Inicio"></a>
         <div class="sitename">
-          <h1><a href="index.php" title="Ir a la página de Inicio">PinchoGes<span style="font-weight:normal;font-size:50%;">&nbsp</span></a></h1>
+          <h1><a href="/index.php" title="Ir a la página de Inicio">PinchoGés<?PHP echo " - Bienvenido ".$login;?><span style="font-weight:normal;font-size:50%;">&nbsp</span></a></h1>
           <h2></h2>
         </div>  
       
@@ -42,27 +51,45 @@
 	<table height=10></table>
                   
                 
-    <form action="../controllers/controlador_login.php" method="get"> 
-		<table>
-			<tr>
-			<td  width="250" align="right">usuario:<td/> <td width="250" ><input type=text NAME="login"><td/>
-			<tr/>
+    <form action="/controllers/establecimiento_controlador.php" method="get"> 
+		<table>			
 			
 			<tr>
-			<td width="250" align="right">contraseña:<td/> <td width="250" ><input type=password NAME="pass"><td/>
-			<tr/>
-			
-			<tr><td><table height=10></table></td></tr> 
-			
-			<tr>
-			<td colspan="6" align="center" cellspacing="200"><INPUT  TYPE="submit" name="accion" VALUE="Loguear" size=50><INPUT TYPE="submit" name="accion"  VALUE="Registrar" size=50><td/>
+				<?PHP 
+				$estado='vacio';
+				$sql="select comunicacion 
+					from establecimiento 
+					where nombre_estab='".$login."'
+							and
+							comunicacion IS NOT NULL";
+				$resultado = mysql_query($sql);
+
+				if($row=mysql_fetch_row($resultado)){
+					$estado=$row[0];
+					echo "El estado de su pincho 
+					en el concurso es: <br>".$estado;
+				}
+
+				?>
+				<?PHP if(!($_SESSION['tiene_pincho'])) { ?>
+				
+				<td ><INPUT  TYPE="submit" name="accion" VALUE="RellenarFormulario" ></td>
+				
+				<?PHP } else {?>
+				
+					<td ><INPUT  TYPE="submit" name="accion" VALUE="ModificarPincho" ></td>
+				
+				<?PHP } ?>
+				
+				
+				
+				<td ><INPUT  TYPE="submit" name="accion" VALUE="Logout" ></td>
 			<tr/>	
 				
 		</table>
 	<form/>
       
       
-	<table height=10></table> 
 		
       
     <!-- C. PIE DE PÁGINA -->      

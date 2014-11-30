@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 
@@ -6,7 +5,6 @@
 <head>
 	<title>PinchoGés</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap -->
 	<link href="/../dist/css/bootstrap.min.css" rel="stylesheet">
@@ -26,6 +24,9 @@
 <body>
  
 	<form action="/controllers/login_controlador.php" method="get" role="form">
+		
+		<div class="alert alert-danger">Campos incompletos</div>
+
 		<div class="form-group">
 			<label for="name">Buscar</label>
 			<input type="text" class="form-control" placeholder="Introsduzca su búsqueda">

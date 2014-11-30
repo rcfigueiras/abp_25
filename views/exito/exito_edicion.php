@@ -32,45 +32,25 @@ if (isset($_REQUEST['login'])) {
 </head>
 
 <body>       
+	<div class="alert alert-success">Pincho modificado</div>
 
 	<h2>hola <?PHP echo $_SESSION['login']?></h2>
+	
 	<div class="form-group">
-		<label for="name">Buscar</label>
-		<input type="text" class="form-control" placeholder="Introsduzca su búsqueda">
-	</div>
-	<div class="btn-group">
-		<button TYPE="submit" name="accion"  VALUE="Buscar" class="btn btn-default">Buscar</button>
-	</div>  
+			<label for="name">Buscar</label>
+			<input type="text" class="form-control" placeholder="Introsduzca su búsqueda">
+		</div>
+		<div class="btn-group">
+			<button TYPE="submit" name="accion"  VALUE="Buscar" class="btn btn-default">Buscar</button>
+		</div>  
     <form action="/controllers/establecimiento_controlador.php" method="get" role="form"> 
-		<?PHP 
-			$estado='vacio';
-			$sql="select comunicacion 
-					from establecimiento 
-					where nombre_estab='".$login."'
-					and
-					comunicacion IS NOT NULL";
-			$resultado = mysql_query($sql);
-
-			if($row=mysql_fetch_row($resultado)){
-				$estado=$row[0];
-				 ?>
-				 <div class="form-group">
-				<label for="name"><?PHP echo"El estado de su pincho 
-				en el concurso es: <br>".$estado?></label>
-				</div>
-				<?PHP	}	?>
-		<?PHP if(!($_SESSION['tiene_pincho'])) { ?>
-			<div class="btn-group">
-				<button TYPE="submit" name="accion" VALUE="RellenarFormulario" class="btn btn-default">Rellenar Formulario</button>
 		
-		<?PHP } else {?>
+			<div class="btn-group">		
 				<button TYPE="submit" name="accion" VALUE="ModificarPincho" class="btn btn-default">Modificar Pincho</button>
-		<?PHP } ?>
-					
 				<button TYPE="submit" name="accion" VALUE="Logout" class="btn btn-default">Logout</button>
-			</div>   		
+			</div>   
+			
 	<form/>
- 
 </body>
 
 </html>

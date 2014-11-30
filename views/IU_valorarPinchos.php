@@ -1,11 +1,9 @@
 <?php
 session_start(); 
-if (isset($_REQUEST['login'])) {
-	$login=$_REQUEST['login'];
-	$_SESSION['login']=$login;
-}else{
-	$login=$_SESSION['login'];
-}
+$login=$_SESSION['login'];
+
+require_once("/../models/db_model.php");
+$db_model=new db_model();
 
 ?>
 <!DOCTYPE html>
@@ -13,9 +11,8 @@ if (isset($_REQUEST['login'])) {
 
 
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />  
-  <title>PinchoGes</title>
-  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>PinchoGes</title>  
 </head>
 
 <body>
@@ -33,7 +30,7 @@ if (isset($_REQUEST['login'])) {
         <!-- Sitelogo and sitename -->
         <a class="sitelogo" href="#" title="Ir a la página de Inicio"></a>
         <div class="sitename">
-          <h1><a href="/index.php" title="Ir a la página de Inicio">PinchoGés<?PHP echo " - Bienvenido ".$login;?><span style="font-weight:normal;font-size:50%;">&nbsp</span></a></h1>
+          <h1><a href="/index.php" title="Ir a la página de Inicio">PinchoGés <?PHP echo $login;?><span style="font-weight:normal;font-size:50%;">&nbsp</span></a></h1>
           <h2></h2>
         </div>  
       
@@ -45,11 +42,28 @@ if (isset($_REQUEST['login'])) {
                   
                 
     <form action="/controllers/jurPro_controlador.php" method="get"> 
-		<table>						
-			<tr>			
-				<td ><INPUT  TYPE="submit" name="accion" VALUE="valorarPinchos" ></td>
-				<td ><INPUT  TYPE="submit" name="accion" VALUE="Logout" ></td>
-			<tr/>				
+		<table>			
+			
+			<tr>
+				<tr>
+					<td>
+						<?PHP
+						foreach  ($_SESSION['pinchos'] as $valor){
+							echo "Nombre del pincho: " 
+						?>				
+						<INPUT TYPE="SUBMIT" NAME="valorarEste" VALUE="<?PHP echo $valor['nombre_pincho']?>"readonly>		
+					<td/>
+				<tr/>
+					<?PHP
+					echo "<br>"; 
+							
+					}		
+						?>				
+				<td >
+					<INPUT  TYPE="submit" NAME="accion" VALUE="Logout" >
+				</td>
+			<tr/>	
+				
 		</table>
 	<form/>
       
