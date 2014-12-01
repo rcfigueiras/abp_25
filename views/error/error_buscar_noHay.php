@@ -1,6 +1,3 @@
-<?php
-session_start(); 
-?>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
@@ -27,6 +24,8 @@ session_start();
   </head>
 
 <body>
+ 
+	<div class="alert alert-info">No se encuentra ningun pincho con esos criterios de búsqueda</div>	
  
 	<form action="/controllers/login_controlador.php" method="get" role="form">
 		<div class="form-group">

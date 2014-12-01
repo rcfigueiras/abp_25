@@ -727,5 +727,36 @@ class db_model {
 		
 	}
 	
+	public function buscarPincho(){
+	
+	$_SESSION['buscar']='';
+	$_SESSION['errorSQL_noHay']=0;
+
+	$search=$_SESSION['search'];
+	$sql="SELECT * FROM PINCHO WHERE nombre_pincho='".$search."' ";
+	$resultado=mysql_query($sql);
+	
+	if(mysql_affected_rows() > 0){
+			
+			$pinchos=array();
+			while ($filas = mysql_fetch_assoc($resultado)){
+				
+				$pinchos[]=$filas;
+			} 	
+			
+			$_SESSION['buscar']=$pinchos;			
+		}
+		else{
+			//si no tiene pinchos asignados salimos y devolvemos error
+			$_SESSION['errorSQL_noHay']=1;
+		}	
+	
+	
+	
+	
+	
+	
+	}
+	
 }
 ?>

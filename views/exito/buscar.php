@@ -27,7 +27,7 @@ session_start();
   </head>
 
 <body>
- 
+ 	
 	<form action="/controllers/login_controlador.php" method="get" role="form">
 		<div class="form-group">
 			<label for="name">Buscar</label>
@@ -48,6 +48,29 @@ session_start();
 			<button TYPE="submit" name="accion" VALUE="Loguear" class="btn btn-default">Login</button>
 		</div>   
 	</form>
+	
+	
+	<div class="alert alert-info">Resultados de la búsqueda</div>	
+	<?PHP
+	
+		foreach ($_SESSION['buscar'] as $valor){
+		?>
+		<div class="form-group">
+			<label for="name"> Nombre del pincho: </label>
+
+			<input type="text" class="form-control" placeholder="<?PHP echo $valor['nombre_pincho']?>" readonly>
+		</div>
+		<?PHP				
+		}		
+		?>						
+						
+	
+	
+	
+	
+	</div>
+	
+	
       
    
 </body>
