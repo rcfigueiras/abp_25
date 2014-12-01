@@ -1,92 +1,76 @@
-
+<?php
+session_start(); 
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 
 
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <meta http-equiv="cache-control" content="no-cache" />
-  <meta http-equiv="expires" content="3600" />
-  <meta name="revisit-after" content="2 days" />
-  <meta name="robots" content="index,follow" />
-  <meta name="distribution" content="global" />
-  <link rel="icon" href="./img/iconopeque.jpg"/>
-  <link rel="icon" type="image/x-icon" href="./img/LOGO_2.ico" />
-  <title>PinchoGes</title>
-  
+  <title>PinchoGés</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Bootstrap -->
+	<link href="/../dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media 
+	 queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page 
+	 via file:// -->
+	<!--[if lt IE 9]>
+	 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/
+		html5shiv.js"></script>
+	 <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/
+		respond.min.js"></script>
+	<![endif]-->
 </head>
 
 <body>
-  <!-- Main Page Container -->
-  <div class="page-container">
 
-   <!-- For alternative headers START PASTE here -->
-
-    <!-- A. HEADER -->      
-    <div class="header">
-      
-      <!-- A.1 HEADER TOP -->
-      <div class="header-top">
-        
-        <!-- Sitelogo and sitename -->
-        <a class="sitelogo" href="#" title="Ir a la página de Inicio"></a>
-        <div class="sitename">
-          <h1><a href="/index.php" title="Ir a la página de Inicio">PinchoGés<span style="font-weight:normal;font-size:50%;">&nbsp</span></a></h1>
-          <h2></h2>
-        </div>  
-      
-
-
-       
-    <!-- Esta en esta tabla recogemos lo que insertar el usuario y los mandamos a la controladora para que compruebe que el usuario es correcto-->
-	<table height=10></table>
                
 
-			   
+	<div class="alert alert-info">Añada la información del sistema</div>		   
                 
-    <form action="/controllers/administrador_controlador.php" method="get"> 
-		<table>
-			<tr>
-			<td  width="250" align="right">Nombre del concurso:<td/> <td width="250" ><input type=text NAME="nombreConc"><td/>
-			<tr/>
+    <form action="/controllers/administrador_controlador.php" method="post"> 
+		
+		<div class="form-group">
+			<label for="name">Nombre del concurso: </label>
+			<input type="text" class="form-control" name="nombreConc" placeholder="nombre del concurso" >
+		</div>
+		
+		
+		<div class="form-group">
+			<label for="name">Bases: </label>
+			<input type="text" class="form-control" name="basesConc" placeholder="bases del concurso" >
+		</div>
 			
 		
-
+		<div class="form-group">
+			<label for="name">Logotipo: </label>
+			<input type="text" class="form-control" name="logoConc" placeholder="logo del concurso" >
+		</div>
 			
-			
-			<tr>
-			<td width="250" align="right">Bases:<td/> <td width="250" ><input type=text NAME="basesConc"><td/>
-			<tr/>
-			
-			<tr>
-			<td width="250" align="right">Logotipo:<td/> <td width="250" ><input type=text NAME="logoConc"><td/>
-			<tr/>
 			
 
+		<div class="btn-group">
+			<button TYPE="submit" name="accion" VALUE="EnviarFormularioSistema" class="btn btn-default">Enviar Formulario Sistema</button>
+			<button TYPE="submit" name="accion" VALUE="Cancelar" class="btn btn-default">Cancelar</button>
+		</div>	
+
 			
-			<tr><td><table height=10></table></td></tr> 
+			 
 			
-			<tr>
-				<td >
-					<INPUT  TYPE="submit" name="accion" VALUE="EnviarFormularioSistema">
-					<INPUT TYPE="submit" name="accion"  VALUE="Cancelar">
-				<td/>
-			<tr/>	
+			
 				
-		</table>
+		
 	<form/>
       
       
-	<table height=10></table> 
+	
 		
       
-    <!-- C. PIE DE PÁGINA -->      
+    
 
-    <div class="footer">
-      
-	</div>      
 
-</div>
   
 </body>
 

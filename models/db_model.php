@@ -589,10 +589,23 @@ class db_model {
 		
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/*---------------------------------------------------------*/
 	/*---------------------------------------------------------*/
 	/***************ENVIAR FORMULARIO SISTEMA******************/
 	public function enviarFormularioSistema(){	
+		$_SESSION['campos_incompletos']=0;
+		$_SESSION['errorSQL'] = 1;
+		
 		//Recuperamos las variables del formulario
 		$nombreConc=$_REQUEST['nombreConc'];
 		$basesConc=$_REQUEST['basesConc'];
@@ -669,9 +682,13 @@ class db_model {
 	
 	/*---------------------------------------------------------*/
 	/*---------------------------------------------------------*/
+		/******************Edita Formulario Info Sistema*****************************/
+
+		
 		public function editarFormularioSistema(){		
 
-
+		$_SESSION['campos_incompletos']=0;
+		//$_SESSION['errorSQL'] = 1;
 		
 
 		
@@ -695,15 +712,9 @@ class db_model {
 								
 			mysql_query($sql);
 		}
-		//Validamos que la inserción se ha realizado correctamente
-		if (mysql_affected_rows() > 0)
-		{
-			$_SESSION['errorSQL'] = 0;
-		}
-		else{
-			$_SESSION['errorSQL'] = 1;
-		}
+		
 
+		
 	}
 	
 }

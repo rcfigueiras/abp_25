@@ -143,11 +143,14 @@ if ($accion == "Editar")
 
 		
 		$db_model->editarFormularioSistema();
-		if ($_SESSION['errorSQL']){
-			header ('Location:/../views/error/error_edita_pincho_no_valido.php');
+		if($_SESSION['campos_incompletos']){
+				header ("Location: /../views/error/error_campos_incompletos_editar_info.php");
 		}else{
-			header ('Location:/../controllers/administrador_controlador.php');
+			header ('Location:/../views/exito/exito_edicion_info.php');
 		}	
+		
+		
+		
 		
 } 
 
@@ -167,12 +170,13 @@ if($accion == "RellenarInfoSistema"){
 	$db_model->enviarFormularioSistema();
 	//Validamos la consulta SQL
 	if($_SESSION['campos_incompletos']){
-				header ("Location: /../views/error/error_campos_incompletos.html"); 
+				header ("Location: /../views/error/error_campos_incompletos_info.php"); 
 	}else if ($_SESSION['errorSQL']){
 		header ('Location:/../views/error/error_inserta_formulario.php');
 		}
-		else{			
-			header ('Location:/../controllers/administrador_controlador.php');
+		else{		
+				
+			header ('Location:/../views/exito/exito_insercion_info.php');
 	}	
 } 
 /*-------------------------------------------------------*/

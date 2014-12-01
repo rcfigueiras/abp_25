@@ -26,7 +26,7 @@ session_start();
 
 <body>
 
-	<div class="alert alert-info">Edite la información del sistema</div>		   
+	<div class="alert alert-info">Debe editar todos los campos con la información del sistema</div>		   
                 
     <form action="/controllers/administrador_controlador.php" method="post"> 
 		
