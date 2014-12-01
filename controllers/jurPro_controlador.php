@@ -36,7 +36,7 @@ if(isset($_REQUEST['valorarEste'])){
 	}
 }
 /*--------------------------------------------------------*/
-/*VALORA YA ESTE PINCHO ESTE PINCHO ***********************/
+/*VALORA YA ESTE PINCHO ***********************************/
 if($accion == "valoraYa"){
 	if(isset($_REQUEST['nota'])){
 		$nota=$_REQUEST['nota'];
@@ -87,6 +87,16 @@ if($accion == "modificaValoracion"){
 			header ('Location:/../views/IU_valorarPinchos.php');
 		}			
 	}
+}
+/*--------------------------------------------------------*/
+/*VOLVER***************************************************/
+if($accion == "Volver"){
+	header ('Location:/../views/IU_inicio_jurPro.php');
+}
+/*--------------------------------------------------------*/
+/*VOLVER LISTA VALORACION**********************************/
+if($accion == "Volver_listaValorar"){
+	header ('Location:/../views/IU_valorarPinchos.php');
 }
 /*--------------------------------------------------------*/
 /*LOGOUT***************************************************/
