@@ -1,9 +1,9 @@
 <?php
 session_start(); 
 $login=$_SESSION['login'];
-
 require_once("/../models/db_model.php");
 $db_model=new db_model();
+echo "nombre del pincho ".$_SESSION['nombrePin'];
 
 ?>
 <!DOCTYPE html>
@@ -49,7 +49,7 @@ $db_model=new db_model();
 			<?PHP
 				foreach  ($_SESSION['pinchos'] as $valor){
 					if($valor['nombre_pincho'] == $_SESSION['nombrePin']){
-						echo "Nombre del pincho: "?><input TYPE=text NAME="nombrePin" VALUE="<?PHP echo $valor['nombre_pincho']?>"readonly>		
+						echo "Nombre xxxdel pincho: "?><input TYPE=text NAME="nombrePin" VALUE="<?PHP echo $valor['nombre_pincho']?>"readonly>		
 						<?PHP echo "<br>"; ?>
 						<?PHP echo "Tipo: "?><input TYPE=text NAME="tipoPin" VALUE="<?PHP echo $valor['tipo']?>"readonly>		
 						<?PHP echo "<br>"; ?>

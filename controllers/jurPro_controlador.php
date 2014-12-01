@@ -27,6 +27,7 @@ if(isset($_REQUEST['valorarEste'])){
 	$nombrePin=$_REQUEST['valorarEste'];
 	$_SESSION['nombrePin']=$nombrePin;
 	$db_model->comprobarValoracion();
+	
 	if ($_SESSION['yaValorado']){
 		header ('Location:/../views/IU_valorarPinchoYaValorado_formulario.php');
 	}else{
@@ -47,18 +48,20 @@ if($accion == "valoraYa"){
 		$_SESSION['comentario']=$comentario;
 	}
 	$db_model->valoraYaPincho();
+	echo "el id pincho es: ".$_SESSION['idpincho'];
 	if($_SESSION['errorSQL']){
 			header ('Location:/../views/error/error_valida_pincho_sql.php');
 
 	}else{
 		//Volvemos a mostrar el inicio de valorar pinchos
-		$db_model->valorarPinchos();	
+		//$db_model->valorarPinchos();	
 		if($_SESSION['errorSQL']){
-			echo "No hay pinchos que valorar en el sistema";
+			echo "el pincho no se valora";
 		}else{			
 			header ('Location:/../views/IU_valorarPinchos.php');
 		}			
 	}
+	
 }
 /*MODIFICA VALORACIÓN ***********************/
 if($accion == "modificaValoracion"){

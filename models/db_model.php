@@ -481,8 +481,7 @@ class db_model {
 /*---------------------------------------------------------*/
 /*---------------------------------------------------------*/
 /*****************VALORA YA  ESTE PINCHOS*******************/
-	public function valoraYaPincho(){
-		
+	public function valoraYaPincho(){		
 		$nombre_pin=$_SESSION['nombrePin'];
 		$login=$_SESSION['login'];
 		$nota=$_SESSION['nota'];
@@ -496,20 +495,31 @@ class db_model {
 		$row=mysql_fetch_row($resultado);
 		$id_jurPro=$row[0];
 		$id_admin=$row[1];
-		
+		$sql="select id_pincho
+				from pincho
+				where nombre_pincho='".$nombre_pin."'";
+		$resultado=mysql_query($sql);
+		$row=mysql_fetch_row($resultado);
+		$id_pincho=$row[0];
+		$_SESSION['idpincho']=$id_pincho;
+		$_SESSION['jurpro']=$id_jurPro;
+		$_SESSION['idadmin']=$id_admin;
+		$_SESSION['nota']=$nota;
+		$_SESSION['coment']=$comentario;
+
 		$sql="INSERT INTO VALORACION (ID_pincho,
 										ID_valoracion,
 										ID_juradoPro,
 										ID_administrador,
 										nota,
 										comentario_val)
-							VALUES	('',
-									'',
+							VALUES	('".$id_pincho."',
+									NULL,
 									'".$id_jurPro."',
 									'".$id_admin."',
 									'".$nota."',
 									'".$comentario."')";
-		
+		mysql_query($sql);
 		
 		if (mysql_affected_rows() > 0)
 		{
