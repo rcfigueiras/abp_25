@@ -10,10 +10,22 @@ require_once("/../models/db_model.php");
 if (isset($_REQUEST['accion'])) {
 	$accion=$_REQUEST['accion'];
 } else {
-	$accion='';
 }
 
 $db_model=new db_model();
+
+/*Comprobamos si el administrador ha rellenado
+el formulario de la información del sistema*/
+
+$sql="SELECT * FROM PINCHOGES WHERE ID_administrador = '1'";
+
+$resultado=mysql_query($sql);
+if(mysql_fetch_row($resultado) > 0){
+	$_SESSION['tiene_info']=1;
+}else{
+	$_SESSION['tiene_info']=0;
+}
+
 /*--------------------------------------------------------*/
 /*VALIDAR PINCHOS******************************************/
 if($accion=='ValidarPinchos'){
@@ -104,6 +116,71 @@ if($accion == "Logout"){
 	session_destroy();
 	header ('Location:/../index.php');
 }
+
+
+
+
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*MODIFICAR ALTA SISTEMA****************************************/
+if($accion == "ModificarInfoSistema")
+{
+	$db_model->editarInfoSistema();
+	
+	if ($_SESSION['errorSQL']){
+		echo "Aqui va a error en recuperar el pincho";
+	}else{
+		header ('Location:/../views/EditarInfoSistema.php');
+	}
+}
+	
+
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*EDITAR ALTA SISTEMA*******************************************/
+if ($accion == "Editar")
+{
+
+		
+		$db_model->editarFormularioSistema();
+		if ($_SESSION['errorSQL']){
+			header ('Location:/../views/error/error_edita_pincho_no_valido.php');
+		}else{
+			header ('Location:/../controllers/administrador_controlador.php');
+		}	
+		
+} 
+
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*RELLENAR ALTA SISTEMA***************************/
+if($accion == "RellenarInfoSistema"){
+
+	header ('Location:/../views/RellenarInfoSistema.php');
+
+}
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*ENVIAR FORMULARIO ALTA SISTEMA*****************************/
+ if($accion == "EnviarFormularioSistema"){		
+
+	$db_model->enviarFormularioSistema();
+	//Validamos la consulta SQL
+	if($_SESSION['campos_incompletos']){
+				header ("Location: /../views/error/error_campos_incompletos.html"); 
+	}else if ($_SESSION['errorSQL']){
+		header ('Location:/../views/error/error_inserta_formulario.php');
+		}
+		else{			
+			header ('Location:/../controllers/administrador_controlador.php');
+	}	
+} 
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+
+
+
+
 //Llamada a la vista
 require_once("/../views/IU_inicio_administrador.php");
 ?>

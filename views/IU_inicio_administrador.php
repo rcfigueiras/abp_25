@@ -32,7 +32,7 @@ if (isset($_REQUEST['login'])) {
 </head>
 
 <body>
- 	<h2>hola <?PHP echo $_SESSION['login']?></h2>
+ 	<h2>hola <?PHP echo $_SESSION['login'];?></h2>
 	<div class="form-group">
 		<label for="name">Buscar</label>
 		<input type="text" class="form-control" placeholder="Introsduzca su búsqueda">
@@ -43,13 +43,25 @@ if (isset($_REQUEST['login'])) {
               
                 
     <form action="/controllers/administrador_controlador.php" method="get"> 
-			
+		<?PHP if(!($_SESSION['tiene_info'])) { ?>
 		<div class="btn-group">
+		
+		<button TYPE="submit" name="accion" VALUE="RellenarInfoSistema" class="btn btn-default">Rellenar información del sistema</button>
+				
+		<?PHP }else{ ?>
+		
+			<button TYPE="submit" name="accion" VALUE="ModificarInfoSistema" class="btn btn-default">Mofificar info sistema</button>
+			
+		<?PHP } ?>	
 			<button TYPE="submit" name="accion" VALUE="EliminarPinchos" class="btn btn-default">Eliminar Pinchos</button>
-			<button TYPE="submit" name="accion" VALUE="ValidarPinchos" class="btn btn-default">Validar Pinchos</button>
-			<button TYPE="submit" name="accion" VALUE="Logout" class="btn btn-default">Logout</button>
+
+		<button TYPE="submit" name="accion" VALUE="ValidarPinchos" class="btn btn-default">Validar Pinchos</button>
+		<button TYPE="submit" name="accion" VALUE="Logout" class="btn btn-default">Logout</button>
+		
 		</div>   		
 	<form/>
+<body>
+
 </html>
 
 

@@ -589,5 +589,122 @@ class db_model {
 		
 		
 	}
+	/*---------------------------------------------------------*/
+	/*---------------------------------------------------------*/
+	/***************ENVIAR FORMULARIO SISTEMA******************/
+	public function enviarFormularioSistema(){	
+		//Recuperamos las variables del formulario
+		$nombreConc=$_REQUEST['nombreConc'];
+		$basesConc=$_REQUEST['basesConc'];
+		$logoConc=$_REQUEST['logoConc'];
+
+
+		if($nombreConc == NULL || $basesConc == NULL ||
+			$logoConc == NULL){
+			$_SESSION['campos_incompletos']=1;
+		}
+		else{
+			$sql="INSERT INTO PINCHOGES (ID_administrador
+									,nombre_consurso
+									,bases
+									,logotipo
+											) 
+							VALUES ('1'
+									,'".$nombreConc."'
+									,'".$basesConc."'
+									,'".$logoConc."'
+									)";
+			mysql_query($sql);
+		}
+		//Validamos que la inserción se ha realizado correctamente
+		if (mysql_affected_rows() > 0)
+		{
+			$_SESSION['errorSQL'] = 0;
+		}
+		else{
+			$_SESSION['errorSQL'] = 1;
+		}
+
+	}	
+	
+	/*---------------------------------------------------------*/
+	/*---------------------------------------------------------*/
+	/******************Edita Info Sistema*****************************/
+	public function editarInfoSistema(){
+
+	
+	
+		//recuperamos la información almacenada del pincho del establecimiento
+		$sql="SELECT nombre_consurso,bases,logotipo FROM PINCHOGES where ID_administrador = '1'";
+		$resultado = mysql_query($sql);
+		$fila=mysql_fetch_row($resultado);
+		//Pasamos resultado de la consulta al controlador 
+		
+
+		
+		
+		if ($fila > 0){
+			
+			$_SESSION['errorSQL'] = 0;
+			
+			$nombre_consurso=$fila[0];
+			$bases=$fila[1];
+			$logotipo=$fila[2];
+
+			
+			$_SESSION['nombre_consurso'] = $nombre_consurso;
+			$_SESSION['bases'] = $bases;
+			$_SESSION['logotipo'] = $logotipo;
+
+
+		}
+		else{
+			
+			$_SESSION['errorSQL'] = 1;
+
+		}
+		
+	}
+	
+	
+	/*---------------------------------------------------------*/
+	/*---------------------------------------------------------*/
+		public function editarFormularioSistema(){		
+
+
+		
+
+		
+
+		
+		//Recuperamos las variables del formulario
+		$nombreConcNew=$_REQUEST['nombreConcNew'];
+		$basesConcNew=$_REQUEST['basesConcNew'];
+		$logoConcNew=$_REQUEST['logoConcNew'];
+
+
+		if($nombreConcNew == NULL || $basesConcNew == NULL ||
+			$logoConcNew == NULL){
+			$_SESSION['campos_incompletos']=1;
+		}
+		else{
+
+									
+			$sql="UPDATE PINCHOGES P SET P.nombre_consurso ='".$nombreConcNew."',P.bases ='".$basesConcNew."',P.logotipo ='".$logoConcNew."' WHERE P.ID_administrador='1'";
+									
+								
+			mysql_query($sql);
+		}
+		//Validamos que la inserción se ha realizado correctamente
+		if (mysql_affected_rows() > 0)
+		{
+			$_SESSION['errorSQL'] = 0;
+		}
+		else{
+			$_SESSION['errorSQL'] = 1;
+		}
+
+	}
+	
 }
 ?>
