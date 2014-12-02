@@ -3,7 +3,6 @@ session_start();
 
 //Llamada al modelo
 require_once("/../models/db_model.php");
-
 /*Recogemos variables de la interfaz*/
 if (isset($_REQUEST['login'])) {
 	$login=$_REQUEST['login'];

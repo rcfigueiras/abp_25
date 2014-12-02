@@ -22,30 +22,10 @@
   </head>
 
 <body>
- 
-	<form action="/controllers/login_controlador.php" method="get" role="form">
-		
-		<div class="alert alert-danger">Campos incompletos</div>
+	<div class="alert alert-danger">Campos incompletos</div>
 
-		<div class="form-group">
-			<label for="name">Buscar</label>
-			<input type="text" class="form-control" placeholder="Introsduzca su búsqueda">
-		</div>
-		<div class="btn-group">
-			<button TYPE="submit" name="accion"  VALUE="Buscar" class="btn btn-default">Buscar</button>
-		</div>  
-		<div class="form-group">
-			<label for="name">Nombre</label>
-			<input type="text" class="form-control" name="login" placeholder="Introduzca su usuario">
-		</div>
-		<div class="form-group">
-			<label for="name">Contraseña</label>
-			<input type="password" class="form-control" name="pass" placeholder="Introduzca su contraseña">
-		</div>
-		<div class="btn-group">
-			<button TYPE="submit" name="accion" VALUE="Loguear" class="btn btn-default">Login</button>
-		</div>   
-	</form>
+		<?PHP include("/../IU_login.php"); ?>
+
       
    
 </body>

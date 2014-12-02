@@ -26,48 +26,7 @@ session_start();
 
 <body>
 	<div class="alert alert-danger">No ha introducido ningún valor en los campos marcados con *</div>
-
-    <form action="/controllers/establecimiento_controlador.php" method="post"> 
-		<div class="form-group">
-			<label for="name">Nombre del pincho: </label>
-			<input type="text" class="form-control" name="nombrePin" placeholder="<?PHP echo $_SESSION['nombre_pincho']?>" readonly>
-		</div>
-		<div class="form-group">
-			<label for="name">Tipo: </label>
-			<input type="text" class="form-control" name="tipoPin" placeholder="<?PHP echo $_SESSION['tipo']?>" readonly>
-		</div>
-		<div class="form-group">
-			<label for="name">Descripción: </label>
-			<input type="text" class="form-control" name="descPin" placeholder="<?PHP echo $_SESSION['descripcion']?>" readonly>
-		</div>
-		<div class="form-group">
-			<label for="name">Precio: </label>
-			<input type="text" class="form-control" name="precioPin" placeholder="<?PHP echo $_SESSION['precio']?>" readonly>
-		</div>			
-		<div class="form-group">
-			<label for="name">*Foto: </label>
-			<input type="text" class="form-control" name="fotoPin" placeholder="<?PHP echo $_SESSION['foto']?>" readonly>
-		</div>
-		<div class="form-group">
-			<label for="name">*Horario: </label>
-			<input type="text" class="form-control" name="horarioPin" placeholder="<?PHP echo $_SESSION['horario']?>" readonly>
-		</div>
-		<div class="form-group">
-			<label for="name">Nueva Foto: </label>
-			<input type="text" class="form-control" name="newfoto" placeholder="nueva foto" >
-		</div>
-		<div class="form-group">
-			<label for="name">Nueva Horario: </label>
-			<input type="text" class="form-control" name="newhorario" placeholder="nueva horario de degustación" >
-		</div>
-			
-		
-		<div class="btn-group">
-			<button TYPE="submit" name="accion" VALUE="EditarYa" class="btn btn-default">Editar</button>
-			<button TYPE="submit" name="accion" VALUE="Cancelar" class="btn btn-default">Cancelar</button>
-		</div>   
-				
-	<form/>
+	<?PHP include("/../IU_modificarPincho.php"); ?>
 </body>
 
 </html>

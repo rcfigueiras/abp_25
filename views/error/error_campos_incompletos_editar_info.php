@@ -26,37 +26,10 @@ session_start();
 
 <body>
 
-	<div class="alert alert-info">Debe editar todos los campos con la información del sistema</div>		   
+	<div class="alert alert-danger">No deje campos en blanco</div>		   
                 
-    <form action="/controllers/administrador_controlador.php" method="post"> 
-		
-		<div class="form-group">
-			<label for="name">Nuevo Nombre del concurso: </label>
-			<input type="text" class="form-control" name="nombreConcNew" placeholder="nuevo nombre del concurso" value="<?PHP echo $_SESSION['nombre_consurso']?>">
-		</div>
-				   
-                
-		<div class="form-group">
-			<label for="name">Nuevas Bases: </label>
-			<input type="text" class="form-control" name="basesConcNew" placeholder="nuevas bases del concurso" value="<?PHP echo $_SESSION['bases']?>" >
-		</div>
-			
-		
-		<div class="form-group">
-			<label for="name">Nuevo Logotipo: </label>
-			<input type="text" class="form-control" name="logoConcNew" placeholder="nuevo logo del concurso" value="<?PHP echo $_SESSION['logotipo']?>">
-		</div>
-			
-		
+     		<?PHP include("../../views/EditarInfoSistema.php"); ?>
 
-			
-		<div class="btn-group">
-			<button TYPE="submit" name="accion" VALUE="Editar" class="btn btn-default">Editar Formulario Sistema</button>
-			<button TYPE="submit" name="accion" VALUE="Cancelar" class="btn btn-default">Cancelar</button>
-		</div>	
-			
-
-	<form/>
       
 </body>
 

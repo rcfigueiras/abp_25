@@ -13,7 +13,7 @@ if (isset($_REQUEST['login'])) {
 
 
 <head>
-  <title>PinchoGés</title>
+	<title>PinchoGés</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap -->
@@ -33,24 +33,7 @@ if (isset($_REQUEST['login'])) {
 
 <body>       
 	<div class="alert alert-success">Formulario insertado correctamente</div>
-
-	<h2>hola <?PHP echo $_SESSION['login']?></h2>
-	<div class="form-group">
-			<label for="name">Buscar</label>
-			<input type="text" class="form-control" placeholder="Introsduzca su búsqueda">
-	</div>
-	<div class="btn-group">
-		<button TYPE="submit" name="accion"  VALUE="Buscar" class="btn btn-default">Buscar</button>
-	</div>  
-    <form action="/controllers/establecimiento_controlador.php" method="get" role="form"> 
-			<div class="btn-group">
-		
-				<button TYPE="submit" name="accion" VALUE="ModificarPincho" class="btn btn-default">Modificar Pincho</button>
-					
-				<button TYPE="submit" name="accion" VALUE="Logout" class="btn btn-default">Logout</button>
-			</div>   		   		
-	<form/>
-  
+	<?PHP include("../../controllers/establecimiento_controlador.php"); ?>
 </body>
 
 </html>

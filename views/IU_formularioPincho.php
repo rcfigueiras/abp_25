@@ -25,7 +25,6 @@ session_start();
 </head>
 
 <body>
-	<div class="alert alert-info">Los campos marcados con * son obligatorios</div>
    
     <form action="/controllers/establecimiento_controlador.php" method="post"> 
 		<div class="form-group">
@@ -60,6 +59,8 @@ session_start();
 			<button TYPE="submit" name="accion" VALUE="Cancelar" class="btn btn-default">Cancelar</button>
 		</div>   
 	</form>
+		<div class="alert alert-info">Los campos marcados con * son obligatorios</div>
+
 </body>
 	
 </html>

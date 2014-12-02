@@ -35,23 +35,7 @@ if (isset($_REQUEST['login'])) {
 <body>
 	<div class="alert alert-warning">No tiene pinchos asignados para valorar,
 	póngase en contacto con el administrador</div>
-
- 	<h2>hola <?PHP echo $_SESSION['login'];?></h2>
-	<div class="form-group">
-		<label for="name">Buscar</label>
-		<input type="text" class="form-control" placeholder="Introsduzca su búsqueda">
-	</div>
-	<div class="btn-group">
-		<button TYPE="submit" name="accion"  VALUE="Buscar" class="btn btn-default">Buscar</button>
-	</div>  
-  
-                
-    <form action="/controllers/jurPro_controlador.php" method="get"> 
-				<button TYPE="submit" name="accion" VALUE="valorarPinchos" class="btn btn-default">Valorar Pinchos</button>
-				<button TYPE="submit" name="accion" VALUE="Logout" class="btn btn-default">Logout</button>
-	<form/>
-    
-  
+	<?PHP include("../../controllers/jurPro_controlador.php"); ?>
 </body>
 
 </html>

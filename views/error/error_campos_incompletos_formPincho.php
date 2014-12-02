@@ -25,43 +25,10 @@ session_start();
 </head>
 
 <body>
-	<div class="alert alert-danger">Los campos marcados con * son obligatorios</div>
+	<div class="alert alert-danger">No ha rellenado todos los campos marcados con *</div>
 
-    <form action="/controllers/establecimiento_controlador.php" method="post"> 
-		<div class="form-group">
-			<label for="name">*Nombre del pincho: </label>
-			<input type="text" class="form-control" name="nombrePin" placeholder="nombre del pincho" >
-		</div>
-		<div class="form-group">
-			<label for="name">*Tipo: </label>
-			<select class="form-control" name="tipoPin">
-			  <option>frio</option>
-			  <option>caliente</option>
-			</select>		</div>
-		<div class="form-group">
-			<label for="name">*Descripción: </label>
-			<input type="text" class="form-control" name="descPin" placeholder="breve descripción" >
-		</div>
-		<div class="form-group">
-			<label for="name">*Precio: </label>
-			<input type="text" class="form-control" name="precioPin" placeholder="precio de venta" >
-		</div>			
-		<div class="form-group">
-			<label for="name">*Foto: </label>
-			<input type="text" class="form-control" name="fotoPin" placeholder="foto del pincho" >
-		</div>
-		<div class="form-group">
-			<label for="name">Horario: </label>
-			<input type="text" class="form-control" name="horarioPin" placeholder="horario de degustación" >
-		
-			
-		
-		<div class="btn-group">
-			<button TYPE="submit" name="accion" VALUE="EnviarFormulario" class="btn btn-default">Enviar Formulario</button>
-			<button TYPE="submit" name="accion" VALUE="Cancelar" class="btn btn-default">Cancelar</button>
-		</div>   
-				
-	<form/>
+	<?PHP include("/../IU_formularioPincho.php"); ?>
+
 </body>
 
 </html>
