@@ -24,6 +24,12 @@ if($accion == "Loguear"){
 
 }
 
+
+
+
+
+
+////***Busqueda***\\\\
 if($accion == "Buscar"){		
 			if (isset($_REQUEST['search'])) {
 				$search=$_REQUEST['search'];
@@ -41,11 +47,27 @@ if($accion == "Buscar"){
 	
 	}
 	
-	
-	
-	
-
 }
+
+if(isset($_REQUEST['masInfoPincho'])){
+	
+	$nombrePin=$_REQUEST['masInfoPincho'];
+	$_SESSION['search']=$nombrePin;
+	$db_model->buscarPincho();
+	
+	header ('Location:/../views/exito/buscarMasInfo.php');
+	
+}
+	
+if($accion == "volver"){
+	header ('Location:/../views/IU_login.php');
+}
+
+
+
+
+
+
 
 //Llamada a la vista
 require_once("/../views/iu_login.php");

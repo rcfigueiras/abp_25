@@ -732,13 +732,18 @@ class db_model {
 		
 	}
 	
+	
+	
+	
+	
+	////***Busqueda***\\\\
 	public function buscarPincho(){
 	
 	$_SESSION['buscar']='';
 	$_SESSION['errorSQL_noHay']=0;
 
 	$search=$_SESSION['search'];
-	$sql="SELECT * FROM PINCHO WHERE nombre_pincho='".$search."' ";
+	$sql="SELECT * FROM PINCHO, ESTABLECIMIENTO  WHERE ( nombre_pincho like '".$search."' or tipo like '".$search."' or nombre_estab like '".$search."' ) and pincho_validado='1' and pincho.ID_estab=establecimiento.ID_estab ";
 	$resultado=mysql_query($sql);
 	
 	if(mysql_affected_rows() > 0){
@@ -752,7 +757,6 @@ class db_model {
 			$_SESSION['buscar']=$pinchos;			
 		}
 		else{
-			//si no tiene pinchos asignados salimos y devolvemos error
 			$_SESSION['errorSQL_noHay']=1;
 		}	
 	

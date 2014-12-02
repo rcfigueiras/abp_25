@@ -51,19 +51,33 @@ session_start();
 	
 	
 	<div class="alert alert-info">Resultados de la búsqueda</div>	
+	
+	
+	<form action="/controllers/login_controlador.php" method="get">
 	<?PHP
 	
 		foreach ($_SESSION['buscar'] as $valor){
 		?>
 		<div class="form-group">
-			<label for="name"> Nombre del pincho: </label>
-
-			<input type="text" class="form-control" placeholder="<?PHP echo $valor['nombre_pincho']?>" readonly>
+		
+			<label for="name" class="badge"> Nombre del pincho</label>
+			<label for="name"> <?PHP echo $valor['nombre_pincho']?> </label>
+		
+			<label for="name" class="badge"> Tipo de pincho</label>
+			<label for="name"> <?PHP echo $valor['tipo']?> </label>
+		
+			<label for="name" class="badge"> Establecimiento que lo ofrece</label>
+			<label for="name"> <?PHP echo $valor['nombre_estab']?> </label>
+			
+			<button TYPE="submit" NAME="masInfoPincho" VALUE="<?PHP echo $valor['nombre_pincho']?>" class="btn btn-default"><?PHP echo 'Mas info'?></button>
+	
 		</div>
 		<?PHP				
 		}		
-		?>	
-	</div>     
+		?>						
+						
+	<form/>   
+   
    
 </body>
 
