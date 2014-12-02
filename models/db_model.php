@@ -205,10 +205,10 @@ class db_model {
 		$precioPin=$_REQUEST['precioPin'];
 		$horarioPin=$_REQUEST['horarioPin'];
 				
-		$ruta="/Uniserverz/www/imagenes";		
+		$ruta="/imagenes";		
 		$fotoPin=$_FILES['fotoPin']['tmp_name'];
 		$nombreFoto=$_FILES['fotoPin']['name'];
-		move_uploaded_file($fotoPin,"/../".	$ruta."/".$nombreFoto);
+		move_uploaded_file($fotoPin,"/UniServerZ/www".$ruta."/".$nombreFoto);
 		$ruta=$ruta."/".$nombreFoto;
 		
 		if($nombrePin == NULL || $tipoPin == NULL ||
@@ -296,13 +296,16 @@ class db_model {
 		$_SESSION['errorSQL'] = 1;
 		//Recuperamos también las variables editables por el
 		//establecimiento
-		$ruta="/Uniserverz/www/imagenes";		
+		$ruta="/imagenes";		
+		
 		$fotoPin=$_FILES['newfoto']['tmp_name'];
-		$nombreFoto=$_FILES['newfoto']['name'];
 		
+		$nombreFoto=$_FILES['newfoto']['name'];		
 		
-		move_uploaded_file($fotoPin,$ruta."/".$nombreFoto);
+		move_uploaded_file($fotoPin,"/UniServerZ/www".$ruta."/".$nombreFoto);
+		
 		$ruta=$ruta."/".$nombreFoto;
+		
 		$newhorario =  $_REQUEST['newhorario'];	
 
 		if ($ruta == '' ){//se actualiza el horario

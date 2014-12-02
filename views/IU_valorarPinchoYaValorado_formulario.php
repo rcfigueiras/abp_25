@@ -27,10 +27,11 @@ $db_model=new db_model();
 	 <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/
 		respond.min.js"></script>
 	<![endif]-->
-</head></head>
+</head>
 
 <body>
-     
+     	<div class="alert alert-info">Pincho ya valorado. Aún puede modificar su valoración.</div>	
+
     <form action="/controllers/jurPro_controlador.php" method="get"> 
 		
 		<?PHP
@@ -41,7 +42,12 @@ $db_model=new db_model();
 					<label for="name">Nombre del pincho: </label>
 					<input type="text" class="form-control" name="nombrePin" placeholder="<?PHP echo $valor['nombre_pincho']?>" readonly>
 				</div>						
-				
+				<div class="form-group">
+					<label for="name">Foto: </label>
+					<div class="form-group">
+						<img src="<?PHP echo $valor['foto']?>" alt="otraCosa" class="img-thumbnail" width='250'>
+					</div>		
+				</div>	
 				<div class="form-group">
 					<label for="name">Tipo: </label>
 					<input type="text" class="form-control" name="tipoPin" placeholder="<?PHP echo $valor['tipo']?>" readonly>
@@ -57,10 +63,7 @@ $db_model=new db_model();
 					<input type="text" class="form-control" name="precioPin" placeholder="<?PHP echo $valor['precio']?>" readonly>
 				</div>								
 
-				<div class="form-group">
-					<label for="name">Foto: </label>
-					<input type="text" class="form-control" name="fotoPin" placeholder="<?PHP echo $valor['foto']?>" readonly>
-				</div>						
+									
 				
 				<div class="form-group">
 					<label for="name">Horario: </label>
@@ -79,12 +82,12 @@ $db_model=new db_model();
 				
 				<div class="form-group">
 					<label for="name">Nueva nota: </label>
-					<input type="text" class="form-control" name="newNota" placeholder="newNota">
+					<input type="text" class="form-control" name="newNota" placeholder="Inserte la nueva nota">
 				</div>			
 				
 				<div class="form-group">				
 					<label for="name">Nueva comentario: </label>
-					<input type="text" class="form-control" name="newComentario" placeholder="nuevo comentario">
+					<input type="text" class="form-control" name="newComentario" placeholder="Inserte el nuevo comentario">
 				</div>			
 
 				<?PHP

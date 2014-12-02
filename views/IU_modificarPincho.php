@@ -25,21 +25,19 @@ session_start();
 </head>
 
 <body>
-<?PHP $imagen=$_SESSION['foto']; 
-	echo $imagen;
-?>
-<?PHP echo "<td><img src='../".$imagen."'width='50px' height='45px'></td>";
-?>
-<?php
-echo "<td><img src='PBX.jpg'width='50px' height='45px'></td>";
-
-?>
+			
 	<div class="alert alert-info">Los campos marcados con * son editables</div>
 
 	<form action="/controllers/establecimiento_controlador.php" method="post" enctype="multipart/form-data"> 
 		<div class="form-group">
 			<label for="name">Nombre del pincho: </label>
 			<input type="text" class="form-control" name="nombrePin" placeholder="<?PHP echo $_SESSION['nombre_pincho']?>" readonly>
+		</div>
+		<div class="form-group">
+			<label for="name">*Foto: </label>
+			<div class="form-group">
+				<img src="<?PHP echo $_SESSION['foto']?>" alt="otraCosa" class="img-thumbnail" width='250'>
+			</div>
 		</div>
 		<div class="form-group">
 			<label for="name">Tipo: </label>
@@ -53,10 +51,7 @@ echo "<td><img src='PBX.jpg'width='50px' height='45px'></td>";
 			<label for="name">Precio: </label>
 			<input type="text" class="form-control" name="precioPin" placeholder="<?PHP echo $_SESSION['precio']?>" readonly>
 		</div>			
-		<div class="form-group">
-			<label for="name">*Foto: </label>
-			<input type="text" class="form-control" name="fotoPin" placeholder="<?PHP echo $_SESSION['foto']?>" readonly>
-		</div>
+		
 		<div class="form-group">
 			<label for="name">*Horario: </label>
 			<input type="text" class="form-control" name="horarioPin" placeholder="<?PHP echo $_SESSION['horario']?>" readonly>
