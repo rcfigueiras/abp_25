@@ -1,17 +1,18 @@
 <?php
 session_start(); 
-$login=$_SESSION['login'];
-
-require_once("/../models/db_model.php");
-$db_model=new db_model();
-
+if (isset($_REQUEST['login'])) {
+	$login=$_REQUEST['login'];
+	$_SESSION['login']=$login;
+}else{
+	$login=$_SESSION['login'];
+}
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 
 
 <head>
-  <title>PinchoGés</title>
+	<title>PinchoGés</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap -->
@@ -31,7 +32,9 @@ $db_model=new db_model();
 </head>
 
 <body>
-<h2>hola <?PHP echo $_SESSION['login']?></h2>
+	<div class="alert alert-warning">No hay pinchos disponibles para eliminar</div>
+
+ 	<h2>hola <?PHP echo $_SESSION['login'];?></h2>
 	<div class="form-group">
 		<label for="name">Buscar</label>
 		<input type="text" class="form-control" placeholder="Introsduzca su búsqueda">
@@ -39,38 +42,27 @@ $db_model=new db_model();
 	<div class="btn-group">
 		<button TYPE="submit" name="accion"  VALUE="Buscar" class="btn btn-default">Buscar</button>
 	</div>  
-	
+              
+                
     <form action="/controllers/administrador_controlador.php" method="get"> 
-		
-		<?PHP
-		foreach  ($_SESSION['pinchos'] as $valor){
-		?>				
-		<div class="form-group">
-			<label for="name"> Nombre del pincho: </label>
-			<button TYPE="submit" NAME="eliminaEste" VALUE="<?PHP echo $valor['nombre_pincho']?>" class="btn btn-default"><?PHP echo $valor['nombre_pincho']?></button>
-		</div>
-		<?PHP
-			
-		}			
-		?>				
+		<?PHP if(!($_SESSION['tiene_info'])) { ?>
 		<div class="btn-group">
-			<button TYPE="submit" name="accion" VALUE="VolverInicio" class="btn btn-default">Volver</button>
-			<button TYPE="submit" name="accion" VALUE="Logout" class="btn btn-default">Logout</button>
-		</div>  
-	<form/>
-      
-      
 		
-      
-    <!-- C. PIE DE PÁGINA -->      
+		<button TYPE="submit" name="accion" VALUE="RellenarInfoSistema" class="btn btn-default">Rellenar información del sistema</button>
+				
+		<?PHP }else{ ?>
+		
+			<button TYPE="submit" name="accion" VALUE="ModificarInfoSistema" class="btn btn-default">Mofificar info sistema</button>
+			
+		<?PHP } ?>	
+			<button TYPE="submit" name="accion" VALUE="EliminarPinchos" class="btn btn-default">Eliminar Pinchos</button>
 
-    <div class="footer">
-      
-	</div>      
-
-</div>
-  
-</body>
+		<button TYPE="submit" name="accion" VALUE="ValidarPinchos" class="btn btn-default">Validar Pinchos</button>
+		<button TYPE="submit" name="accion" VALUE="Logout" class="btn btn-default">Logout</button>
+		
+		</div>   		
+	<form/>
+<body>
 
 </html>
 

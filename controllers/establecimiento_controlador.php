@@ -58,19 +58,24 @@ if($accion == "ModificarPincho")
 /*EDITAR PINCHO*******************************************/
 if ($accion == "EditarYa")
 {
-	if (($_REQUEST['newfoto'] == '') 
-		&& ($_REQUEST['newhorario'] == '')){
+	$_SESSION['newfoto']=$_REQUEST['newfoto'];
+	$_SESSION['newhorario']=$_REQUEST['newhorario'];
+	
+	if (($_SESSION['newfoto'] == '') 
+		&& ($_SESSION['newhorario'] == '')){
 		
 		header ('Location:/../views/error/error_edita_pincho_vacio.php');
 	
 	}else{		
+	
 		$db_model->editarFormulario();
+		
 		if ($_SESSION['errorSQL']){
 			header ('Location:/../views/error/error_edita_pincho_no_valido.php');
 		}else{
 			header ('Location:/../views/exito/exito_edicion.php');
 		}	
-	}		
+	}	
 } 
 /*-------------------------------------------------------*/
 /*-------------------------------------------------------*/

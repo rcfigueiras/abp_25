@@ -14,22 +14,7 @@ class db_model {
 		//la función conexión de la clase Conectar
 		//que se encuentra en db.php
         $this->db=Conectar::conexion();
-        //$this->personas=array();
-    }
-	
-    public function get_personas(){
-
-        $consulta=$this->db->query("select * from ADMINISTRADOR;");
-
-        while($filas=$consulta->fetch_assoc()){
-
-            $this->personas[]=$filas;
-
-        }
-        return $this->personas;
-
-    }
-	
+    }   
 	/*---------------------------------------------------------*/
 	/*---------------------------------------------------------*/
 	/*****************LOGUEAR INVITADO**************************/
@@ -298,38 +283,45 @@ class db_model {
 		
 	}
 	public function editarFormulario(){
+		
 		//Recuperamos el login del establecimiento
 		$login=$_SESSION['login'];
+		$_SESSION['errorSQL'] = 1;
 		//Recuperamos también las variables editables por el
 		//establecimiento
-		$newfoto =  $_REQUEST['newfoto'];
-		$newhorario =  $_REQUEST['newhorario'];
+		$newfoto =  $_SESSION['newfoto'];
+		$newhorario =  $_SESSION['newhorario'];
 		
 		if ($newfoto == '' ){//se actualiza el horario
 
-			$sql="UPDATE PINCHO P,ESTABLECIMIENTO E  SET P.horario ='".$newhorario."' WHERE P.ID_estab=E.ID_estab AND E.nombre_estab='".$login."'";
+			$sql="UPDATE PINCHO P,ESTABLECIMIENTO E  
+				SET P.horario ='".$newhorario."' 
+				WHERE P.ID_estab=E.ID_estab 
+				AND E.nombre_estab='".$login."'";
 			$resultado=mysql_query($sql);
 			
 		}else if ($newhorario == '' ){//se actualiza la foto
 		
-			$sql="UPDATE PINCHO P, ESTABLECIMIENTO E  SET P.foto ='".$newfoto."' WHERE E.nombre_estab = '".$login."' AND P.ID_estab = E.ID_estab";
-			$resultado=mysql_query($sql);
-
-		
+			$sql="UPDATE PINCHO P, ESTABLECIMIENTO E  
+				SET P.foto ='".$newfoto."' 
+				WHERE E.nombre_estab = '".$login."' 
+				AND P.ID_estab = E.ID_estab";
+			$resultado=mysql_query($sql);		
 		}else{//se actualizan los dos
 				
-				$sql="UPDATE PINCHO P,ESTABLECIMIENTO E  SET P.foto ='".$newfoto."',P.horario ='".$newhorario."' WHERE P.ID_estab=E.ID_estab AND E.nombre_estab='".$login."'";
-				$resultado=mysql_query($sql);
-			
+			$sql="UPDATE PINCHO P,ESTABLECIMIENTO E  
+				SET P.foto ='".$newfoto."',P.horario ='".$newhorario."' 
+				WHERE P.ID_estab=E.ID_estab 
+				AND E.nombre_estab='".$login."'";
+			$resultado=mysql_query($sql);			
 		}
 		
-		if (mysql_affected_rows() > 0)
+		if ( mysql_affected_rows() > 0 )
 		{
 			$_SESSION['errorSQL'] = 0;
-		}
-		else{$_SESSION['errorSQL']=1;
-		}
-		
+		} else { 
+			$_SESSION['errorSQL']=1;
+		}		
 	}
 /*---------------------------------------------------------*/
 /*---------------------------------------------------------*/
@@ -466,6 +458,7 @@ class db_model {
 		if(mysql_affected_rows() > 0){
 			//si tiene pinchos asignados se los mostramos
 			$pinchos=array();
+			$_SESSION['errorSQL_no_tiene']=0;
 			while ($filas = mysql_fetch_assoc($resultado)){
 				
 				$pinchos[]=$filas;

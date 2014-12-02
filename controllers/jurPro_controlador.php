@@ -18,7 +18,17 @@ $db_model=new db_model();
 /*VALORAR PINCHOS*****************************************/
 if($accion == "valorarPinchos"){
 	$db_model->valorarPinchos();
-	header ('Location:/../views/IU_valorarPinchos.php');
+	if($_SESSION['errorSQL_no_tiene']){
+		//die("Gracias, su mensaje se envio correctamente.");
+
+		header('Location:/../views/error/error_noHayValorar.php');
+	
+	}else{
+		header('Location:/../views/IU_valorarPinchos.php');
+	}
+	
+	
+	
 }
 /*--------------------------------------------------------*/
 /*MOSTRAR TODA LA INFO DEL PINCHO A VALORAR****************/

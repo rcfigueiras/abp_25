@@ -9,7 +9,7 @@ $db_model=new db_model();
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 <head>
-<title>PinchoGés</title>
+	<title>PinchoGés</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap -->
@@ -63,11 +63,10 @@ $db_model=new db_model();
 				<?PHP
 			}
 		}						
-		?>		
-							
-
+		?>	
 		<div class="btn-group">
 			<button TYPE="submit" name="accion" VALUE="altaPincho" class="btn btn-default">Alta Pincho</button>
+			<button TYPE="submit" name="accion" VALUE="VolverListaValidar" class="btn btn-default">Volver</button>
 			<button TYPE="submit" name="accion" VALUE="Logout" class="btn btn-default">Logout</button>
 		</div>  	
 

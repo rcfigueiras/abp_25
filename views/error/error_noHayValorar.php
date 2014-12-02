@@ -1,9 +1,11 @@
 <?php
 session_start(); 
-$login=$_SESSION['login'];
-
-require_once("/../models/db_model.php");
-$db_model=new db_model();
+if (isset($_REQUEST['login'])) {
+	$login=$_REQUEST['login'];
+	$_SESSION['login']=$login;
+}else{
+	$login=$_SESSION['login'];
+}
 
 ?>
 <!DOCTYPE html>
@@ -11,7 +13,7 @@ $db_model=new db_model();
 
 
 <head>
-  <title>PinchoGés</title>
+	<title>PinchoGés</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap -->
@@ -27,11 +29,14 @@ $db_model=new db_model();
 	 <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/
 		respond.min.js"></script>
 	<![endif]-->  
-  
+    
 </head>
 
 <body>
-<h2>hola <?PHP echo $_SESSION['login']?></h2>
+	<div class="alert alert-warning">No tiene pinchos asignados para valorar,
+	póngase en contacto con el administrador</div>
+
+ 	<h2>hola <?PHP echo $_SESSION['login'];?></h2>
 	<div class="form-group">
 		<label for="name">Buscar</label>
 		<input type="text" class="form-control" placeholder="Introsduzca su búsqueda">
@@ -39,36 +44,13 @@ $db_model=new db_model();
 	<div class="btn-group">
 		<button TYPE="submit" name="accion"  VALUE="Buscar" class="btn btn-default">Buscar</button>
 	</div>  
-	
-    <form action="/controllers/administrador_controlador.php" method="get"> 
-		
-		<?PHP
-		foreach  ($_SESSION['pinchos'] as $valor){
-		?>				
-		<div class="form-group">
-			<label for="name"> Nombre del pincho: </label>
-			<button TYPE="submit" NAME="eliminaEste" VALUE="<?PHP echo $valor['nombre_pincho']?>" class="btn btn-default"><?PHP echo $valor['nombre_pincho']?></button>
-		</div>
-		<?PHP
-			
-		}			
-		?>				
-		<div class="btn-group">
-			<button TYPE="submit" name="accion" VALUE="VolverInicio" class="btn btn-default">Volver</button>
-			<button TYPE="submit" name="accion" VALUE="Logout" class="btn btn-default">Logout</button>
-		</div>  
+  
+                
+    <form action="/controllers/jurPro_controlador.php" method="get"> 
+				<button TYPE="submit" name="accion" VALUE="valorarPinchos" class="btn btn-default">Valorar Pinchos</button>
+				<button TYPE="submit" name="accion" VALUE="Logout" class="btn btn-default">Logout</button>
 	<form/>
-      
-      
-		
-      
-    <!-- C. PIE DE PÁGINA -->      
-
-    <div class="footer">
-      
-	</div>      
-
-</div>
+    
   
 </body>
 

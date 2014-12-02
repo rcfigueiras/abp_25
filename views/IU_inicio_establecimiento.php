@@ -41,6 +41,8 @@ if (isset($_REQUEST['login'])) {
 	<div class="btn-group">
 		<button TYPE="submit" name="accion"  VALUE="Buscar" class="btn btn-default">Buscar</button>
 	</div>  
+	
+
     <form action="/controllers/establecimiento_controlador.php" method="get" role="form"> 
 		<?PHP 
 			$estado='vacio';
@@ -54,10 +56,9 @@ if (isset($_REQUEST['login'])) {
 			if($row=mysql_fetch_row($resultado)){
 				$estado=$row[0];
 				 ?>
-				 <div class="form-group">
-				<label for="name"><?PHP echo"El estado de su pincho 
-				en el concurso es: <br>".$estado?></label>
-				</div>
+				
+				<div class="alert alert-info"><?PHP echo"El estado de su pincho 
+				en el concurso es: <br>".$estado?></div>
 				<?PHP	}	?>
 		<?PHP if(!($_SESSION['tiene_pincho'])) { ?>
 			<div class="btn-group">

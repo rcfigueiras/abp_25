@@ -27,7 +27,7 @@ session_start();
 <body>
 	<div class="alert alert-info">Los campos marcados con * son editables</div>
 
-		<form action="/controllers/establecimiento_controlador.php" method="post"> 
+	<form action="/controllers/establecimiento_controlador.php" method="post"> 
 		<div class="form-group">
 			<label for="name">Nombre del pincho: </label>
 			<input type="text" class="form-control" name="nombrePin" placeholder="<?PHP echo $_SESSION['nombre_pincho']?>" readonly>
@@ -54,7 +54,7 @@ session_start();
 		</div>
 		<div class="form-group">
 			<label for="name">Nueva Foto: </label>
-			<input type="text" class="form-control" name="newfoto" placeholder="nueva foto" >
+			<input type="file" class="form-control" name="newfoto" placeholder="nueva foto" >
 		</div>
 		<div class="form-group">
 			<label for="name">Nueva Horario: </label>
@@ -67,7 +67,7 @@ session_start();
 			<button TYPE="submit" name="accion" VALUE="Cancelar" class="btn btn-default">Cancelar</button>
 		</div>   
 				
-	<form/>
+	</form>
 </body>
 
 </html>

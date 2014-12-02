@@ -32,7 +32,7 @@ if($accion=='ValidarPinchos'){
 
 	$db_model->validarPinchos();	
 	if($_SESSION['errorSQL']){
-		echo "No hay pinchos que validar en el sistema";
+		header ('Location:/../views/error/error_noHayPinValidar.php');
 	}else{
 		
 		header ('Location:/../views/IU_validarPinchos.php');
@@ -74,7 +74,7 @@ if($accion=='EliminarPinchos'){
 
 	$db_model->eliminarPinchos();
 	if($_SESSION['errorSQL']){
-		header ('Location:/../views/error/error_noPinchosEliminar.php');
+		header ('Location:/../views/error/error_noHayPinEliminar.php');
 	}else{
 		
 		header ('Location:/../views/IU_eliminarPinchos.php');
@@ -116,13 +116,21 @@ if($accion == "Logout"){
 	session_destroy();
 	header ('Location:/../index.php');
 }
-
-
-
+/*--------------------------------------------------------*/
+/*VOLVER***************************************************/
+if($accion == "VolverInicio"){
+	header ('Location:/../controllers/administrador_controlador.php');
+}
+if($accion == "VolverListaValidar"){
+	header ('Location:/../views/IU_validarPinchos.php');
+}
+if($accion == "VolverListaEliminar"){
+	header ('Location:/../views/IU_eliminarPinchos.php');
+}
 
 /*-------------------------------------------------------*/
 /*-------------------------------------------------------*/
-/*MODIFICAR ALTA SISTEMA****************************************/
+/*MODIFICAR ALTA SISTEMA**********************************/
 if($accion == "ModificarInfoSistema")
 {
 	$db_model->editarInfoSistema();
@@ -140,18 +148,12 @@ if($accion == "ModificarInfoSistema")
 /*EDITAR ALTA SISTEMA*******************************************/
 if ($accion == "Editar")
 {
-
-		
 		$db_model->editarFormularioSistema();
 		if($_SESSION['campos_incompletos']){
 				header ("Location: /../views/error/error_campos_incompletos_editar_info.php");
 		}else{
 			header ('Location:/../views/exito/exito_edicion_info.php');
-		}	
-		
-		
-		
-		
+		}			
 } 
 
 /*-------------------------------------------------------*/
@@ -181,9 +183,6 @@ if($accion == "RellenarInfoSistema"){
 } 
 /*-------------------------------------------------------*/
 /*-------------------------------------------------------*/
-
-
-
 
 //Llamada a la vista
 require_once("/../views/IU_inicio_administrador.php");

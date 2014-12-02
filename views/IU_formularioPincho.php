@@ -49,7 +49,7 @@ session_start();
 		</div>			
 		<div class="form-group">
 			<label for="name">*Foto: </label>
-			<input type="text" class="form-control" name="fotoPin" placeholder="foto del pincho" >
+			<input type="file" class="form-control" name="fotoPin" placeholder="foto del pincho" >
 		</div>
 		<div class="form-group">
 			<label for="name">Horario: </label>
