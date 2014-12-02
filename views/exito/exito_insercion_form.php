@@ -32,8 +32,11 @@ if (isset($_REQUEST['login'])) {
 </head>
 
 <body>       
+
 	<div class="alert alert-success">Formulario insertado correctamente</div>
+	
 	<?PHP include("../../controllers/establecimiento_controlador.php"); ?>
+	
 </body>
 
 </html>

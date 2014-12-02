@@ -203,12 +203,17 @@ class db_model {
 		$tipoPin=$_REQUEST['tipoPin'];
 		$descPin=$_REQUEST['descPin'];
 		$precioPin=$_REQUEST['precioPin'];
-		$fotoPin=$_REQUEST['fotoPin'];
 		$horarioPin=$_REQUEST['horarioPin'];
-
+				
+		$ruta="/Uniserverz/www/imagenes";		
+		$fotoPin=$_FILES['fotoPin']['tmp_name'];
+		$nombreFoto=$_FILES['fotoPin']['name'];
+		move_uploaded_file($fotoPin,"/../".	$ruta."/".$nombreFoto);
+		$ruta=$ruta."/".$nombreFoto;
+		
 		if($nombrePin == NULL || $tipoPin == NULL ||
-			$descPin == NULL || $precioPin == NULL ||
-			$fotoPin == NULL ){
+			$descPin == NULL || $precioPin == NULL
+			|| $fotoPin == NULL ){
 			$_SESSION['campos_incompletos']=1;
 		}
 		else{
@@ -228,7 +233,7 @@ class db_model {
 									,'".$tipoPin."'
 									,'".$descPin."'
 									,'".$precioPin."'
-									,'".$fotoPin."'
+									,'".$ruta."'
 									,'".$horarioPin."'
 									,'0')";
 			mysql_query($sql);
@@ -282,6 +287,8 @@ class db_model {
 		}
 		
 	}
+	
+	
 	public function editarFormulario(){
 		
 		//Recuperamos el login del establecimiento
@@ -289,11 +296,17 @@ class db_model {
 		$_SESSION['errorSQL'] = 1;
 		//Recuperamos también las variables editables por el
 		//establecimiento
-		$newfoto =  $_SESSION['newfoto'];
-		$newhorario =  $_SESSION['newhorario'];
+		$ruta="/Uniserverz/www/imagenes";		
+		$fotoPin=$_FILES['newfoto']['tmp_name'];
+		$nombreFoto=$_FILES['newfoto']['name'];
 		
-		if ($newfoto == '' ){//se actualiza el horario
+		
+		move_uploaded_file($fotoPin,$ruta."/".$nombreFoto);
+		$ruta=$ruta."/".$nombreFoto;
+		$newhorario =  $_REQUEST['newhorario'];	
 
+		if ($ruta == '' ){//se actualiza el horario
+		
 			$sql="UPDATE PINCHO P,ESTABLECIMIENTO E  
 				SET P.horario ='".$newhorario."' 
 				WHERE P.ID_estab=E.ID_estab 
@@ -303,18 +316,17 @@ class db_model {
 		}else if ($newhorario == '' ){//se actualiza la foto
 		
 			$sql="UPDATE PINCHO P, ESTABLECIMIENTO E  
-				SET P.foto ='".$newfoto."' 
+				SET P.foto ='".$ruta."' 
 				WHERE E.nombre_estab = '".$login."' 
 				AND P.ID_estab = E.ID_estab";
 			$resultado=mysql_query($sql);		
-		}else{//se actualizan los dos
-				
+		}else{//se actualizan los dos				
 			$sql="UPDATE PINCHO P,ESTABLECIMIENTO E  
-				SET P.foto ='".$newfoto."',P.horario ='".$newhorario."' 
+				SET P.foto ='".$ruta."',P.horario ='".$newhorario."' 
 				WHERE P.ID_estab=E.ID_estab 
 				AND E.nombre_estab='".$login."'";
 			$resultado=mysql_query($sql);			
-		}
+		}		
 		
 		if ( mysql_affected_rows() > 0 )
 		{

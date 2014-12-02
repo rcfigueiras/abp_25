@@ -30,13 +30,7 @@ $db_model=new db_model();
 
 <body>
 	<h2>hola <?PHP echo $_SESSION['login']?></h2>
-	<div class="form-group">
-		<label for="name">Buscar</label>
-		<input type="text" class="form-control" placeholder="Introsduzca su búsqueda">
-	</div>
-	<div class="btn-group">
-		<button TYPE="submit" name="accion"  VALUE="Buscar" class="btn btn-default">Buscar</button>
-	</div>  
+	
                 
     <form action="/controllers/administrador_controlador.php" method="get"> 		
 		<?PHP

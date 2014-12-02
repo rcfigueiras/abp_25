@@ -58,18 +58,15 @@ if($accion == "ModificarPincho")
 /*EDITAR PINCHO*******************************************/
 if ($accion == "EditarYa")
 {
-	$_SESSION['newfoto']=$_REQUEST['newfoto'];
-	$_SESSION['newhorario']=$_REQUEST['newhorario'];
-	
-	if (($_SESSION['newfoto'] == '') 
-		&& ($_SESSION['newhorario'] == '')){
+
+	if (($_FILES['newfoto']['name'] == '') 
+		&& ($_REQUEST['newhorario'] == '')){
 		
 		header ('Location:/../views/error/error_edita_pincho_vacio.php');
 	
-	}else{		
-	
+	}else{			
 		$db_model->editarFormulario();
-		
+		echo "ruta: ".$_SESSION['ruta']."<br>";
 		if ($_SESSION['errorSQL']){
 			header ('Location:/../views/error/error_edita_pincho_no_valido.php');
 		}else{
@@ -91,6 +88,8 @@ if($accion == "RellenarFormulario"){
  if($accion == "EnviarFormulario"){		
 
 	$db_model->enviarFormulario();
+	
+	
 	//Validamos la consulta SQL
 	if($_SESSION['campos_incompletos']){
 		header ("Location: /../views/error/error_campos_incompletos_formPincho.php"); 

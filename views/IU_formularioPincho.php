@@ -26,7 +26,7 @@ session_start();
 
 <body>
    
-    <form action="/controllers/establecimiento_controlador.php" method="post"> 
+    <form action="/controllers/establecimiento_controlador.php" enctype="multipart/form-data" method="post"> 
 		<div class="form-group">
 			<label for="name">*Nombre del pincho: </label>
 			<input type="text" class="form-control" name="nombrePin" placeholder="nombre del pincho" >
@@ -48,7 +48,7 @@ session_start();
 		</div>			
 		<div class="form-group">
 			<label for="name">*Foto: </label>
-			<input type="file" class="form-control" name="fotoPin" placeholder="foto del pincho" >
+			<input type="file" class="form-control" name="fotoPin">
 		</div>
 		<div class="form-group">
 			<label for="name">Horario: </label>

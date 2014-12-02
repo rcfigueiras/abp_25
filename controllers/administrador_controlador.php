@@ -1,9 +1,6 @@
 <?php
 session_start();
-//Prueba de paso de variables
-/*echo $_SESSION['login'];  
-echo $_SESSION['pass']; 
-*/
+
 //Llamada al modelo
 require_once("/../models/db_model.php");
 //Recogemos la acción 
@@ -60,7 +57,8 @@ if($accion == "altaPincho"){
 		*/
 		$db_model->validarPinchos();	
 		if($_SESSION['errorSQL']){
-			echo "no hay pinchos a validar";
+		//error_noHayPinValidar
+			header ('Location:/../views/error/error_noHayPinValidar.php');
 		}else{
 			
 			header ('Location:/../views/IU_validarPinchos.php');

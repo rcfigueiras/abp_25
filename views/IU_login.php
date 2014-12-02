@@ -47,6 +47,9 @@ session_start();
 			<button TYPE="submit" name="accion" VALUE="Loguear" class="btn btn-default">Login</button>
 		</div>   
 	</form>
+	<form class="form-inline" role="form">
+
+</form>
       
    
 </body>

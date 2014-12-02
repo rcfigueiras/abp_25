@@ -25,9 +25,18 @@ session_start();
 </head>
 
 <body>
+<?PHP $imagen=$_SESSION['foto']; 
+	echo $imagen;
+?>
+<?PHP echo "<td><img src='../".$imagen."'width='50px' height='45px'></td>";
+?>
+<?php
+echo "<td><img src='PBX.jpg'width='50px' height='45px'></td>";
+
+?>
 	<div class="alert alert-info">Los campos marcados con * son editables</div>
 
-	<form action="/controllers/establecimiento_controlador.php" method="post"> 
+	<form action="/controllers/establecimiento_controlador.php" method="post" enctype="multipart/form-data"> 
 		<div class="form-group">
 			<label for="name">Nombre del pincho: </label>
 			<input type="text" class="form-control" name="nombrePin" placeholder="<?PHP echo $_SESSION['nombre_pincho']?>" readonly>
@@ -54,7 +63,7 @@ session_start();
 		</div>
 		<div class="form-group">
 			<label for="name">Nueva Foto: </label>
-			<input type="file" class="form-control" name="newfoto" placeholder="nueva foto" >
+			<input type="file" class="form-control" name="newfoto"  >
 		</div>
 		<div class="form-group">
 			<label for="name">Nueva Horario: </label>

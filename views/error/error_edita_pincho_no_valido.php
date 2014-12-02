@@ -26,7 +26,7 @@ session_start();
 
 <body>
 	<div class="alert alert-danger">Nuevos valor/es no válidos</div>
-	<?PHP include("/../IU_formularioPincho.php"); ?>
+	<?PHP include("/../IU_modificarPincho.php"); ?>
 
 </body>
 

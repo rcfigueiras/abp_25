@@ -28,12 +28,7 @@ $db_model=new db_model();
 
 <body> 
    <h2>hola <?PHP echo $_SESSION['login']?></h2>
-	<div class="form-group">
-		<label for="name">Buscar</label>
-		<input type="text" class="form-control" placeholder="Introsduzca su búsqueda">
-	</div>             
     <form action="/controllers/administrador_controlador.php" method="get"> 
-		
 	<?PHP
 		foreach  ($_SESSION['pinchos'] as $valor){
 	
@@ -56,7 +51,7 @@ $db_model=new db_model();
 					<input TYPE="text" NAME="fotoPin" VALUE="<?PHP echo $valor['foto']?>" class="btn btn-default" readonly>
 				</div>
 			<div class="form-group">
-					<label for="name"> Nombre del pincho: </label>
+					<label for="name"> Horario disponible: </label>
 					<input TYPE="text" NAME="horaPin" VALUE="<?PHP echo $valor['horario']?>" class="btn btn-default" readonly>
 				</div>						
 			
@@ -64,6 +59,7 @@ $db_model=new db_model();
 			}
 		}						
 		?>	
+		
 		<div class="btn-group">
 			<button TYPE="submit" name="accion" VALUE="altaPincho" class="btn btn-default">Alta Pincho</button>
 			<button TYPE="submit" name="accion" VALUE="VolverListaValidar" class="btn btn-default">Volver</button>

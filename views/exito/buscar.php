@@ -62,16 +62,8 @@ session_start();
 		</div>
 		<?PHP				
 		}		
-		?>						
-						
-	
-	
-	
-	
-	</div>
-	
-	
-      
+		?>	
+	</div>     
    
 </body>
 
