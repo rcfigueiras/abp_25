@@ -42,8 +42,7 @@ session_start();
                 
 		<div class="form-group">
 			<label for="name">Nuevas Bases: </label>
-			<input type="text" class="form-control" name="basesConcNew" placeholder="nuevas bases del concurso" value="<?PHP echo $_SESSION['bases']?>" >
-			<input type="file" class="form-control" name="basesConcNew" placeholder="nuevas bases del concurso" >
+			<input type="file" class="form-control" name="basesConcNew"  >
 		</div>
 			
 		
@@ -53,13 +52,12 @@ session_start();
 				<img src="<?PHP echo $_SESSION['logotipo']?>" alt="no hay logotipo disponible" class="img-thumbnail" width='250'>
 			</div>
 			<label for="name">Nuevo Logotipo: </label>
-			<input type="text" class="form-control" name="logoConc" placeholder="antiguo" value="<?PHP echo $_SESSION['logotipo']?>">
 			<input type="file" class="form-control" name="logoConcNew">
 
 		</div>
 			
 		<div class="btn-group">
-			<button TYPE="submit" name="accion" VALUE="Editar" class="btn btn-default">Editar Formulario Sistema</button>
+			<button TYPE="submit" name="accion" VALUE="Editar" class="btn btn-default">Editar Información del Concurso</button>
 			<button TYPE="submit" name="accion" VALUE="Cancelar" class="btn btn-default">Cancelar</button>
 		</div>	
 			
