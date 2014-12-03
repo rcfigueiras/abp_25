@@ -55,7 +55,12 @@ session_start();
 		</div>
 		<div class="form-group">
 			<label for="name">Horario: </label>
-			<input type="text" class="form-control" name="horarioPin" placeholder="horario de degustación" >
+			<select class="form-control" name="tipoPin">
+			  <option></option>
+			  <option>mañana</option>
+			  <option>tarde</option>
+			  <option>todo el día</option>
+			</select>
 		</div>
 		<div class="btn-group">
 			<button TYPE="submit" name="accion" VALUE="EnviarFormulario" class="btn btn-default">Enviar Formulario</button>

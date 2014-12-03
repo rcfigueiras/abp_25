@@ -64,11 +64,15 @@ session_start();
 			<input type="file" class="form-control" name="newfoto"  >
 		</div>
 		<div class="form-group">
-			<label for="name">Nueva Horario: </label>
-			<input type="text" class="form-control" name="newhorario" placeholder="nueva horario de degustación" >
+			<label for="name">Nuevo Horario: </label>
+			<select class="form-control" name="tipoPin">
+			  <option></option>
+			  <option>mañana</option>
+			  <option>tarde</option>
+			  <option>todo el día</option>
+			</select>
 		</div>
-			
-		
+
 		<div class="btn-group">
 			<button TYPE="submit" name="accion" VALUE="EditarYa" class="btn btn-default">Editar</button>
 			<button TYPE="submit" name="accion" VALUE="Cancelar" class="btn btn-default">Cancelar</button>
