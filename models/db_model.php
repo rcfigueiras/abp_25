@@ -108,6 +108,8 @@ class db_model {
 					$resultado = mysql_query($sql);
 					
 					if (mysql_num_rows($resultado) == 1){
+					
+						$_SESSION['tipoUsu']='estab';
 						header ('Location:/../controllers/establecimiento_controlador.php'); 		
 						return true;
 					}
@@ -136,6 +138,7 @@ class db_model {
 					$resultado = mysql_query($sql);
 					
 					if (mysql_num_rows($resultado) == 1){
+						$_SESSION['tipoUsu']='jurPro';
 						header ('Location:/../controllers/jurPro_controlador.php'); 		
 						return true;
 					}
@@ -163,6 +166,7 @@ class db_model {
 					$resultado = mysql_query($sql);
 					
 					if (mysql_num_rows($resultado) == 1){
+						$_SESSION['tipoUsu']='jurPro';
 						header ('Location:/../controllers/jurPop_controlador.php'); 		
 						return true;
 					}

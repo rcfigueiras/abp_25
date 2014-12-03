@@ -62,8 +62,18 @@ if($accion == "volver"){
 		if($_SESSION['tipoUsu'] == 'admin'){
 			header ('Location:/../controllers/administrador_controlador.php');
 
-		}
-	}else{	header ('Location:/../controllers/login_controlador.php');
+		}else if($_SESSION['tipoUsu'] == 'estab'){
+			header ('Location:/../controllers/establecimiento_controlador.php');
+
+	}else if($_SESSION['tipoUsu'] == 'jurPro'){
+			header ('Location:/../controllers/jurPro_controlador.php');
+
+	}else if($_SESSION['tipoUsu'] == 'jurPop'){
+			header ('Location:/../controllers/jurPop_controlador.php');
+
+	}
+	}else	{	
+		header ('Location:/../controllers/login_controlador.php');
 	}
 	
 }
