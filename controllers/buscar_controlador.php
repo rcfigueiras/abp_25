@@ -3,7 +3,7 @@ session_start();
 //Llamada al modelo
 require_once("/../models/db_model.php");
 $db_model=new db_model();
-
+$_SESSION['flag']=0;
 
 
 /*Recogemos variables de la interfaz*/
@@ -28,7 +28,7 @@ if($accion == "Loguear"){
 }
 ////***Busqueda***\\\\
 if($accion == "Buscar"){		
-
+	$_SESSION['flag']=1;
 	if (isset($_REQUEST['search'])) {
 		$search=$_REQUEST['search'];
 		$_SESSION['search']=$search;
@@ -79,8 +79,8 @@ if($accion == "volver"){
 }
 
 if($accion == "volver2"){
-	echo "hola";
-	//header ('Location:/../views/buscar.php');
+	
+	header ('Location:/../views/exito/buscar.php');
 }
 
 

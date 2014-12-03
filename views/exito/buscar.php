@@ -39,13 +39,24 @@ session_start();
 	
 	
 	<div class="alert alert-info">Resultados de la búsqueda</div>	
-	
-	
-	<form action="/controllers/buscar_controlador.php" method="get">
 	<?PHP
+	/*
+	Si venimos de mostrar más info no actualizamos el valor 
+	de la lista de pinchos a mostrar, conservamos el valor
+	de la búsqueda
 	
-		foreach ($_SESSION['buscar'] as $valor){
-		?>
+	*/
+	if($_SESSION['flag'])
+	{
+
+		$_SESSION['listaBusqueda']=$_SESSION['buscar'];
+	
+	}
+	foreach ($_SESSION['listaBusqueda']	as $valor){
+	?>
+
+	<form action="/controllers/buscar_controlador.php" method="get">
+		
 		<div class="form-group">
 			<img src="<?PHP echo $valor['foto']?>" alt="no hay imagen disponible" class="img-thumbnail" width='100'>
 			<label for="name" class="label label-default"> Nombre del pincho</label>

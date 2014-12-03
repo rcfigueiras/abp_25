@@ -39,7 +39,7 @@ session_start();
 		<?PHP include("/../views/IU_cabecera.php"); ?>
 	</div>	
 	
-	<form action="/controllers/login_controlador.php" method="get">
+	<form action="/controllers/buscar_controlador.php" method="get">
 	<?PHP
 	
 		foreach ($_SESSION['buscar'] as $valor){
