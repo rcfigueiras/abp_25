@@ -48,15 +48,16 @@ session_start();
 		?>
 		<div class="form-group">
 			<img src="<?PHP echo $valor['foto']?>" alt="no hay imagen disponible" class="img-thumbnail" width='100'>
-			<label for="name" class="badge"> Nombre del pincho</label>
+			<label for="name" class="label label-default"> Nombre del pincho</label>
 			<label for="name"> <?PHP echo $valor['nombre_pincho']?> </label>
 
-		
-			<label for="name" class="badge"> Tipo de pincho</label>
+			<label for="name" class="label label-default"> Tipo de pincho</label>
 			<label for="name"> <?PHP echo $valor['tipo']?> </label>
 		
 			<label for="name" class="badge"> Establecimiento que lo ofrece</label>
 			<label for="name"> <?PHP echo $valor['nombre_estab']?> </label>
+			<label for="name" class="badge""> Dirección </label>
+			<label for="name"> <?PHP echo $valor['direccion']?> </label>
 			
 			<button TYPE="submit" NAME="masInfoPincho" VALUE="<?PHP echo $valor['nombre_pincho']?>" class="btn btn-default"><?PHP echo 'Mas info'?></button>
 	

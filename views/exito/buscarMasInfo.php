@@ -82,6 +82,11 @@ session_start();
 			<input type="text" class="form-control" value="<?PHP echo $valor['nombre_estab']?>" readonly>
 		</div>
 		
+		<div class="form-group">
+			<label for="name">Dirección: </label>
+			<input type="text" class="form-control" value="<?PHP echo $valor['direccion']?>" readonly>
+		</div>
+		
 		
 		<div class="btn-group">
 			<button TYPE="submit" name="accion" VALUE="volver2" class="btn btn-default">Volver</button>
