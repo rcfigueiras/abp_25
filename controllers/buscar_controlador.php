@@ -78,6 +78,11 @@ if($accion == "volver"){
 	
 }
 
+if($accion == "volver2"){
+	echo "hola";
+	//header ('Location:/../views/buscar.php');
+}
+
 
 //Llamada a la vista
 require_once("/../views/iu_login.php");

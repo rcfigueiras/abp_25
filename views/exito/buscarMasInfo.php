@@ -84,7 +84,7 @@ session_start();
 		
 		
 		<div class="btn-group">
-			<button TYPE="submit" name="accion" VALUE="volver" class="btn btn-default">Volver</button>
+			<button TYPE="submit" name="accion" VALUE="volver2" class="btn btn-default">Volver</button>
 			
 		</div>	
 		
