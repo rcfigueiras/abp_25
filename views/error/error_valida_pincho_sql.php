@@ -27,59 +27,16 @@ $login=$_SESSION['login'];
 	</head>
 
 <body>
-  <!-- Main Page Container -->
-  <div class="page-container">
+              
+	<div class="alert alert-warning">El pincho no se ha validado correctamente</div>
+    <!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
+	</div>
+	
+	<?PHP include("../../controllers/administrador_controlador.php"); ?>
 
-   <!-- For alternative headers START PASTE here -->
-
-    <!-- A. HEADER -->      
-    <div class="header">
-      
-      <!-- A.1 HEADER TOP -->
-      <div class="header-top">
-        
-        <!-- Sitelogo and sitename -->
-        <a class="sitelogo" href="#" title="Ir a la página de Inicio"></a>
-        <div class="sitename">
-          <h1><a href="/index.php" title="Ir a la página de Inicio">PinchoGés <?PHP echo $login;?><span style="font-weight:normal;font-size:50%;">&nbsp</span></a></h1>
-          <h2></h2>
-        </div>  
-      
- 
-
-       
-    <!-- Esta en esta tabla recogemos lo que insertar el usuario y los mandamos a la controladora para que compruebe que el usuario es correcto-->
-	<table height=10></table>
-                  
-    <tr>ERROR EN LA VALIDACIÓN<tr/>          
-    <form action="/controllers/administrador_controlador.php" method="get"> 
-		<table>			
-			
-			<tr>
-				
-				<td ><INPUT  TYPE="submit" name="accion" VALUE="EliminarPinchos" ></td>
-				
-				
-				<td ><INPUT  TYPE="submit" name="accion" VALUE="ValidarPinchos" ></td>
-				
-				
-				<td ><INPUT  TYPE="submit" name="accion" VALUE="Logout" ></td>
-			<tr/>	
-				
-		</table>
-	<form/>
-      
-      
-		
-      
-    <!-- C. PIE DE PÁGINA -->      
-
-    <div class="footer">
-      
-	</div>      
-
-</div>
-  
+	
 </body>
 
 </html>

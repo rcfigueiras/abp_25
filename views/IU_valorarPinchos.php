@@ -29,8 +29,10 @@ $db_model=new db_model();
 	<![endif]--> </head>
 
 <body>                  
-	<h2>hola <?PHP echo $_SESSION['login']?></h2>      
-		
+	<!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
+	</div>
     <form action="/controllers/jurPro_controlador.php" method="get"> 
 		
 		<?PHP

@@ -28,40 +28,29 @@ session_start();
 
 <body>
  	
+	<!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("../../views/IU_cabecera.php"); ?>
+	</div>
+	
 	<form action="/controllers/login_controlador.php" method="get" role="form">
-		<div class="form-group">
-			<label for="name">Buscar</label>
-			<input type="text" class="form-control" name="search" placeholder="Introduzca su búsqueda">
-		</div>
-		<div class="btn-group">
-			<button TYPE="submit" name="accion"  VALUE="Buscar" class="btn btn-default">Buscar</button>
-		</div>  
-		<div class="form-group">
-			<label for="name">Nombre</label>
-			<input type="text" class="form-control" name="login" placeholder="Introduzca su usuario">
-		</div>
-		<div class="form-group">
-			<label for="name">Contraseña</label>
-			<input type="password" class="form-control" name="pass" placeholder="Introduzca su contraseña">
-		</div>
-		<div class="btn-group">
-			<button TYPE="submit" name="accion" VALUE="Loguear" class="btn btn-default">Login</button>
-		</div>   
+
 	</form>
 	
 	
 	<div class="alert alert-info">Resultados de la búsqueda</div>	
 	
 	
-	<form action="/controllers/login_controlador.php" method="get">
+	<form action="/controllers/buscar_controlador.php" method="get">
 	<?PHP
 	
 		foreach ($_SESSION['buscar'] as $valor){
 		?>
 		<div class="form-group">
-		
+			<img src="<?PHP echo $valor['foto']?>" alt="no hay imagen disponible" class="img-thumbnail" width='100'>
 			<label for="name" class="badge"> Nombre del pincho</label>
 			<label for="name"> <?PHP echo $valor['nombre_pincho']?> </label>
+
 		
 			<label for="name" class="badge"> Tipo de pincho</label>
 			<label for="name"> <?PHP echo $valor['tipo']?> </label>
@@ -72,10 +61,15 @@ session_start();
 			<button TYPE="submit" NAME="masInfoPincho" VALUE="<?PHP echo $valor['nombre_pincho']?>" class="btn btn-default"><?PHP echo 'Mas info'?></button>
 	
 		</div>
+		
 		<?PHP				
 		}		
+		
 		?>						
-						
+		<div class="btn-group">
+			<button TYPE="submit" name="accion" VALUE="volver" class="btn btn-default">Volver</button>
+			
+		</div>					
 	<form/>   
    
    

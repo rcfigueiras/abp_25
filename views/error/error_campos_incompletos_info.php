@@ -25,12 +25,15 @@ session_start();
 </head>
 
 <body>
-
-               
-
+ 
 	<div class="alert alert-danger">Debe rellenar todos los campos</div>	   
-                
-    <form action="/controllers/administrador_controlador.php" method="post"> 
+    
+	<!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
+	</div>            
+    
+	<form action="/controllers/administrador_controlador.php" method="post"> 
 		
 		<div class="form-group">
 			<label for="name">Nombre del concurso: </label>

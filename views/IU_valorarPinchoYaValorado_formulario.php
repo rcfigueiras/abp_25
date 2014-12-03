@@ -30,7 +30,11 @@ $db_model=new db_model();
 </head>
 
 <body>
-     	<div class="alert alert-info">Pincho ya valorado. Aún puede modificar su valoración.</div>	
+	<!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
+	</div>
+	<div class="alert alert-info">Pincho ya valorado. Aún puede modificar su valoración.</div>	
 
     <form action="/controllers/jurPro_controlador.php" method="get"> 
 		
@@ -45,7 +49,7 @@ $db_model=new db_model();
 				<div class="form-group">
 					<label for="name">Foto: </label>
 					<div class="form-group">
-						<img src="<?PHP echo $valor['foto']?>" alt="otraCosa" class="img-thumbnail" width='250'>
+						<img src="<?PHP echo $valor['foto']?>" alt="no hay imagen disponible" class="img-thumbnail" width='250'>
 					</div>		
 				</div>	
 				<div class="form-group">

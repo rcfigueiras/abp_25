@@ -24,6 +24,11 @@
 	<body>
 		<div class="alert alert-danger">Usuario no válido</div>
 
+		<!-- Cabecera -->
+		<div class="form-group">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
+		</div>
+	
 		<?PHP include("../../controllers/login_controlador.php"); ?>
 	</body>
 

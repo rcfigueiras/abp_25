@@ -27,7 +27,11 @@ $db_model=new db_model();
 	<![endif]-->  </head>
 
 <body> 
-   <h2>hola <?PHP echo $_SESSION['login']?></h2>
+	<!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
+	</div>
+
     <form action="/controllers/administrador_controlador.php" method="get"> 
 	<?PHP
 		foreach  ($_SESSION['pinchos'] as $valor){
@@ -35,9 +39,15 @@ $db_model=new db_model();
 			if($valor['nombre_pincho'] == $_SESSION['nombrePin']){
 				?>
 			<div class="form-group">
-					<label for="name"> Nombre del pincho: </label>
-					<input TYPE="text" NAME="nombrePin" VALUE="<?PHP echo $valor['nombre_pincho']?>" class="btn btn-default" readonly>
-				</div>
+				<label for="name"> Nombre del pincho: </label>
+				<input TYPE="text" NAME="nombrePin" VALUE="<?PHP echo $valor['nombre_pincho']?>" class="btn btn-default" readonly>
+			</div>
+			<div class="form-group">
+				<label for="name"> Foto: </label>
+				<div class="form-group">
+					<img src="<?PHP echo $valor['foto']?>" alt="no hay imagen disponible" class="img-thumbnail" width='250'>
+				</div>					
+			</div>
 			<div class="form-group">
 					<label for="name">Tipo </label>
 					<input TYPE="text" NAME="tipoPin" VALUE="<?PHP echo $valor['tipo']?>" class="btn btn-default" readonly>
@@ -46,10 +56,7 @@ $db_model=new db_model();
 					<label for="name"> Precio: </label>
 					<input TYPE="text" NAME="precioPin" VALUE="<?PHP echo $valor['precio']?>" class="btn btn-default" readonly>
 				</div>
-			<div class="form-group">
-					<label for="name"> Foto: </label>
-					<input TYPE="text" NAME="fotoPin" VALUE="<?PHP echo $valor['foto']?>" class="btn btn-default" readonly>
-				</div>
+			
 			<div class="form-group">
 					<label for="name"> Horario disponible: </label>
 					<input TYPE="text" NAME="horaPin" VALUE="<?PHP echo $valor['horario']?>" class="btn btn-default" readonly>

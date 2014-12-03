@@ -25,6 +25,11 @@
  
 	<div class="alert alert-danger">Contraseña no válida</div>
 
+	<!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
+	</div>
+	
 	<?PHP include("/../IU_login.php"); ?>
 
       

@@ -27,8 +27,13 @@ session_start();
 <body>
 
 	<div class="alert alert-danger">No deje campos en blanco</div>		   
-                
-     		<?PHP include("../../views/EditarInfoSistema.php"); ?>
+
+    <!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
+	</div>
+	
+	<?PHP include("../../views/EditarInfoSistema.php"); ?>
 
       
 </body>

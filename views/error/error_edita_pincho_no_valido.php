@@ -26,6 +26,10 @@ session_start();
 
 <body>
 	<div class="alert alert-danger">Nuevos valor/es no válidos</div>
+<!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
+	</div>
 	<?PHP include("/../IU_modificarPincho.php"); ?>
 
 </body>

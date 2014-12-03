@@ -35,6 +35,12 @@ if (isset($_REQUEST['login'])) {
 <body>
 	<div class="alert alert-warning">No tiene pinchos asignados para valorar,
 	póngase en contacto con el administrador</div>
+	
+	<!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
+	</div>
+	
 	<?PHP include("../../controllers/jurPro_controlador.php"); ?>
 </body>
 

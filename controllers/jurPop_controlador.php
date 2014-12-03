@@ -16,7 +16,7 @@ require_once("/../models/db_model.php");
 $db_model=new db_model();
 /*--------------------------------------------------------*/
 /*VALORAR PINCHOS*****************************************/
-if($accion == "valorarPinchos"){
+if($accion == "votarPincho"){
 	$db_model->valorarPinchos();
 	if($_SESSION['errorSQL_no_tiene']){
 		//die("Gracias, su mensaje se envio correctamente.");
@@ -32,7 +32,7 @@ if($accion == "valorarPinchos"){
 }
 /*--------------------------------------------------------*/
 /*MOSTRAR TODA LA INFO DEL PINCHO A VALORAR****************/
-if(isset($_REQUEST['valorarEste'])){
+if(isset($_REQUEST['votarEste'])){
 	
 	$nombrePin=$_REQUEST['valorarEste'];
 	$_SESSION['nombrePin']=$nombrePin;
@@ -47,7 +47,7 @@ if(isset($_REQUEST['valorarEste'])){
 }
 /*--------------------------------------------------------*/
 /*VALORA YA ESTE PINCHO ***********************************/
-if($accion == "valoraYa"){
+if($accion == "votarYa"){
 	if(isset($_REQUEST['nota'])){
 		$nota=$_REQUEST['nota'];
 		$_SESSION['nota']=$nota;
@@ -73,31 +73,6 @@ if($accion == "valoraYa"){
 	}
 	
 }
-/*MODIFICA VALORACIÓN ***********************/
-if($accion == "modificaValoracion"){
-	if(isset($_REQUEST['newNota'])){
-		$nota=$_REQUEST['newNota'];
-		$_SESSION['newNota']=$nota;
-	}
-	
-	if(isset($_REQUEST['newComentario'])){
-		$comentario=$_REQUEST['newComentario'];
-		$_SESSION['newComentario']=$comentario;
-	}
-	$db_model->modificaValoracionPincho();
-	if($_SESSION['errorSQL']){
-			header ('Location:/../views/error/error_valora_pincho_sql.php');
-
-	}else{
-		//Volvemos a mostrar el inicio de valorar pinchos
-		$db_model->valorarPinchos();	
-		if($_SESSION['errorSQL']){
-			echo "No hay pinchos que valorar en el sistema";
-		}else{			
-			header ('Location:/../views/IU_valorarPinchos.php');
-		}			
-	}
-}
 /*--------------------------------------------------------*/
 /*VOLVER***************************************************/
 if($accion == "Volver"){
@@ -110,7 +85,7 @@ if($accion == "Volver_listaValorar"){
 }
 
 //Llamada a la vista
-require_once("/../views/IU_inicio_jurPro.php");
+require_once("/../views/IU_inicio_jurPop.php");
 
 ?>
 

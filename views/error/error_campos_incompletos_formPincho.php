@@ -27,6 +27,11 @@ session_start();
 <body>
 	<div class="alert alert-danger">No ha rellenado todos los campos marcados con *</div>
 
+	<!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
+	</div>
+	
 	<?PHP include("/../IU_formularioPincho.php"); ?>
 
 </body>

@@ -26,9 +26,15 @@
 <body>
  
 	<div class="alert alert-info">No se encuentra ningun pincho con esos criterios de búsqueda</div>	
- 
-	<?PHP include("/../IU_login.php"); ?>
-
+	<!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("../../views/IU_cabecera.php"); ?>
+	</div> 
+	<form action="/controllers/buscar_controlador.php" method="get">
+		<div class="btn-group">
+			<button TYPE="submit" name="accion" VALUE="volver" class="btn btn-default">Volver</button>			
+		</div>					
+	<form/>   
       
    
 </body>

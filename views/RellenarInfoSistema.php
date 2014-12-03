@@ -26,11 +26,14 @@ session_start();
 
 <body>
 
-               
+	<!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
+	</div>               
 
 	<div class="alert alert-info">Añada la información del sistema</div>		   
                 
-    <form action="/controllers/administrador_controlador.php" method="post"> 
+    <form action="/controllers/administrador_controlador.php" method="post" enctype="multipart/form-data"> 
 		
 		<div class="form-group">
 			<label for="name">Nombre del concurso: </label>
@@ -46,7 +49,7 @@ session_start();
 		
 		<div class="form-group">
 			<label for="name">Logotipo: </label>
-			<input type="text" class="form-control" name="logoConc" placeholder="logo del concurso" >
+			<input type="file" class="form-control" name="logoConc" placeholder="logo del concurso" >
 		</div>
 			
 			

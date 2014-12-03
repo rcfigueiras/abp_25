@@ -34,31 +34,9 @@ if (isset($_REQUEST['login'])) {
 <body>
 	<div class="alert alert-success">Informacion del sistema ha sido modificada correctamente</div>
 
- 	<h2>hola <?PHP echo $_SESSION['login'];?></h2>
-	<div class="form-group">
-		<label for="name">Buscar</label>
-		<input type="text" class="form-control" placeholder="Introsduzca su búsqueda">
-	</div>
-	<div class="btn-group">
-		<button TYPE="submit" name="accion"  VALUE="Buscar" class="btn btn-default">Buscar</button>
-	</div>  
-              
-                
-    <form action="/controllers/administrador_controlador.php" method="get"> 
-		
-		
-		
-		
-			<button TYPE="submit" name="accion" VALUE="ModificarInfoSistema" class="btn btn-default">Mofificar info sistema</button>
-			
-		
-			<button TYPE="submit" name="accion" VALUE="EliminarPinchos" class="btn btn-default">Eliminar Pinchos</button>
-
-		<button TYPE="submit" name="accion" VALUE="ValidarPinchos" class="btn btn-default">Validar Pinchos</button>
-		<button TYPE="submit" name="accion" VALUE="Logout" class="btn btn-default">Logout</button>
-		
-		</div>   		
-	<form/>
+	<?PHP include("../../controllers/administrador_controlador.php"); ?>
+	
+	
 <body>
 
 </html>

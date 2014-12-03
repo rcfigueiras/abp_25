@@ -32,14 +32,16 @@ if (isset($_REQUEST['login'])) {
 </head>
 
 <body>
- 	<h2>hola <?PHP echo $_SESSION['login'];?></h2>
+	<!-- Cabecera -->
 	<div class="form-group">
-		<label for="name">Buscar</label>
-		<input type="text" class="form-control" placeholder="Introsduzca su búsqueda">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
 	</div>
-	<div class="btn-group">
-		<button TYPE="submit" name="accion"  VALUE="Buscar" class="btn btn-default">Buscar</button>
-	</div>  
+		<!-- Buscar -->
+	<div class="form-group">
+
+		<?PHP include("/../views/IU_Buscar.php"); ?>
+	
+	</div>
               
                 
     <form action="/controllers/administrador_controlador.php" method="get"> 
@@ -56,7 +58,6 @@ if (isset($_REQUEST['login'])) {
 			<button TYPE="submit" name="accion" VALUE="EliminarPinchos" class="btn btn-default">Eliminar Pinchos</button>
 
 		<button TYPE="submit" name="accion" VALUE="ValidarPinchos" class="btn btn-default">Validar Pinchos</button>
-		<button TYPE="submit" name="accion" VALUE="Logout" class="btn btn-default">Logout</button>
 		
 		</div>   		
 	<form/>

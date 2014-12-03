@@ -33,7 +33,7 @@ if (isset($_REQUEST['login'])) {
 
 <body>
 	<div class="alert alert-success">Informacion del sistema insertada correctamente</div>
-
+	
  		<?PHP include("../../controllers/administrador_controlador.php"); ?>
 
 <body>

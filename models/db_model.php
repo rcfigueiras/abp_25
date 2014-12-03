@@ -38,10 +38,12 @@ class db_model {
 		} else {
 			$accion='';
 		}
+		
 		/*Metemos las variables en la sesión*/
 		$_SESSION['login']  = $login;
 		$_SESSION['pass'] = $pass;
 		$_SESSION['accion'] = $accion;
+		
 		if ($accion=="Loguear" )
 		{	
 			if ($login == NULL || $pass == NULL){
@@ -68,17 +70,18 @@ class db_model {
 				//Administrador
 				if ($pass==$res['contrasenha_admin'] ){
 					
-					$sql = "select * from ADMINISTRADOR where ID_administrador = '".$res['ID_administrador']."'";
+					$sql = "select * from ADMINISTRADOR 
+						where ID_administrador = '".$res['ID_administrador']."'";
 					
 					$resultado = mysql_query($sql);
 					
-					if (mysql_num_rows($resultado) == 1){					
+					if (mysql_num_rows($resultado) == 1){						
 						
-						
-
+						$_SESSION['tipoUsu']='admin';
 						header ('Location:/../controllers/administrador_controlador.php'); 		
 						return true;
 					}
+					
 					else{
 						return false;
 					}
@@ -160,7 +163,7 @@ class db_model {
 					$resultado = mysql_query($sql);
 					
 					if (mysql_num_rows($resultado) == 1){
-						header ('Location:/../views/IU_inicio_jurPop.html'); 		
+						header ('Location:/../controllers/jurPop_controlador.php'); 		
 						return true;
 					}
 					else{
@@ -168,14 +171,16 @@ class db_model {
 					}
 				}
 				else{
+					$_SESSION['login']='';
 					header ('Location:/../views/error/error_contrasenha1.php'); 
 					return false;
 				}		
 			}			
 			//si no existe el login en la bd lo mandamos a loguearse
 			else{
+					$_SESSION['login']='';
 					header ('Location:/../views/error/error_usuario.php'); 
-					return true;
+					return false;
 			}
 		}   
     }
@@ -628,7 +633,13 @@ class db_model {
 		$nombreConc=$_REQUEST['nombreConc'];
 		$basesConc=$_REQUEST['basesConc'];
 		$logoConc=$_REQUEST['logoConc'];
-
+		
+		$ruta="/imagenes/logo";		
+		$logoConc=$_FILES['logoConc']['tmp_name'];
+		$nombreFoto=$_FILES['logoConc']['name'];
+		move_uploaded_file($logoConc,"/UniServerZ/www".$ruta."/".$nombreFoto);
+		$ruta=$ruta."/".$nombreFoto;
+		
 
 		if($nombreConc == NULL || $basesConc == NULL ||
 			$logoConc == NULL){
@@ -643,7 +654,7 @@ class db_model {
 							VALUES ('1'
 									,'".$nombreConc."'
 									,'".$basesConc."'
-									,'".$logoConc."'
+									,'".$ruta."'
 									)";
 			mysql_query($sql);
 		}
@@ -706,67 +717,69 @@ class db_model {
 		public function editarFormularioSistema(){		
 
 		$_SESSION['campos_incompletos']=0;
-		//$_SESSION['errorSQL'] = 1;
-		
-
-		
-
 		
 		//Recuperamos las variables del formulario
 		$nombreConcNew=$_REQUEST['nombreConcNew'];
 		$basesConcNew=$_REQUEST['basesConcNew'];
-		$logoConcNew=$_REQUEST['logoConcNew'];
+		//$logoConcNew=$_REQUEST['logoConcNew'];
 
-
+		$ruta="/imagenes/logo";		
+		$logoConcNew=$_FILES['logoConcNew']['tmp_name'];
+		$nombreFoto=$_FILES['logoConcNew']['name'];
+		move_uploaded_file($logoConcNew,"/UniServerZ/www".$ruta."/".$nombreFoto);
+		$ruta=$ruta."/".$nombreFoto;
+		
 		if($nombreConcNew == NULL || $basesConcNew == NULL ||
-			$logoConcNew == NULL){
+			$ruta == NULL){
 			$_SESSION['campos_incompletos']=1;
 		}
 		else{
 
 									
-			$sql="UPDATE PINCHOGES P SET P.nombre_consurso ='".$nombreConcNew."',P.bases ='".$basesConcNew."',P.logotipo ='".$logoConcNew."' WHERE P.ID_administrador='1'";
-									
+			$sql="UPDATE PINCHOGES P SET P.nombre_consurso ='".$nombreConcNew."'
+										,P.bases ='".$basesConcNew."'
+										,P.logotipo ='".$ruta."' 
+				WHERE P.ID_administrador='1'";							
 								
 			mysql_query($sql);
-		}
-		
-
-		
-	}
-	
-	
-	
-	
+		}	
+	}	
 	
 	////***Busqueda***\\\\
 	public function buscarPincho(){
 	
 	$_SESSION['buscar']='';
 	$_SESSION['errorSQL_noHay']=0;
-
+	
+	
 	$search=$_SESSION['search'];
-	$sql="SELECT * FROM PINCHO, ESTABLECIMIENTO  WHERE ( nombre_pincho like '".$search."' or tipo like '".$search."' or nombre_estab like '".$search."' ) and pincho_validado='1' and pincho.ID_estab=establecimiento.ID_estab ";
+	echo $search;
+
+	$sql="SELECT * FROM PINCHO, ESTABLECIMIENTO  
+		WHERE ( nombre_pincho like '".$search."' 
+		or tipo like '".$search."' 
+		or nombre_estab like '".$search."' ) 
+		and pincho_validado='1' 
+		and pincho.ID_estab=establecimiento.ID_estab ";
+	
 	$resultado=mysql_query($sql);
 	
 	if(mysql_affected_rows() > 0){
 			
-			$pinchos=array();
-			while ($filas = mysql_fetch_assoc($resultado)){
-				
-				$pinchos[]=$filas;
-			} 	
+		$pinchos=array();
+		
+		while ($filas = mysql_fetch_assoc($resultado)){
 			
-			$_SESSION['buscar']=$pinchos;			
+			$pinchos[]=$filas;
+		} 	
+			
+		$_SESSION['buscar']=$pinchos;			
 		}
-		else{
-			$_SESSION['errorSQL_noHay']=1;
-		}	
+		
+	else{
 	
-	
-	
-	
-	
+		$_SESSION['errorSQL_noHay']=1;
+	}	
 	
 	}
 	

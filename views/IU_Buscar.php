@@ -26,20 +26,17 @@ session_start();
   </head>
 
 <body>
-	<!-- Cabecera -->
-	<div class="form-group">
-	
-	<?PHP include("/../views/IU_cabecera.php"); ?>
-	
-	</div>
-	
-	<!-- Buscar -->
-	<div class="form-group">
-
-		<?PHP include("/../views/IU_Buscar.php"); ?>
-	
-	</div>
-	
+		
+	<form action="/controllers/buscar_controlador.php" method="get" role="form">
+		<div class="form-group">
+			<label for="name">Buscar</label>
+			<input type="text" class="form-control" name="search" placeholder="Introduzca su búsqueda">
+		</div>
+		<div class="btn-group">
+			<button TYPE="submit" name="accion"  VALUE="Buscar" class="btn btn-default">Buscar</button>
+		</div>  		
+	</form>      
+   
 </body>
 
 </html>

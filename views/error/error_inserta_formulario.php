@@ -33,6 +33,10 @@ if (isset($_REQUEST['login'])) {
 
 <body>       
 	<div class="alert alert-danger">Hemos tenido problemas para procesar su solicitud</div>
+<!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
+	</div>
 	<?PHP include("/../IU_inicio_establecimiento.php"); ?>
 </body>
 

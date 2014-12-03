@@ -29,14 +29,29 @@ if (isset($_REQUEST['login'])) {
 	 <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/
 		respond.min.js"></script>
 	<![endif]-->  
+    
 </head>
 
-<body>       
-
-	<div class="alert alert-success">Formulario insertado correctamente</div>
-		
-	<?PHP include("../../controllers/establecimiento_controlador.php"); ?>
+<body>
 	
+	<!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
+	</div>
+	
+		<!-- Buscar -->
+	<div class="form-group">
+
+		<?PHP include("/../views/IU_Buscar.php"); ?>
+	
+	</div>
+	
+                
+    <form action="/controllers/jurPop_controlador.php" method="get"> 
+			<button TYPE="submit" name="accion" VALUE="" class="btn btn-default">Valorar Pinchos</button>
+	<form/>
+    
+  
 </body>
 
 </html>

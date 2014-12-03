@@ -27,12 +27,17 @@ session_start();
   </head>
 
 <body>
- 	
-	
-	
+	<!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("../../views/IU_cabecera.php"); ?>
+	</div>
 	
 	<div class="alert alert-info">Información del pincho seleccionado</div>	
-	
+
+	<!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
+	</div>	
 	
 	<form action="/controllers/login_controlador.php" method="get">
 	<?PHP
@@ -44,7 +49,12 @@ session_start();
 			<label for="name">Nombre del pincho: </label>
 			<input type="text" class="form-control" value="<?PHP echo $valor['nombre_pincho']?>" readonly>
 		</div>
-		
+		<div class="form-group">
+			<label for="name">Foto del pincho: </label>
+			<div class="form-group">
+				<img src="<?PHP echo $valor['foto']?>" alt="no hay imagen disponible" class="img-thumbnail" width='250'>
+			</div>		
+		</div>
 		<div class="form-group">
 			<label for="name">Tipo de pincho: </label>
 			<input type="text" class="form-control" value="<?PHP echo $valor['tipo']?>" readonly>
@@ -60,10 +70,7 @@ session_start();
 			<input type="text" class="form-control" value="<?PHP echo $valor['precio']?>" readonly>
 		</div>
 		
-		<div class="form-group">
-			<label for="name">Foto del pincho: </label>
-			<input type="text" class="form-control" value="<?PHP echo $valor['foto']?>" readonly>
-		</div>
+		
 		
 		<div class="form-group">
 			<label for="name">Horario del pincho: </label>

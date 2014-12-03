@@ -31,8 +31,10 @@ $db_model=new db_model();
 </head>
 
 <body>
-<h2>hola <?PHP echo $_SESSION['login']?></h2>
+	<!-- Cabecera -->
 	<div class="form-group">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
+	</div>	<div class="form-group">
 		<label for="name">Buscar</label>
 		<input type="text" class="form-control" placeholder="Introsduzca su búsqueda">
 	</div>

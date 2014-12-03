@@ -25,7 +25,10 @@ session_start();
 </head>
 
 <body>
-			
+	<!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
+	</div>
 	<div class="alert alert-info">Los campos marcados con * son editables</div>
 
 	<form action="/controllers/establecimiento_controlador.php" method="post" enctype="multipart/form-data"> 

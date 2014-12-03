@@ -25,7 +25,10 @@ session_start();
 </head>
 
 <body>
-   
+   <!-- Cabecera -->
+	<div class="form-group">
+		<?PHP include("/../views/IU_cabecera.php"); ?>
+	</div>
     <form action="/controllers/establecimiento_controlador.php" enctype="multipart/form-data" method="post"> 
 		<div class="form-group">
 			<label for="name">*Nombre del pincho: </label>
