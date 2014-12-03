@@ -24,7 +24,6 @@ session_start();
 	<![endif]-->
 </head>
 <body>
-<?PHP echo $_SESSION['tipoUsu']; ?>
 	<div class="row">
 		<div class="col-xs-1">
 			<img src="<?PHP echo $_SESSION['logotipo']?>" alt="No hay logotipo cargado en el sistema" class="img-thumdnail" width='200'>

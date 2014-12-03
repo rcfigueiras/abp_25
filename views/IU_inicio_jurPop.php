@@ -11,7 +11,6 @@ if (isset($_REQUEST['login'])) {
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 
-
 <head>
 	<title>PinchoGés</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -39,18 +38,16 @@ if (isset($_REQUEST['login'])) {
 		<?PHP include("/../views/IU_cabecera.php"); ?>
 	</div>
 	
-		<!-- Buscar -->
+	<!-- Buscar -->
 	<div class="form-group">
 
 		<?PHP include("/../views/IU_Buscar.php"); ?>
 	
-	</div>
-	
+	</div>	
                 
     <form action="/controllers/jurPop_controlador.php" method="get"> 
 			<button TYPE="submit" name="accion" VALUE="" class="btn btn-default">Votar</button>
-	<form/>
-    
+	<form/>    
   
 </body>
 

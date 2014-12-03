@@ -102,7 +102,6 @@ $db_model=new db_model();
 		<div class="btn-group">
 			<button TYPE="submit" name="accion" VALUE="modificaValoracion" class="btn btn-default">modificaValoracion</button>
 			<button TYPE="submit" name="accion" VALUE="Volver_listaValorar" class="btn btn-default">Volver</button>
-			<button TYPE="submit" name="accion" VALUE="Logout" class="btn btn-default">Logout</button>
 		</div>   
 	<form/>
       

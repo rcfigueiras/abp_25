@@ -39,8 +39,24 @@ $db_model=new db_model();
 		foreach  ($_SESSION['pinchos'] as $valor){
 		?>		
 		<div class="form-group">
-			<label for="name"> Nombre del pincho: </label>
-			<button TYPE="submit" NAME="valorarEste" VALUE="<?PHP echo $valor['nombre_pincho']?>" class="btn btn-default"><?PHP echo $valor['nombre_pincho']?></button>
+			<label for="name" class="label label-default"> Nombre del pincho</label>
+			<label for="name"> <?PHP echo $valor['nombre_pincho']?> </label>
+		<div class="form-group">
+			<img src="<?PHP echo $valor['foto']?>" alt="no hay imagen disponible" class="img-thumbnail" width='100'>
+			<label for="name" class="label label-default"> Nombre del pincho</label>
+			<label for="name"> <?PHP echo $valor['nombre_pincho']?> </label>
+
+			<label for="name" class="label label-default"> Tipo de pincho</label>
+			<label for="name"> <?PHP echo $valor['tipo']?> </label>
+		
+			<label for="name" class="badge"> Establecimiento que lo ofrece</label>
+			<label for="name"> <?PHP echo $valor['nombre_estab']?> </label>
+			<label for="name" class="badge""> Dirección </label>
+			<label for="name"> <?PHP echo $valor['direccion']?> </label>
+			
+			<button TYPE="submit" NAME="valorarEste" VALUE="<?PHP echo $valor['nombre_pincho']?>" align=right class="btn btn-default">Valorar</button>
+
+		</div>
 		</div>
 		<?PHP
 		}
