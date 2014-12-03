@@ -78,7 +78,7 @@ class db_model {
 					
 					if (mysql_num_rows($resultado) == 1){						
 						
-						$_SESSION['tipoUsu']='admin';
+						$_SESSION['tipoUsu']='administrador';
 						header ('Location:/../controllers/administrador_controlador.php'); 		
 						return true;
 					}
@@ -88,6 +88,7 @@ class db_model {
 					}
 				}
 				else{
+					$_SESSION['login']='';
 					header ('Location:/../views/error/error_contrasenha1.php'); 
 					return false;
 				}		
@@ -101,7 +102,6 @@ class db_model {
 								
 				if ($pass==$res['contrasenha_estab'] ){
 					
-					$_SESSION['tipoUsuario']='estab';									
 					$_SESSION['nombre_estab']=$login;
 					$_SESSION['ID_estab']=$res['ID_estab'];
 					$sql = "select * from ESTABLECIMIENTO where ID_estab = '".$res['ID_estab']."'";
@@ -110,7 +110,7 @@ class db_model {
 					
 					if (mysql_num_rows($resultado) == 1){
 					
-						$_SESSION['tipoUsu']='estab';
+						$_SESSION['tipoUsu']='establecimiento';
 						header ('Location:/../controllers/establecimiento_controlador.php'); 		
 						return true;
 					}
@@ -119,6 +119,7 @@ class db_model {
 					}
 				}
 				else{
+					$_SESSION['login']='';
 					header ('Location:/../views/error/error_contrasenha1.php'); 
 					return false;
 				}		
@@ -148,6 +149,7 @@ class db_model {
 					}
 				}
 				else{
+					$_SESSION['login']='';
 					header ('Location:/../views/error/error_contrasenha1.php'); 
 					return false;
 				}		
@@ -162,12 +164,14 @@ class db_model {
 					
 					$_SESSION['nombre_jurPop']=$login;
 					$_SESSION['ID_juradoPopular']=$res['ID_juradoPopular'];
-					$sql = "select * from JURADO_POPULAR where ID_juradoPopular = '".$res['ID_juradoPopular']."'";
+					$sql = "SELECT * 
+							FROM JURADO_POPULAR 
+							WHERE ID_juradoPopular = '".$res['ID_juradoPopular']."'";
 					
 					$resultado = mysql_query($sql);
 					
 					if (mysql_num_rows($resultado) == 1){
-						$_SESSION['tipoUsu']='jurPro';
+						$_SESSION['tipoUsu']='jurPop';
 						header ('Location:/../controllers/jurPop_controlador.php'); 		
 						return true;
 					}
@@ -644,7 +648,7 @@ class db_model {
 		move_uploaded_file($basesConc,"/UniServerZ/www".$rutabases."/".$nombreFoto);
 		$rutabases=$rutabases."/".$nombreBases;
 		
-		$rutalogo="/imagenes/logo";		
+		$rutalogo="/imagenes";		
 		$logoConc=$_FILES['logoConc']['tmp_name'];
 		$nombreFoto=$_FILES['logoConc']['name'];
 		move_uploaded_file($logoConc,"/UniServerZ/www".$rutalogo."/".$nombreFoto);
@@ -739,7 +743,7 @@ class db_model {
 		
 		//$logoConcNew=$_REQUEST['logoConcNew'];
 
-		$rutanewlogo="/imagenes/logo";		
+		$rutanewlogo="/imagenes";		
 		$logoConcNew=$_FILES['logoConcNew']['tmp_name'];
 		$nombreFoto=$_FILES['logoConcNew']['name'];
 		move_uploaded_file($logoConcNew,"/UniServerZ/www".$rutanewlogo."/".$nombreFoto);

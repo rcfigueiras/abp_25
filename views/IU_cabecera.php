@@ -24,8 +24,8 @@ session_start();
 	<![endif]-->
 </head>
 <body>
+<?PHP echo $_SESSION['tipoUsu']; ?>
 	<div class="row">
-		
 		<div class="col-xs-1">
 			<img src="<?PHP echo $_SESSION['logotipo']?>" alt="No hay logotipo cargado en el sistema" class="img-thumdnail" width='200'>
 		</div>
@@ -44,7 +44,9 @@ session_start();
 	<?PHP if(isset($_SESSION['login']) && ($_SESSION['login']!='')){ 
 	?>
 		<div class="col-xs-1" align="right">
-			<h4><?PHP echo "hola ".$_SESSION['login']; ?></h4>
+			<a class="btn btn-default" href="/views/IU_inicio_<?PHP echo $_SESSION['tipoUsu']; ?>.php" role="button">
+			<?PHP echo "hola ".$_SESSION['login']; ?>
+			</a>
 		</div>
 	<form action="/controllers/logout_controlador.php" method="get" role="form">
 		<div class="col-xs-1" align="left">

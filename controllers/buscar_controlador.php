@@ -59,10 +59,10 @@ if(isset($_REQUEST['masInfoPincho'])){
 	
 if($accion == "volver"){
 	if(isset($_SESSION['tipoUsu'])){	
-		if($_SESSION['tipoUsu'] == 'admin'){
+		if($_SESSION['tipoUsu'] == 'administrador'){
 			header ('Location:/../controllers/administrador_controlador.php');
 
-		}else if($_SESSION['tipoUsu'] == 'estab'){
+		}else if($_SESSION['tipoUsu'] == 'establecimiento'){
 			header ('Location:/../controllers/establecimiento_controlador.php');
 
 	}else if($_SESSION['tipoUsu'] == 'jurPro'){

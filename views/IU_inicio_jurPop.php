@@ -48,7 +48,7 @@ if (isset($_REQUEST['login'])) {
 	
                 
     <form action="/controllers/jurPop_controlador.php" method="get"> 
-			<button TYPE="submit" name="accion" VALUE="" class="btn btn-default">Valorar Pinchos</button>
+			<button TYPE="submit" name="accion" VALUE="" class="btn btn-default">Votar</button>
 	<form/>
     
   
