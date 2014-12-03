@@ -43,6 +43,7 @@ session_start();
 		<div class="form-group">
 			<label for="name">Nuevas Bases: </label>
 			<input type="text" class="form-control" name="basesConcNew" placeholder="nuevas bases del concurso" value="<?PHP echo $_SESSION['bases']?>" >
+			<input type="file" class="form-control" name="basesConcNew" placeholder="nuevas bases del concurso" >
 		</div>
 			
 		

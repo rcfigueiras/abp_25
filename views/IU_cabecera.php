@@ -35,7 +35,7 @@ session_start();
 		</div>
 		
 		<div class="col-xs-2">
-			<h2><?PHP echo $_SESSION['bases']; ?></h2>
+			<a class="btn btn-default" href="<?PHP echo $_SESSION['bases']; ?>" role="button">Bases</a>
 		</div>
 		
 		<div class="col-xs-2">

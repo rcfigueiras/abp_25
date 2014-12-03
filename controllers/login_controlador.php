@@ -4,8 +4,6 @@ session_start();
 require_once("/../models/db_model.php");
 $db_model=new db_model();
 
-
-
 /*Recogemos variables de la interfaz*/
 if (isset($_REQUEST['login'])) {
 	$login=$_REQUEST['login'];

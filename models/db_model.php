@@ -47,6 +47,7 @@ class db_model {
 		if ($accion=="Loguear" )
 		{	
 			if ($login == NULL || $pass == NULL){
+			$_SESSION['login']='';
 			 header ("Location:/../views/error/error_campos_incompletos.php");
 			 return false;
 			}
@@ -635,18 +636,23 @@ class db_model {
 		
 		//Recuperamos las variables del formulario
 		$nombreConc=$_REQUEST['nombreConc'];
-		$basesConc=$_REQUEST['basesConc'];
-		$logoConc=$_REQUEST['logoConc'];
+		//$basesConc=$_REQUEST['basesConc'];
 		
-		$ruta="/imagenes/logo";		
+		$rutabases="/docs";		
+		$basesConc=$_FILES['basesConc']['tmp_name'];
+		$nombreBases=$_FILES['basesConc']['name'];
+		move_uploaded_file($basesConc,"/UniServerZ/www".$rutabases."/".$nombreFoto);
+		$rutabases=$rutabases."/".$nombreBases;
+		
+		$rutalogo="/imagenes/logo";		
 		$logoConc=$_FILES['logoConc']['tmp_name'];
 		$nombreFoto=$_FILES['logoConc']['name'];
-		move_uploaded_file($logoConc,"/UniServerZ/www".$ruta."/".$nombreFoto);
-		$ruta=$ruta."/".$nombreFoto;
+		move_uploaded_file($logoConc,"/UniServerZ/www".$rutalogo."/".$nombreFoto);
+		$rutalogo=$rutalogo."/".$nombreFoto;
 		
 
-		if($nombreConc == NULL || $basesConc == NULL ||
-			$logoConc == NULL){
+		if($nombreConc == NULL || $rutabases == NULL ||
+			$rutalogo == NULL){
 			$_SESSION['campos_incompletos']=1;
 		}
 		else{
@@ -657,8 +663,8 @@ class db_model {
 											) 
 							VALUES ('1'
 									,'".$nombreConc."'
-									,'".$basesConc."'
-									,'".$ruta."'
+									,'".$rutabases."'
+									,'".$rutalogo."'
 									)";
 			mysql_query($sql);
 		}
@@ -681,13 +687,12 @@ class db_model {
 	
 	
 		//recuperamos la información almacenada del pincho del establecimiento
-		$sql="SELECT nombre_consurso,bases,logotipo FROM PINCHOGES where ID_administrador = '1'";
+		$sql="SELECT nombre_consurso,bases,logotipo 
+				FROM PINCHOGES where 
+				ID_administrador = '1'";
 		$resultado = mysql_query($sql);
 		$fila=mysql_fetch_row($resultado);
-		//Pasamos resultado de la consulta al controlador 
-		
-
-		
+		//Pasamos resultado de la consulta al controlador 	
 		
 		if ($fila > 0){
 			
@@ -724,29 +729,38 @@ class db_model {
 		
 		//Recuperamos las variables del formulario
 		$nombreConcNew=$_REQUEST['nombreConcNew'];
-		$basesConcNew=$_REQUEST['basesConcNew'];
+		//$basesConcNew=$_REQUEST['basesConcNew'];
+		
+		$rutanewbases="/docs";		
+		$basesConcNew=$_FILES['basesConcNew']['tmp_name'];
+		$nombreBases=$_FILES['basesConcNew']['name'];
+		move_uploaded_file($basesConcNew,"/UniServerZ/www".$rutanewbases."/".$nombreBases);
+		$rutanewbases=$rutanewbases."/".$nombreBases;
+		
 		//$logoConcNew=$_REQUEST['logoConcNew'];
 
-		$ruta="/imagenes/logo";		
+		$rutanewlogo="/imagenes/logo";		
 		$logoConcNew=$_FILES['logoConcNew']['tmp_name'];
 		$nombreFoto=$_FILES['logoConcNew']['name'];
-		move_uploaded_file($logoConcNew,"/UniServerZ/www".$ruta."/".$nombreFoto);
-		$ruta=$ruta."/".$nombreFoto;
+		move_uploaded_file($logoConcNew,"/UniServerZ/www".$rutanewlogo."/".$nombreFoto);
+		$rutanewlogo=$rutanewlogo."/".$nombreFoto;
 		
-		if($nombreConcNew == NULL || $basesConcNew == NULL ||
-			$ruta == NULL){
+		if($nombreConcNew == NULL || $rutanewbases == NULL ||
+			$rutanewlogo == NULL){
 			$_SESSION['campos_incompletos']=1;
 		}
 		else{
 
 									
 			$sql="UPDATE PINCHOGES P SET P.nombre_consurso ='".$nombreConcNew."'
-										,P.bases ='".$basesConcNew."'
-										,P.logotipo ='".$ruta."' 
+										,P.bases ='".$rutanewbases."'
+										,P.logotipo ='".$rutanewlogo."' 
 				WHERE P.ID_administrador='1'";							
 								
 			mysql_query($sql);
 		}	
+
+		require_once("../index.php");
 	}	
 	
 	////***Busqueda***\\\\
