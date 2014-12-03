@@ -5,7 +5,7 @@ session_start();
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 
 <head>
-  <title>PinchoGés</title>
+	<title><?PHP if(isset($_SESSION['nombre_concurso'])){echo $_SESSION['nombre_concurso']; }else {echo "Pinchogés";}?></title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap -->

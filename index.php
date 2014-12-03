@@ -18,6 +18,7 @@ $row=mysql_fetch_row($resultado);
 $nombre_concurso=$row[0];
 $bases=$row[2];
 $logotipo=$row[3];
+
 /*Los almacenamos en variables de sesión*/
 $_SESSION['nombre_concurso']=$nombre_concurso;;
 $_SESSION['bases']=$bases;
