@@ -6,10 +6,12 @@ session_start();
 
 <head>
 	<title><?PHP if(isset($_SESSION['nombre_concurso'])){echo $_SESSION['nombre_concurso']; }else {echo "Pinchogés";}?></title>
+	
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap -->
 	<link href="/../dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/cabecera.css" rel="stylesheet">
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media 
 	 queries -->
@@ -21,45 +23,52 @@ session_start();
 	 <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/
 		respond.min.js"></script>
 	<![endif]-->
+	
 </head>
-<body>
-	<div class="row" >
-		<div class="col-md-4">
-			<img src="<?PHP echo $_SESSION['logotipo']?>" alt="No hay logotipo cargado en el sistema" class="img-thumdnail" width='200'>
-		</div>
-		<div class="col-md-4">
 
-			<h2><?PHP echo $_SESSION['nombre_concurso']; ?></h2>
-			<a class="btn btn-default" href="<?PHP echo $_SESSION['bases']; ?>" role="button">Bases</a>
+<body>
+	<div id="cabecera">
+		<div id="logo">
+			<img src="<?PHP echo $_SESSION['logotipo']?>" alt="No hay logotipo cargado en el sistema" class="img-thumdnail" width='250'>
 		</div>
 		
+		<div id="bases">
+			<?PHP echo $_SESSION['nombre_concurso']; ?>
+			<div class="basesBoton"><a class="btn btn-default" href="<?PHP echo $_SESSION['bases']; ?>" role="button">Bases</a></div>
+		</div>
+		
+		
+		<div id="login">
+			<div id="formLogin">
 	<?PHP if(isset($_SESSION['login']) && ($_SESSION['login']!='')){ 
 	?>
-		<form action="/controllers/logout_controlador.php" method="get" role="form">
 
-		<div class="col-xs-2" >
-			<a class="btn btn-default" href="/views/IU_inicio_<?PHP echo $_SESSION['tipoUsu']; ?>.php" role="button">
-			<?PHP echo "hola ".$_SESSION['login']; ?></a>		
-			<button type="submit" name="accion" value="Logout" class="btn btn-lg btn-primary">Logout</button>
-			
-		</div>
+				<h4><?PHP echo "hola ".$_SESSION['login']; ?></h4>
 		
-	</form>
-	
+				<form action="/controllers/logout_controlador.php" method="get" role="form">			
+						<button type="submit" name="accion" value="Logout" class="btn btn btn-primary">Logout</button>		
+				</form>
+			</div>
+		
 	<?PHP	} else { ?>
+	
 		
-	<form action="/controllers/login_controlador.php" method="get" role="form">
-		
-		<div class="col-xs-2">
-			<input type="text" class="form-control" name="login" placeholder="Usuario">
-			<input type="password" class="form-control" name="pass" placeholder="Password">
-			<button TYPE="submit" name="accion" VALUE="Loguear" class="btn btn btn-primary">Login</button>
+				<div id="formLogin">
+					<form action="/controllers/login_controlador.php" method="get" role="form">
+						
+
+							<input type="text" name="login" class="cajetin" placeholder="Usuario">
+
+							<input type="password" name="pass" class="cajetin" placeholder="Password">
+							
+							<button TYPE="submit" name="accion" class="btn btn btn-primary" VALUE="Loguear">Login</button>
+				
+					</form>      
+						<?PHP 
+						}
+						?>
+				</div>
 		</div>
-		
-	</form>      
-		<?PHP 
-		}
-		?>
 	</div>
 </body>
 
