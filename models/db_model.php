@@ -219,7 +219,7 @@ class db_model {
 		$precioPin=$_REQUEST['precioPin'];
 		$horarioPin=$_REQUEST['horarioPin'];
 				
-		$ruta="/imagenes";		
+		$ruta="/src/imagenes";		
 		$fotoPin=$_FILES['fotoPin']['tmp_name'];
 		$nombreFoto=$_FILES['fotoPin']['name'];
 		move_uploaded_file($fotoPin,"/UniServerZ/www".$ruta."/".$nombreFoto);
@@ -310,7 +310,7 @@ class db_model {
 		$_SESSION['errorSQL'] = 1;
 		//Recuperamos también las variables editables por el
 		//establecimiento
-		$ruta="/imagenes";		
+		$ruta="/src/imagenes";		
 		
 		$fotoPin=$_FILES['newfoto']['tmp_name'];
 		
@@ -642,13 +642,13 @@ class db_model {
 		$nombreConc=$_REQUEST['nombreConc'];
 		//$basesConc=$_REQUEST['basesConc'];
 		
-		$rutabases="/docs";		
+		$rutabases="/src/docs";		
 		$basesConc=$_FILES['basesConc']['tmp_name'];
 		$nombreBases=$_FILES['basesConc']['name'];
 		move_uploaded_file($basesConc,"/UniServerZ/www".$rutabases."/".$nombreFoto);
 		$rutabases=$rutabases."/".$nombreBases;
 		
-		$rutalogo="/imagenes";		
+		$rutalogo="/src/imagenes";		
 		$logoConc=$_FILES['logoConc']['tmp_name'];
 		$nombreFoto=$_FILES['logoConc']['name'];
 		move_uploaded_file($logoConc,"/UniServerZ/www".$rutalogo."/".$nombreFoto);
@@ -734,13 +734,13 @@ class db_model {
 		//Recuperamos las variables del formulario
 		$nombreConcNew=$_REQUEST['nombreConcNew'];
 		
-		$rutanewbases="/docs";		
+		$rutanewbases="/src/docs";		
 		$basesConcNew=$_FILES['basesConcNew']['tmp_name'];
 		$nombreBases=$_FILES['basesConcNew']['name'];
 		move_uploaded_file($basesConcNew,"/UniServerZ/www".$rutanewbases."/".$nombreBases);
 		$rutanewbases=$rutanewbases."/".$nombreBases;
 		
-		$rutanewlogo="/imagenes";		
+		$rutanewlogo="/src/imagenes";		
 		$logoConcNew=$_FILES['logoConcNew']['tmp_name'];
 		$nombreLogo=$_FILES['logoConcNew']['name'];
 		move_uploaded_file($logoConcNew,"/UniServerZ/www".$rutanewlogo."/".$nombreLogo);

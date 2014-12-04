@@ -55,7 +55,6 @@ $db_model=new db_model();
 	<div class="btn-group">
 		<button TYPE="submit" name="accion" VALUE="eliminaPincho" class="btn btn-default">Elimina Pincho</button>
 		<button TYPE="submit" name="accion" VALUE="VolverListaEliminar" class="btn btn-default">Volver</button>
-		<button TYPE="submit" name="accion" VALUE="Logout" class="btn btn-default">Logout</button>
 	</div>  
 	<form/>
 </body>

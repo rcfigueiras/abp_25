@@ -43,7 +43,7 @@ session_start();
 	<?PHP if(isset($_SESSION['login']) && ($_SESSION['login']!='')){ 
 	?>
 				<div class="basesBoton"><a class="btn btn-default" href="/views/IU_inicio_<?PHP echo $_SESSION['tipoUsu']; ?>.php" role="button">
-				<?PHP echo "Inicio"; ?></a></div>
+				<?PHP echo "Hola, ".$_SESSION['login']; ?></a></div>
 
 				<form action="/controllers/logout_controlador.php" method="get" role="form">			
 						<button type="submit" name="accion" value="Logout" class="btn btn btn-primary">Logout</button>		

@@ -48,7 +48,7 @@ if($accion == "ModificarPincho")
 	$db_model->editarPincho();
 	
 	if ($_SESSION['errorSQL']){
-		echo "Aqui va a error en recuperar el pincho";
+		header ('Location:/../views/error/error_valida_pincho_sql.php');
 	}else{
 		header ('Location:/../views/IU_modificarPincho.php');
 	}
