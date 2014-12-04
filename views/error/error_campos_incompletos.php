@@ -14,7 +14,10 @@
 	<div class="form-group">
 		<?PHP include("/../views/IU_cabecera.php"); ?>
 	</div>
+	
+	<div class="form-group">
 		<?PHP include("/../IU_login.php"); ?>
+	<div class="form-group">
 
       
    

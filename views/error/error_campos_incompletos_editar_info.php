@@ -11,15 +11,16 @@ session_start();
 
 <body>
 
-	<div class="alert alert-danger">No deje campos en blanco</div>		   
+	<div class="alert alert-danger">No ha modificado nada, hágalo o pulse cancelar para volver.</div>		   
 
     <!-- Cabecera -->
 	<div class="form-group">
 		<?PHP include("/../views/IU_cabecera.php"); ?>
 	</div>
-	
-	<?PHP include("../../views/EditarInfoSistema.php"); ?>
 
+	<div class="form-group">
+		<?PHP include("../../views/EditarInfoSistema.php"); ?>
+<	/div>
       
 </body>
 

@@ -27,9 +27,7 @@ $db_model=new db_model();
 			<label for="name" class="label label-default"> Nombre del pincho</label>
 			<label for="name"> <?PHP echo $valor['nombre_pincho']?> </label>
 		<div class="form-group">
-			<img src="<?PHP echo $valor['foto']?>" alt="no hay imagen disponible" class="img-thumbnail" width='100'>
-			<label for="name" class="label label-default"> Nombre del pincho</label>
-			<label for="name"> <?PHP echo $valor['nombre_pincho']?> </label>
+			<img src="<?PHP echo $valor['foto']?>" alt="no hay imagen disponible" class="img-thumbnail" width='100'>			
 
 			<label for="name" class="label label-default"> Tipo de pincho</label>
 			<label for="name"> <?PHP echo $valor['tipo']?> </label>

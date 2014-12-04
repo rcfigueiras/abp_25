@@ -9,11 +9,14 @@
 
 <body>
  
-	<div class="alert alert-info">No se encuentra ningun pincho con esos criterios de búsqueda</div>	
 	<!-- Cabecera -->
 	<div class="form-group">
 		<?PHP include("../../views/IU_cabecera.php"); ?>
 	</div> 
+	<div class="row">
+	</div>
+	<div class="alert alert-info">No se encuentra ningun pincho con esos criterios de búsqueda</div>	
+
 	<form action="/controllers/buscar_controlador.php" method="get">
 		<div class="btn-group">
 			<button TYPE="submit" name="accion" VALUE="volver" class="btn btn-default">Volver</button>			

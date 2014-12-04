@@ -322,7 +322,7 @@ class db_model {
 		
 		$newhorario =  $_REQUEST['newhorario'];	
 
-		if ($ruta == '' ){//se actualiza el horario
+		if ($nombreFoto == '' ){//se actualiza el horario
 		
 			$sql="UPDATE PINCHO P,ESTABLECIMIENTO E  
 				SET P.horario ='".$newhorario."' 
@@ -733,7 +733,6 @@ class db_model {
 		
 		//Recuperamos las variables del formulario
 		$nombreConcNew=$_REQUEST['nombreConcNew'];
-		//$basesConcNew=$_REQUEST['basesConcNew'];
 		
 		$rutanewbases="/docs";		
 		$basesConcNew=$_FILES['basesConcNew']['tmp_name'];
@@ -741,28 +740,66 @@ class db_model {
 		move_uploaded_file($basesConcNew,"/UniServerZ/www".$rutanewbases."/".$nombreBases);
 		$rutanewbases=$rutanewbases."/".$nombreBases;
 		
-		//$logoConcNew=$_REQUEST['logoConcNew'];
-
 		$rutanewlogo="/imagenes";		
 		$logoConcNew=$_FILES['logoConcNew']['tmp_name'];
-		$nombreFoto=$_FILES['logoConcNew']['name'];
-		move_uploaded_file($logoConcNew,"/UniServerZ/www".$rutanewlogo."/".$nombreFoto);
-		$rutanewlogo=$rutanewlogo."/".$nombreFoto;
+		$nombreLogo=$_FILES['logoConcNew']['name'];
+		move_uploaded_file($logoConcNew,"/UniServerZ/www".$rutanewlogo."/".$nombreLogo);
+		$rutanewlogo=$rutanewlogo."/".$nombreLogo;
 		
-		if($nombreConcNew == NULL || $rutanewbases == NULL ||
-			$rutanewlogo == NULL){
+		if($nombreConcNew == NULL 
+			&& $nombreBases == NULL 
+			&& $nombreLogo == NULL){
+			
 			$_SESSION['campos_incompletos']=1;
-		}
-		else{
-
-									
-			$sql="UPDATE PINCHOGES P SET P.nombre_consurso ='".$nombreConcNew."'
+			
+		}else if (($nombreLogo == NULL)&&($nombreBases == NULL)){
+			$sql="UPDATE PINCHOGES P SET P.nombre_consurso='".$nombreConcNew."'
+				WHERE P.ID_administrador='1'";							
+								
+			mysql_query($sql);
+			
+		} else if (($nombreBases == NULL)&&($nombreConcNew == NULL)){
+			$sql="UPDATE PINCHOGES P SET P.logotipo ='".$rutanewlogo."' 
+				WHERE P.ID_administrador='1'";							
+								
+			mysql_query($sql);
+		
+		}else if (($nombreLogo == NULL)&&($nombreConcNew == NULL)){
+			$sql="UPDATE PINCHOGES P SET P.bases ='".$rutanewbases."' 
+				WHERE P.ID_administrador='1'";							
+								
+			mysql_query($sql);
+		
+		}	else if ($nombreConcNew == NULL){	
+			$sql="UPDATE PINCHOGES P SET 
 										,P.bases ='".$rutanewbases."'
 										,P.logotipo ='".$rutanewlogo."' 
 				WHERE P.ID_administrador='1'";							
 								
 			mysql_query($sql);
-		}	
+		}	else if ($nombreBases == NULL){
+			$sql="UPDATE PINCHOGES P SET P.nombre_consurso='".$nombreConcNew."'
+										,P.logotipo ='".$rutanewlogo."' 
+				WHERE P.ID_administrador='1'";							
+								
+			mysql_query($sql);
+		
+		} else if ($nombreLogo == NULL){
+			$sql="UPDATE PINCHOGES P SET P.nombre_consurso='".$nombreConcNew."'
+										,P.bases ='".$rutanewbases."' 
+				WHERE P.ID_administrador='1'";							
+								
+			mysql_query($sql);
+		
+		}else{
+			$sql="UPDATE PINCHOGES P SET P.nombre_consurso='".$nombreConcNew."'
+										,P.bases ='".$rutanewbases."'
+										,P.logotipo ='".$rutanewlogo."'
+				WHERE P.ID_administrador='1'";							
+								
+			mysql_query($sql);
+			
+		}
 
 		require_once("../index.php");
 	}	

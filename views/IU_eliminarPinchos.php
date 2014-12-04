@@ -19,12 +19,6 @@ $db_model=new db_model();
 	<!-- Cabecera -->
 	<div class="form-group">
 		<?PHP include("/../views/IU_cabecera.php"); ?>
-	</div>	<div class="form-group">
-		<label for="name">Buscar</label>
-		<input type="text" class="form-control" placeholder="Introsduzca su búsqueda">
-	</div>
-	<div class="btn-group">
-		<button TYPE="submit" name="accion"  VALUE="Buscar" class="btn btn-default">Buscar</button>
 	</div>  
 	
     <form action="/controllers/administrador_controlador.php" method="get"> 
@@ -33,7 +27,9 @@ $db_model=new db_model();
 		foreach  ($_SESSION['pinchos'] as $valor){
 		?>				
 		<div class="form-group">
-			<label for="name"> Nombre del pincho: </label>
+			<img src="<?PHP echo $valor['foto']?>" alt="no hay imagen disponible" class="img-thumbnail" width='100'>
+			<label for="name" class="label label-default"> Nombre del pincho</label>
+
 			<button TYPE="submit" NAME="eliminaEste" VALUE="<?PHP echo $valor['nombre_pincho']?>" class="btn btn-default"><?PHP echo $valor['nombre_pincho']?></button>
 		</div>
 		<?PHP

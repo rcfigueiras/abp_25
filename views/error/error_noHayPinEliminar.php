@@ -17,10 +17,11 @@ if (isset($_REQUEST['login'])) {
 
 <body>
 	<div class="alert alert-warning">No hay pinchos disponibles para eliminar</div>
-<!-- Cabecera -->
+	<!-- Cabecera -->
 	<div class="form-group">
 		<?PHP include("/../views/IU_cabecera.php"); ?>
 	</div>
+	
 	<?PHP include("../../controllers/administrador_controlador.php"); ?>
 
 <body>

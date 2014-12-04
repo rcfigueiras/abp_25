@@ -4,18 +4,19 @@ session_start();
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 
-
 <head>
  
 </head>
 
-<body>
+<body>	
+
+	<div class="alert alert-info">Edite la información del sistema</div>		   
+
 	<!-- Cabecera -->
 	<div class="form-group">
 		<?PHP include("/../views/IU_cabecera.php"); ?>
 	</div>
 	
-	<div class="alert alert-info">Edite la información del sistema</div>		   
                 
     <form action="/controllers/administrador_controlador.php" method="post" enctype="multipart/form-data"> 
 		

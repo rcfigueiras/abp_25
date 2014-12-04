@@ -10,15 +10,13 @@ if (isset($_REQUEST['login'])) {
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 
-
 <head>
-
   
 </head>
 
 <body>
 	<div class="alert alert-warning">No hay pinchos disponibles para validar</div>
-<!-- Cabecera -->
+	<!-- Cabecera -->
 	<div class="form-group">
 		<?PHP include("/../views/IU_cabecera.php"); ?>
 	</div>
