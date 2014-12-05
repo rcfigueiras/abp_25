@@ -14,7 +14,7 @@ session_start();
 	<div class="form-group">
 		<?PHP include("../../views/IU_cabecera.php"); ?>
 	</div>
-	
+	<div class="row"></div>
 	<div class="alert alert-info">Información del pincho seleccionado</div>	
 
 	<!-- Cabecera -->

@@ -12,10 +12,15 @@ session_start();
 <body>
 		
 	<form action="/controllers/buscar_controlador.php" method="get" role="form">
+	<div class="row">
+		<div class="col-xs-2">
+
 		<div class="form-group">
-			<label for="name">Buscar</label>
+			<label for="name" class="label label-default">Buscar</label>
 			<input type="text" class="form-control" name="search" placeholder="Introduzca su búsqueda">
 		</div>
+		</div>
+	</div>
 		<div class="btn-group">
 			<button TYPE="submit" name="accion"  VALUE="Buscar" class="btn btn-default">Buscar</button>
 		</div>  		

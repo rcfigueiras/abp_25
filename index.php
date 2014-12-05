@@ -6,7 +6,6 @@ require_once("db/db.php");
 //Llamada al modelo
 require_once("models/db_model.php");
 $db_model=new db_model();
-
 /*
 *	Tomamos las variables del concurso para la cabecera de la
 *	página, si las hay, y las gusardamos en variables de sesión.

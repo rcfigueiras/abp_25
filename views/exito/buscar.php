@@ -16,12 +16,13 @@ session_start();
 	<div class="form-group">
 		<?PHP include("../../views/IU_cabecera.php"); ?>
 	</div>
-	
+	<div class="row"></div>
 	<form action="/controllers/login_controlador.php" method="get" role="form">
 
 	</form>
 	
-	
+		
+
 	<div class="alert alert-info">Resultados de la búsqueda</div>	
 	<?PHP
 	/*

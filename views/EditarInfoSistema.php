@@ -10,34 +10,35 @@ session_start();
 
 <body>	
 
-	<div class="alert alert-info">Edite la información del sistema</div>		   
 
 	<!-- Cabecera -->
 	<div class="form-group">
 		<?PHP include("/../views/IU_cabecera.php"); ?>
 	</div>
-	
-                
+	<div class="row"></div>
+	<div class="alert alert-info">Edite la información del sistema</div>		   
+  
     <form action="/controllers/administrador_controlador.php" method="post" enctype="multipart/form-data"> 
 		
 		<div class="form-group">
-			<label for="name">Nuevo Nombre del concurso: </label>
+			<label for="name" class="label label-default">Nuevo Nombre del concurso: </label>
 			<input type="text" class="form-control" name="nombreConcNew" placeholder="nuevo nombre del concurso" value="<?PHP echo $_SESSION['nombre_consurso']?>">
 		</div>
 				   
                 
 		<div class="form-group">
-			<label for="name">Nuevas Bases: </label>
+			<label for="name" class="label label-default">Nuevas Bases: </label>
 			<input type="file" class="form-control" name="basesConcNew"  >
 		</div>
 			
 		
 		<div class="form-group">
-			<label for="name">Antiguo Logotipo: </label>
+			<label for="name" class="label label-default" >Antiguo Logotipo: </label>
+
 			<div class="form-group">
 				<img src="<?PHP echo $_SESSION['logotipo']?>" alt="no hay logotipo disponible" class="img-thumbnail" width='250'>
 			</div>
-			<label for="name">Nuevo Logotipo: </label>
+			<label for="name" class="label label-default">Nuevo Logotipo: </label>
 			<input type="file" class="form-control" name="logoConcNew">
 
 		</div>

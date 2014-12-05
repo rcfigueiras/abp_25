@@ -229,10 +229,10 @@ CREATE TABLE `pincho` (
 --
 
 INSERT INTO `pincho` (`ID_pincho`, `ID_administrador`, `ID_estab`, `nombre_pincho`, `tipo`, `descripcion`, `precio`, `foto`, `horario`, `pincho_validado`) VALUES
-(121, 1, 8, 'pizza', 'frio', 'pizza cuatro estaciones especial', 3, '/imagenes/pizza.jpg', 'mañana', 0),
-(122, 1, 9, 'tosta de jamon', 'frio', 'tosta de jamon con aceite de oliva', 2, '/imagenes/tosta.jpg', 'tarde', 0),
-(123, 1, 10, 'bacalao', 'caliente', 'bacalao al pinpin', 3, '/imagenes/bacalao.jpg', 'todo el dia', 0),
-(124, 1, 12, 'tempura de verduras', 'caliente', 'tempura de verduras de temporada', 1, '/imagenes/tempura.jpg', 'mañana', 0);
+(121, 1, 8, 'pizza', 'frio', 'pizza cuatro estaciones especial', 3, '/src/imagenes/pizza.jpg', 'mañana', 0),
+(122, 1, 9, 'tosta de jamon', 'frio', 'tosta de jamon con aceite de oliva', 2, '/src/imagenes/tosta.jpg', 'tarde', 0),
+(123, 1, 10, 'bacalao', 'caliente', 'bacalao al pinpin', 3, '/src/imagenes/bacalao.jpg', 'todo el dia', 0),
+(124, 1, 12, 'tempura de verduras', 'caliente', 'tempura de verduras de temporada', 1, '/src/imagenes/tempura.jpg', 'mañana', 0);
 
 -- --------------------------------------------------------
 
@@ -252,7 +252,7 @@ CREATE TABLE `pinchoges` (
 --
 
 INSERT INTO `pinchoges` (`nombre_consurso`, `ID_administrador`, `bases`, `logotipo`) VALUES
-('Outono Ourense', 1, '/docs/bases.pdf', '/imagenes/logo.jpg');
+('Outono Ourense', 1, '/src/docs/bases.pdf', '/src/imagenes/logo.jpg');
 
 -- --------------------------------------------------------
 

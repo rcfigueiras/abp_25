@@ -222,7 +222,7 @@ class db_model {
 		$ruta="/src/imagenes";		
 		$fotoPin=$_FILES['fotoPin']['tmp_name'];
 		$nombreFoto=$_FILES['fotoPin']['name'];
-		move_uploaded_file($fotoPin,"/UniServerZ/www".$ruta."/".$nombreFoto);
+		move_uploaded_file($fotoPin,$_SERVER['DOCUMENT_ROOT'].$ruta."/".$nombreFoto);
 		$ruta=$ruta."/".$nombreFoto;
 		
 		if($nombrePin == NULL || $tipoPin == NULL ||
@@ -316,7 +316,7 @@ class db_model {
 		
 		$nombreFoto=$_FILES['newfoto']['name'];		
 		
-		move_uploaded_file($fotoPin,"/UniServerZ/www".$ruta."/".$nombreFoto);
+		move_uploaded_file($fotoPin,$_SERVER['DOCUMENT_ROOT'].$ruta."/".$nombreFoto);
 		
 		$ruta=$ruta."/".$nombreFoto;
 		
@@ -645,13 +645,13 @@ class db_model {
 		$rutabases="/src/docs";		
 		$basesConc=$_FILES['basesConc']['tmp_name'];
 		$nombreBases=$_FILES['basesConc']['name'];
-		move_uploaded_file($basesConc,"/UniServerZ/www".$rutabases."/".$nombreFoto);
+		move_uploaded_file($basesConc,$_SERVER['DOCUMENT_ROOT'].$rutabases."/".$nombreFoto);
 		$rutabases=$rutabases."/".$nombreBases;
 		
 		$rutalogo="/src/imagenes";		
 		$logoConc=$_FILES['logoConc']['tmp_name'];
 		$nombreFoto=$_FILES['logoConc']['name'];
-		move_uploaded_file($logoConc,"/UniServerZ/www".$rutalogo."/".$nombreFoto);
+		move_uploaded_file($logoConc,$_SERVER['DOCUMENT_ROOT'].$rutalogo."/".$nombreFoto);
 		$rutalogo=$rutalogo."/".$nombreFoto;
 		
 
@@ -737,13 +737,13 @@ class db_model {
 		$rutanewbases="/src/docs";		
 		$basesConcNew=$_FILES['basesConcNew']['tmp_name'];
 		$nombreBases=$_FILES['basesConcNew']['name'];
-		move_uploaded_file($basesConcNew,"/UniServerZ/www".$rutanewbases."/".$nombreBases);
+		move_uploaded_file($basesConcNew,$_SERVER['DOCUMENT_ROOT'].$rutanewbases."/".$nombreBases);
 		$rutanewbases=$rutanewbases."/".$nombreBases;
 		
 		$rutanewlogo="/src/imagenes";		
 		$logoConcNew=$_FILES['logoConcNew']['tmp_name'];
 		$nombreLogo=$_FILES['logoConcNew']['name'];
-		move_uploaded_file($logoConcNew,"/UniServerZ/www".$rutanewlogo."/".$nombreLogo);
+		move_uploaded_file($logoConcNew,$_SERVER['DOCUMENT_ROOT'].$rutanewlogo."/".$nombreLogo);
 		$rutanewlogo=$rutanewlogo."/".$nombreLogo;
 		
 		if($nombreConcNew == NULL 
